@@ -1,0 +1,31 @@
+.fondo {
+    background-image: url("/home/pexels-enginakyurt-5209693.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.card {
+    height: 100%;
+}
+
+.purpose {
+    background-color: #AEDC81;
+    padding: 80px 10px;
+    h1, h2 {
+        color: #0D0839;
+        font-weight: 700;
+    }
+}
+
+.botones {
+    padding: 50px 0px;
+    .btn {
+        color: #0D0839;
+        background-color: white;
+        width: 15%;
+        padding: 10px;
+        font-weight: 500;
+    }
+}
+
