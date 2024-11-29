@@ -9,6 +9,16 @@
     height: 100%;
 }
 
+.col-3 {
+    margin-top: 25px;
+}
+
+.alquilar {
+    background-color: #6CC51D;
+    color: white;
+    padding: 5px 30px;
+}
+
 .purpose {
     background-color: #AEDC81;
     padding: 80px 10px;
@@ -27,5 +37,17 @@
         padding: 10px;
         font-weight: 500;
     }
+}
+
+.informacion {
+    padding-top: 60px;
+}
+
+.start-now {
+    color: #0D0839;
+    background-color: white;
+    width: 25%;
+    padding: 10px;
+    font-weight: 500;
 }
 
