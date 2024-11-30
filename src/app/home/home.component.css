@@ -1,5 +1,5 @@
 .fondo {
-    background-image: url("/home/pexels-enginakyurt-5209693.jpg");
+    background-image: url("/alquilar5.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -38,7 +38,7 @@
 
 .buscador button {
     padding: 15px 30px;
-    background-color: #28a745;
+    background-color: #6CC51D;
     color: white;
     border: none;
     border-radius: 30px; /* Redondeamos el botón */
@@ -48,9 +48,6 @@
     margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
 }
 
-.buscador button:hover {
-    background-color: #218838;
-}
 
 .buscador i {
     margin-left: 8px;
@@ -164,3 +161,24 @@ body {
     max-width: 150px; 
   }
   
+  .contenedor {
+    text-align: center;
+}
+
+/* Estilo del botón */
+.boton-ver-mas {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #2B2350; /* Color del texto */
+    background-color: #F7F7F7; /* Color de fondo */
+    border: 1px solid #111111; /* Borde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px 30px; /* Espaciado interno */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efecto hover */
+.boton-ver-mas:hover {
+    background-color: #E6E6E6; /* Cambio de fondo al pasar el ratón */
+}
