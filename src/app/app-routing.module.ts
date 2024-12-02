@@ -12,11 +12,7 @@ const routes: Routes = [
 
   {
     path: '',
-    component: VisitorLayoutComponent,
-    children: [
-      { path: '', component: HomeComponent },
-      // { path: 'about', component: VisitorAboutComponent }
-    ]
+    loadChildren: () => import('./guest/guest.module').then(m => m.GuestModule)
   },
   {
     path: 'user',
