@@ -1,0 +1,27 @@
+.fondo {
+  background: var(--fondo-gradient);
+}
+
+.img-logo {
+  width: 100px; 
+  height: 100px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 2px solid var(--logo-border); 
+}
+
+.usuario {
+  background-color: var(--usuario-bg);
+  border-radius: 50px;
+}
+
+/* Modificación del dropdown */
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: -90%;
+  margin-top: var(--bs-dropdown-spacer);
+}
+
+.bg-user{
+  background-color: var(--usuario-bg);
+}

@@ -26,19 +26,11 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    component: UserLayoutComponent,
-    children: [
-      // { path: 'dashboard', component: UserDashboardComponent },
-      // { path: 'profile', component: UserProfileComponent }
-    ]
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
     path: 'admin',
-    component: AdminLayoutComponent,
-    children: [
-      // { path: 'dashboard', component: AdminDashboardComponent },
-      // { path: 'settings', component: AdminSettingsComponent }
-    ]
+    loadChildren: () => import('./admin/admin.module').then(m=>m.AdminModule)
   }
 ];
 

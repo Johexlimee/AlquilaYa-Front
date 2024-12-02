@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './admin-header.component.css'
 })
 export class AdminHeaderComponent {
-
+  toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar')!;
+    sidebar.classList.toggle('collapsed');
+  }
 }

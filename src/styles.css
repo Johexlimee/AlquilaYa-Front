@@ -1,6 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+:root {
+    /* Variables de color */
+    --fondo-gradient: linear-gradient(45deg, #D4DB81, #AEDC81, #DBD381, #038f2a);
+    --logo-border: #5aad10;
+    --usuario-bg: #2e8b57;
+  }
 body {
     background-color: #F0F0F0;
+}
+
+.sidebar-link {
+  color: #a0a3bd;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  margin: 4px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.nav {
+  flex-grow: 1;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: calc(100% - 250px);
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.collapsed + .main-content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
 }

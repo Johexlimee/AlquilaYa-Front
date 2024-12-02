@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class UserHeaderComponent {
 
+  // constructor(  
+  //   public productService: ProductService,
+  // ) {
+  //   // console.log(translate.data);
+  // }
 }
