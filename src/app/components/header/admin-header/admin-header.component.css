@@ -96,3 +96,41 @@ body {
 .profile-info {
     transition: opacity 0.2s ease;
 }
+
+
+.sidebar-link {
+    color: #a0a3bd;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 4px 16px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .sidebar.collapsed {
+    width: 80px;
+  }
+  
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .nav {
+    flex-grow: 1;
+  }
+  
+  .main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    transition: margin-left 0.3s ease-in-out;
+  }
+  
+  .sidebar.collapsed + .main-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+  }
+  
