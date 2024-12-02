@@ -1,0 +1,37 @@
+.login-form {
+  margin-top: 60px;
+  width: 500px;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  .contenido {
+      margin: 30px 0px;
+      h2 {
+          margin-bottom: 50px;
+          font-weight: 500;
+      }
+  }
+}
+
+.input-group-text {
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+  color: #0F1419;
+  font-weight: 700;
+}
+
+.sesion {
+  background-color: #0F1419;
+  color: white;
+  margin-top: 20px;
+  width: 180px;
+  border-radius: 50px;
+}
+
+.modal-dialog {
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+}
