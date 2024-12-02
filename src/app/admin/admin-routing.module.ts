@@ -12,7 +12,6 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     children: [
-      { path: 'category', component: CategoryManagementComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'categorymanagement', component: CategoryManagementComponent},
       { path: 'dashboard', component: DashboardComponent},

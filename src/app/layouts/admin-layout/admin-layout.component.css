@@ -1,0 +1,14 @@
+/* Configuración inicial para el contenido principal */
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 20px;
+  width: calc(100% - var(--sidebar-width));
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+/* Ajustes para cuando la barra lateral esté colapsada */
+.sidebar.collapsed + .main-content {
+  margin-left: 80px;
+  width: calc(100% - var(--sidebar-width-collapsed));
+}
+

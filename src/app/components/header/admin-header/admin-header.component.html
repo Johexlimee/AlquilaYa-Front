@@ -1,44 +1,42 @@
-<nav class="sidebar d-flex flex-column flex-shrink-0 position-fixed">
-
-  <button class="toggle-btn" (click)="toggleSidebar()">
-    <i class="fas fa-chevron-left"></i>
+<nav class="sidebar d-flex flex-column flex-shrink-0 position-fixed" [ngClass]="{ 'collapsed': isSidebarCollapsed }">
+  <button class="toggle-btn" (click)="onToggleSidebar()">
+    <i class="fas" [ngClass]="isSidebarCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'"></i>
   </button>
-
 
   <div class="p-4">
     <h4 class="logo-text fw-bold mb-0">Alquila ya!!!</h4>
   </div>
 
-  <div class="nav flex-column ">
-    <a href="#" class="sidebar-link active text-decoration-none p-3">
+  <div class="nav flex-column">
+    <a routerLink="/admin/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="sidebar-link active text-decoration-none p-3">
       <i class="fa-solid fa-user me-3"></i>
-      <span class="hide-on-collapse">Gestion mi perfil</span>
+      <span class="hide-on-collapse">Gestionar mi perfil</span>
     </a>
-    <a href="#" class="sidebar-link text-decoration-none p-3">
+    <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="sidebar-link text-decoration-none p-3">
       <i class="fas fa-chart-bar me-3"></i>
       <span class="hide-on-collapse">Analytics y Reportes</span>
     </a>
-    <a href="#" class="sidebar-link text-decoration-none p-3">
+    <a routerLink="/admin/documentverifier"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="sidebar-link text-decoration-none p-3">
       <i class="fas fa-users me-3"></i>
-      <span class="hide-on-collapse"> Gestión Usuarios</span>
+      <span class="hide-on-collapse">Gestión Usuarios</span>
     </a>
-    <a href="#" class="sidebar-link text-decoration-none p-3">
+    <a routerLink="/admin/categorymanagement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="sidebar-link text-decoration-none p-3">
       <i class="fa-solid fa-layer-group me-3"></i>
       <span class="hide-on-collapse">Gestión Categorías</span>
     </a>
-    <a href="#" class="sidebar-link text-decoration-none p-3">
+    <a routerLink="/admin/documentverifier" class="sidebar-link text-decoration-none p-3">
       <i class="fas fa-box me-3"></i>
-      <span class="hide-on-collapse">Gestión Productos  </span>
+      <span class="hide-on-collapse">Gestión Productos</span>
     </a>
     <a href="#" class="sidebar-link text-decoration-none p-3">
       <i class="fa-solid fa-id-card me-3"></i>
       <span class="hide-on-collapse">Tipo Documentos</span>
     </a>
     <a href="#" class="sidebar-link text-decoration-none p-3">
-      <i class="fa-solid fa-right-from-bracket me-3 "></i>
+      <i class="fa-solid fa-right-from-bracket me-3"></i>
       <span class="hide-on-collapse">Cerrar sesión</span>
     </a>
-    <div class=" p-2 profile-section " >
+    <div class="p-2 profile-section">
       <div class="d-flex align-items-center">
         <img
           src="https://randomuser.me/api/portraits/women/70.jpg"
@@ -49,11 +47,8 @@
         <div class="ms-3 profile-info">
           <h6 class="text-white mb-0">Alex Morgan</h6>
           <small class="text-muted">Admin</small>
-         
         </div>
       </div>
     </div>
   </div>
-
-  
 </nav>
