@@ -1,0 +1,23 @@
+.fondo {
+  background: linear-gradient(45deg, #D4DB81, #AEDC81, #DBD381, #038f2a);
+}
+
+.img-logo {
+  width: 100px; /* Ajusta el tamaño del logo */
+  height: 100px; /* Mantiene la imagen en forma cuadrada */
+  border-radius: 50%; /* Hace que la imagen tenga bordes redondeados */
+  object-fit: cover; /* Asegura que la imagen cubra el área circular sin deformarse */
+  border: 2px solid #5aad10; /* Borde opcional verde */
+}
+
+.usuario {
+  background-color: seagreen;
+  border-radius: 50px;
+}
+
+/* Modificación del dropdown */
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: -90%;
+  margin-top: var(--bs-dropdown-spacer);
+}

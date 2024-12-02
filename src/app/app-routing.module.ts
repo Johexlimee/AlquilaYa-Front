@@ -4,13 +4,44 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { HomeComponent } from './home/home.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { CartComponent } from './cart/cart.component';
+import { VisitorLayoutComponent } from './layouts/visitor-layout/visitor-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+
+// const routes: Routes = [
+//   { path: '', component: HomeComponent },
+//   { path: 'listproducts', component: ListProductsComponent },
+//   { path: 'detailproduct', component: DetailProductComponent },
+//   { path: 'cart', component: CartComponent},
+// ];
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'listproducts', component: ListProductsComponent },
-  { path: 'detailproduct', component: DetailProductComponent },
-  { path: 'cart', component: CartComponent},
+  {
+    path: '',
+    component: VisitorLayoutComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      // { path: 'about', component: VisitorAboutComponent }
+    ]
+  },
+  {
+    path: 'user',
+    component: UserLayoutComponent,
+    children: [
+      // { path: 'dashboard', component: UserDashboardComponent },
+      // { path: 'profile', component: UserProfileComponent }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      // { path: 'dashboard', component: AdminDashboardComponent },
+      // { path: 'settings', component: AdminSettingsComponent }
+    ]
+  }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
