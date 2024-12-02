@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-admin-header',
@@ -6,8 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './admin-header.component.css'
 })
 export class AdminHeaderComponent {
-  toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar')!;
-    sidebar.classList.toggle('collapsed');
+  @Input() isSidebarCollapsed: boolean = false; // Recibe el estado del sidebar desde el padre
+  @Output() toggleSidebar = new EventEmitter<void>(); // Emite eventos al padre
+
+  // Método para emitir el evento
+  onToggleSidebar() {
+    this.toggleSidebar.emit();
   }
+
+ 
 }
