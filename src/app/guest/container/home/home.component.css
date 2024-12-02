@@ -266,13 +266,22 @@ body {
 .carousel-control-next-icon {
   background-color: #111111;
   border-radius: 50%;
-  width: 30px;  /* Tamaño reducido */
-  height: 30px; /* Tamaño reducido */
+  width: 20px; /* Tamaño reducido */
+  height: 20px; /* Tamaño reducido */
+  background-size: 50%; /* Ajustar tamaño del icono dentro del círculo */
+  margin-top: -10px; /* Centrar mejor respecto al contenido */
 }
 
+/* Efectos al pasar el mouse */
 .carousel-control-prev-icon:hover,
 .carousel-control-next-icon:hover {
   background-color: #343536;
+}
+
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 40px; /* Ancho más pequeño para las zonas activas */
 }
 
   
