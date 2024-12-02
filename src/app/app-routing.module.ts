@@ -8,13 +8,6 @@ import { VisitorLayoutComponent } from './layouts/visitor-layout/visitor-layout.
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
-// const routes: Routes = [
-//   { path: '', component: HomeComponent },
-//   { path: 'listproducts', component: ListProductsComponent },
-//   { path: 'detailproduct', component: DetailProductComponent },
-//   { path: 'cart', component: CartComponent},
-// ];
-
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +15,9 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       // { path: 'about', component: VisitorAboutComponent }
+      { path: 'listproducts', component: ListProductsComponent },
+      { path: 'detailproduct', component: DetailProductComponent },
+      { path: 'cart', component: CartComponent},
     ]
   },
   {
@@ -36,8 +32,7 @@ const routes: Routes = [
     path: 'admin',
     component: AdminLayoutComponent,
     children: [
-      // { path: 'dashboard', component: AdminDashboardComponent },
-      // { path: 'settings', component: AdminSettingsComponent }
+      
     ]
   }
 ];
