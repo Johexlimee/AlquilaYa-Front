@@ -7,6 +7,8 @@ import { CartComponent } from './cart/cart.component';
 import { VisitorLayoutComponent } from './layouts/visitor-layout/visitor-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 
 const routes: Routes = [
   {
@@ -20,21 +22,8 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent},
     ]
   },
-  {
-    path: 'user',
-    component: UserLayoutComponent,
-    children: [
-      // { path: 'dashboard', component: UserDashboardComponent },
-      // { path: 'profile', component: UserProfileComponent }
-    ]
-  },
-  {
-    path: 'admin',
-    component: AdminLayoutComponent,
-    children: [
-      
-    ]
-  }
+  { path: 'user', component: UserLayoutComponent, loadChildren: ()=> import('./user/user-routing.module').then((m)=>UserModule )},
+  { path: 'admin', component: AdminLayoutComponent, loadChildren: ()=> import('./admin/admin-routing.module').then((m)=>AdminModule) },
 ];
 
 

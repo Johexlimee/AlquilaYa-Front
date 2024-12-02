@@ -9,9 +9,9 @@ import { ReportsComponent } from './container/reports/reports.component';
 const routes: Routes = [
   { path: '', 
     children: [
-      { path: 'category-management', component: CategoryManagementComponent},
+      { path: 'categorymanagement', component: CategoryManagementComponent},
       { path: 'dashboard', component: DashboardComponent},
-      { path: 'document-verifier', component: DocumentVerifierComponent},
+      { path: 'documentverifier', component: DocumentVerifierComponent},
       { path: 'profile', component: ProfileComponent},
       { path: 'reports', component: ReportsComponent},
   ]}
