@@ -182,59 +182,44 @@ body {
 }
 
   
+
+
+
+/* Contenedor para alinear los elementos */
+.filtro-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinea verticalmente */
+    gap: 20px; /* Espacio entre el botón y el select */
+  }
+  
+  /* Estilos del botón de filtro */
+  .btn-filtro {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .btn-filtro i {
+    margin-right: 5px; /* Espacio entre el ícono y el texto */
+  }
+  
+  /* Estilos del campo de "Ordenar por" */
   .ordenar {
-  display: flex;
-  justify-content: flex-end; /* Alinea a la derecha */
-  align-items: center;
-  font-size: 25px;
-  color: #333;
-  margin-right: 10%; 
-  margin-top: 20px; 
-}
-
-.ordenar label {
-  margin-right: 10px;
-}
-
-.ordenar select {
-  padding: 5px 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.ordenar select:focus {
-  outline: none;
-  border-color: #888;
-}
-
-
+    display: flex;
+    align-items: center;
+  }
+  
   .ordenar label {
-    margin-right: 10px;
-    font-weight: bold; /* Pone el texto en negrita */
-}
-.btn-filtro {
-  background-color: #6CC51D; 
-  color: black;
-  padding: 10px 20px; 
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-left: 10%; /* Separación del lado izquierdo */
-  margin-top: 20px; /* Espacio con el primer título */
-}
-
-.btn-filtro:hover {
-  background-color: #5BA317;
-}
-
-.btn-filtro i {
-  margin-right: 8px;
-}
+    margin-right: 10px; /* Espacio entre la etiqueta y el select */
+  }
+  
+  #ordenar {
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  

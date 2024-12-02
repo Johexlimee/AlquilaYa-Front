@@ -1,165 +1,266 @@
-.fondo {
-    background-image: url("/home/pexels-enginakyurt-5209693.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-/* Estilos para el buscador */
-.buscador {
+/* Contenedor principal */
+.rental-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0px;  /* Eliminamos el espacio entre los elementos */
-    max-width: 800px; /* Aumentamos el tamaño máximo del buscador */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
     margin: 0 auto;
-}
-
-.buscador input {
-    width: 300px; /* Aumentamos el tamaño de los inputs */
-    padding: 15px; /* Aumentamos el padding para un mayor tamaño */
-    font-size: 16px;
-    border-radius: 30px 0 0 30px; /* Redondeamos solo la parte izquierda */
+  }
+  
+  /* Sección izquierda: Imágenes */
+  .image-section {
+    flex: 2;
+  }
+  
+  .image-section h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .image-section .rating {
+    font-size: 18px;
+    color: #4caf50;
+  }
+  
+  .image-section .product-images {
+    margin-top: 20px;
+  }
+  
+  .image-section .main-image {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .thumbnail-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .thumbnail-images img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
     border: 1px solid #ddd;
-    transition: all 0.3s ease;
-    box-shadow: none;
-}
-
-.buscador input:focus {
-    outline: none;
-    border-color: #28a745;
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}
-
-.buscador .ubicacion input {
-    width: 300px; /* Aumentamos el tamaño del segundo input */
-    border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha */
-}
-
-.buscador button {
-    padding: 15px 30px;
-    background-color: #28a745;
+  }
+  
+  .thumbnail-images img:hover {
+    border-color: #4caf50;
+  }
+  
+  /* Sección derecha: Detalles */
+  .details-section {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .details-section .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 15px;
+  }
+  
+  .details-section .info {
+    font-size: 14px;
+    color: #666;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .date-picker {
+    margin-bottom: 15px;
+  }
+  
+  .date-picker label {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .date-picker input {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .details-button {
+    background-color: #4caf50;
     color: white;
     border: none;
-    border-radius: 30px; /* Redondeamos el botón */
-    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
+    margin-bottom: 15px;
+  }
+  
+  .details-button:hover {
+    background-color: #45a049;
+  }
+  
+  .price-details p {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+  }
+  
+  .total-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .add-to-cart {
+    background-color: #1a1a7b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #000066;
+  }
+  
+
+  /* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.buscador button:hover {
-    background-color: #218838;
+/* Estilo para el encabezado */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-.buscador i {
-    margin-left: 8px;
+p {
+    font-size: 1.2rem;
+    color: #555;
 }
 
-
+/* Estilo de las tarjetas */
 .card {
-    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
-.col-3 {
-    margin-top: 25px;
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Estilo para el pie de la tarjeta (botón) */
+.card-footer {
+    padding: 10px 0;
+    background-color: #f8f8f8;
 }
 
 .alquilar {
     background-color: #6CC51D;
     color: white;
-    padding: 5px 30px;
-}
-
-.purpose {
-    background-color: #AEDC81;
-    padding: 80px 10px;
-    h1, h2 {
-        color: #0D0839;
-        font-weight: 700;
-    }
-}
-
-.botones {
-    padding: 50px 0px;
-    .btn {
-        color: #0D0839;
-        background-color: white;
-        width: 15%;
-        padding: 10px;
-        font-weight: 500;
-    }
-}
-
-.informacion {
-    padding-top: 60px;
-}
-
-.start-now {
-    color: #0D0839;
-    background-color: white;
-    width: 25%;
-    padding: 10px;
-    font-weight: 500;
-}
-
-/* General carrusel*/
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-  }
-  
-  /* Carrusel */
-  #iconCarousel {
-    max-width: 1200px; 
-    margin: 30px auto;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px 0;
-  }
-  
-  /* Íconos */
-  .carousel-item i {
-    color: #5a5a5a;
-    transition: transform 0.3s ease;
-  }
-  
-  .carousel-item i:hover {
-    transform: scale(1.2);
-    color: #151616;
-  }
-  
-  /* Textos */
-  .carousel-item p {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #555;
-  }
-  
-  /* Controles */
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: #111111;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-  }
-  
-  .carousel-control-prev-icon:hover,
-  .carousel-control-next-icon:hover {
-    background-color: #343536;
-  }
-  
-  /* Alineación de íconos */
-  .carousel-item .d-flex {
     padding: 10px 20px;
-  }
-  
-  .text-center {
-    text-align: center;
-    flex: 1; 
-    max-width: 150px; 
-  }
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.alquilar:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos de la fila (row) */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-3 {
+    flex: 1;
+    max-width: calc(25% - 20px);
+}
+
+@media (max-width: 1200px) {
+    .col-3 {
+        max-width: calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .col-3 {
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .col-3 {
+        max-width: 100%;
+    }
+}
+
+/* Estilo del botón "Ver más" */
+.boton-ver-mas {
+    background-color: #6CC51D;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease;
+}
+
+.boton-ver-mas:hover {
+    background-color: #6CC51D;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

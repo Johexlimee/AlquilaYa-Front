@@ -1,105 +1,54 @@
-<section class="container-fluid vh-100 fondo d-flex align-items-center justify-content-center">
-    <div class="container">
-        <div class="d-flex flex-wrap justify-content-center">
-            <h1>Encuentra todo lo que buscas para alquilar en un solo lugar</h1>
+<div class="rental-container">
+    <!-- Sección izquierda: Imágenes del producto -->
+    <div class="image-section">
+      <h1>Sony FX6 Full-Frame Cinema Camera</h1>
+      <p><i class="location-icon"></i> Bogotá, Colombia</p>
+      <p class="rating">9.9 - <span>Excelente</span></p>
+      <div class="product-images">
+        <img src="camera.jpeg" alt="Camera" class="main-image">
+        <div class="thumbnail-images">
+          <img src="camara.jpg" alt="Camera Thumbnail">
+          <img src="camara.jpg" alt="Camera Thumbnail">
+          <img src="camara.jpg" alt="Camera Thumbnail">
         </div>
-        <div>
-            <!-- Buscador -->
-            <div class="buscador">
-                <input type="text" class="form-control" placeholder="¿Qué estás buscando?">
-                <div class="ubicacion">
-                    <input type="text" class="form-control" placeholder="¿Dónde?">
-                </div>
-                <button class="btn btn-success">Buscar <i class="fas fa-search"></i></button>
-            </div>
-        </div>
+      </div>
     </div>
-</section>
-
-
-
-
-
-<!-- Espacio para el caruseld de las categorias -->
-<section id="iconCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <!-- Primer conjunto de íconos -->
-        <div class="carousel-item active">
-            <div class="d-flex justify-content-around align-items-center">
-                <div class="text-center">
-                    <i class="bi bi-tv" style="font-size: 5rem;"></i>
-                    <p>Electrónica y Tecnología</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-tools" style="font-size: 5rem;"></i>
-                    <p>Maquinaria y Herramientas</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-film" style="font-size: 5rem;"></i>
-                    <p>Equipos de Sonido</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-music-note-beamed" style="font-size: 5rem;"></i>
-                    <p>Instrumentos Musicales</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-phone" style="font-size: 5rem;"></i>
-                    <p>Teléfonos y Accesorios</p>
-                </div>
-            </div>
-        </div>
-        <!-- Segundo conjunto de íconos -->
-        <div class="carousel-item">
-            <div class="d-flex justify-content-around align-items-center">
-                <div class="text-center">
-                    <i class="bi bi-display" style="font-size: 5rem;"></i>
-                    <p>Monitores</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-laptop" style="font-size: 5rem;"></i>
-                    <p>Laptops</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-headphones" style="font-size: 5rem;"></i>
-                    <p>Auriculares</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-camera" style="font-size: 5rem;"></i>
-                    <p>Cámaras</p>
-                </div>
-                <div class="text-center">
-                    <i class="bi bi-watch" style="font-size: 5rem;"></i>
-                    <p>Relojes Inteligentes</p>
-                </div>
-            </div>
-        </div>
+  
+    <!-- Sección derecha: Detalles del alquiler -->
+    <div class="details-section">
+      <h2 class="price">Precio: <span>$20.000</span> por día</h2>
+      <p class="info">
+        Días de recogida y devolución gratuitos.<br />
+        Los fines de semana cuentan como un día.<br />
+        Mínimo de alquiler: 1 día.<br />
+        Descuento: Alquila 6 días y paga solo 4.
+      </p>
+      <div class="date-picker">
+        <label for="date-picker">
+          <i class="calendar-icon"></i> Elija fechas de recogida y devolución
+        </label>
+        <input type="date" id="date-picker">
+      </div>
+      <button class="details-button">Ver detalles del alquiler</button>
+      <div class="price-details">
+        <p>Precio por día: <span>$9.999.999 Cop</span></p>
+        <p>Otros: <span>$1 Cop</span></p>
+      </div>
+      <h3 class="total-price">Precio Total: <span>$100.000 Cop</span></h3>
+      <button class="add-to-cart">Añadir al carrito de alquiler</button>
     </div>
-
-    <!-- Controles -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-    </button>
-</section>
-
-
-
-
-
-<section class="container my-5">
+  </div>
+  
+  <section class="container my-5">
     <div>
-        <h1>Recien listado para la venta</h1>
-        <p>Compre las ultimas novedades de los miembros de Alquilaya</p>
+        <h1>Productos relacionados</h1>
+        <p>Promocionado</p>
     </div>
     <div>
         <div class="row">
             <div class="col-3">
                 <div class="card">
-                    <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
+                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title">Titulo</h3>
                         <p class="card-text">Categoria</p>
@@ -111,7 +60,21 @@
             </div>
             <div class="col-3">
                 <div class="card">
-                    <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
+                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title">Titulo</h3>
+                        <p class="card-text">Categoria</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
+                    </div>
+                </div>
+            </div>
+            
+           
+            <div class="col-3">
+                <div class="card">
+                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title">Titulo</h3>
                         <p class="card-text">Categoria</p>
@@ -123,43 +86,7 @@
             </div>
             <div class="col-3">
                 <div class="card">
-                    <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
+                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title">Titulo</h3>
                         <p class="card-text">Categoria</p>
@@ -170,69 +97,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-
-
-            <!-- Aqui va el boton de ver mas -->
-
-
-        </div>
-    </div>
-</section>
-<section class="container-fluid purpose">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-center my-3">
-            <h1>¿Cómo funciona Alquilaya?</h1>
-        </div>
-        <div class="d-flex align-items-center justify-content-center mb-5 botones">
-            <input name="" id="" class="btn mx-5" type="button" value="Pedir Prestado"/>
-            <input name="" id="" class="btn mx-5" type="button" value="Prestar"/>
-        </div>
-        <div class="my-5">
-            <div class="row">
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">1. Buscar</h3>
-                            <p class="card-text">Encuentre un producto cerca de usted</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">2. Verificar</h3>
-                            <p class="card-text">Verifique su perfil para convertirse en miembro</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">3. Reservar</h3>
-                            <p class="card-text">Envia una solicitud a tu vecino y reserva</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/indicator-svgrepo-com.svg" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">4. Aprovechar</h3>
-                            <p class="card-text">Utiliza el producto y devuelvelo en el tiempo acordado</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-center informacion">
-            <h2>Consulte nuestras preguntas frecuentes para obtener mas informacion</h2>
-        </div>
-        <div class="d-flex align-items-center justify-content-center my-5">
-            <input name="" id="" class="btn start-now mx-5" type="button" value="Empezar a pedir Prestado"/>
-        </div>
+        
     </div>
 </section>
