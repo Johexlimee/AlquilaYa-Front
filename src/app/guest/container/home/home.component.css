@@ -1,5 +1,5 @@
 .fondo {
-    background-image: url("/mujer12.jpg");
+    background-image: url("/mujer 205.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -110,6 +110,46 @@
 }
 
 /* Estilos de la fila (row) */
+
+
+/* Estilo para el contenedor de la fila */
+.row {
+    display: flex;
+    justify-content: center; /* Centra el contenido dentro de la fila */
+    margin-bottom: 30px; /* Separa la fila de la siguiente sección */
+  }
+  
+  /* Estilo para el contenedor del botón */
+  .contenedor {
+    display: flex;
+    justify-content: center; /* Centra el botón en su contenedor */
+    align-items: center; /* Centra el botón verticalmente si tiene altura */
+  }
+  
+  /* Estilo para el botón */
+  .boton-ver-mas {
+    background-color: #4caf50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Relleno del botón */
+    font-size: 16px; /* Tamaño del texto */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Efecto de transición para el color */
+  }
+  
+  /* Efecto al pasar el ratón sobre el botón */
+  .boton-ver-mas:hover {
+    background-color: #45a049; /* Color más oscuro al pasar el ratón */
+  }
+  
+  /* Estilo para la siguiente sección */
+  .siguiente-seccion {
+    margin-top: 50px; /* Separa la siguiente sección del contenido anterior */
+    padding: 20px;
+    background-color: #f4f4f4; /* Color de fondo de la siguiente sección */
+  }
+  
 .row {
     display: flex;
     flex-wrap: wrap;
