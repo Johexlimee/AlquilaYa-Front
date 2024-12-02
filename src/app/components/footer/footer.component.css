@@ -1,0 +1,8 @@
+.container-fluid{
+    background-color: #0D0839;
+    padding: 60px 100px;
+    color: white;
+    text-align: center;
+    h1 { font-size: 20px; }
+    a { font-size: 18px; text-decoration: none; margin: 0px 30px; color: white; }
+}
