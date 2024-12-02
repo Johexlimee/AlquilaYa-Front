@@ -4,9 +4,22 @@
 :root {
     /* Variables de color */
     --fondo-gradient: linear-gradient(45deg, #D4DB81, #AEDC81, #DBD381, #038f2a);
+    --background-secondary: #0D0839;
+    --background-tertiary: #f8fff0;
+    --background-quaternary: linear-gradient(45deg, #328053, #0a6b34);
+    --overlay-light: rgba(255, 255, 255, 0.1);
+    --border-top-light: rgba(255, 255, 255, 0.1);
+    --text-secondary: #a0a3bd;
+    --text-secondary:#f3f3f3;
+
+
     --logo-border: #5aad10;
     --usuario-bg: #2e8b57;
+
+    --sidebar-width: 280px;
+    --sidebar-width-collapsed: 80px;
   }
 body {
     background-color: #F0F0F0;
 }
+
