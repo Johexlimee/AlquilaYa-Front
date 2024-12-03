@@ -40,11 +40,14 @@
                     </svg>
                   </span>
                 </div>
+                <!-- ngModel para enlazar el correo -->
                 <input
                   type="email"
                   class="form-control"
                   placeholder="Correo electrónico"
                   required
+                  name="email"
+                  [(ngModel)]="email"  
                 />
               </div>
             </div>
@@ -66,11 +69,14 @@
                     </svg>
                   </span>
                 </div>
+                <!-- ngModel para enlazar la contraseña -->
                 <input
                   type="password"
                   class="form-control"
                   placeholder="Contraseña"
                   required
+                  [(ngModel)]="password"  
+                  name="password"
                 />
               </div>
             </div>
@@ -80,6 +86,7 @@
               type="submit"
               class="btn mx-5 sesion"
               value="Iniciar sesión"
+              (click)="login()" 
             />
             <p>¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
           </div>

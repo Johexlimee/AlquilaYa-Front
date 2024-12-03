@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthcontrollerService } from '../../../service/authcontroller.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrl: './register-modal.component.css'
 })
 export class RegisterModalComponent {
-
+  email: string = '';
+  password: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  typeDocumentId: number = 1;  
+  documentNumber: string = '';
+  
+  constructor(private authService: AuthcontrollerService) {}
+  
+  register(): void {
+    this.authService.register(this.email, this.password, this.firstName, this.lastName, this.typeDocumentId, this.documentNumber).subscribe({
+      next: (userId) => {
+        console.log('Registro exitoso. userId:', userId);
+      },
+      error: (error) => {
+        console.error('Error en el registro', error);
+      }
+    });
+  }
+  
 }

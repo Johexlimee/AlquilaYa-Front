@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VisitorLayoutComponent } from './layouts/visitor-layout/visitor-layout.component';
@@ -12,6 +12,7 @@ import { UserHeaderComponent } from './components/header/user-header/user-header
 import { RegisterModalComponent } from './components/modals/register-modal/register-modal.component';
 import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,10 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers:[provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
