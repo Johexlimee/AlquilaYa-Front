@@ -61,49 +61,54 @@
                 </div>
               </div>
 
-              <!-- Content Area -->
+              <!-- Content Area  se muestre lo que esta en los link telefono direccion perfil-->
               <div class="col-lg-9">
                 <div class="p-4">
                   <!-- Personal Information -->
                   <div class="mb-4">
                     <h5 class="mb-4">Personal Information</h5>
-                    <div class="row g-3">
-                      <div class="col-md-6">
-                        <label class="form-label">First Name</label>
-                        <input type="text" class="form-control" value="Alex" />
+                    <form [formGroup]="userDetailsForm">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label class="form-label">First Name</label>
+                          <input type="text" class="form-control" formControlName="firstName" />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Last Name</label>
+                          <input type="text" class="form-control" formControlName="lastName" />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Email</label>
+                          <input type="email" class="form-control" formControlName="email" />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Document Number</label>
+                          <input type="text" class="form-control" formControlName="documentNumber" />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Birth Date</label>
+                          <input type="date" class="form-control" formControlName="birthDate" />
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label">Bio</label>
+                          <textarea class="form-control" rows="4" formControlName="bio"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Type Document ID</label>
+                          <input type="text" class="form-control" formControlName="typeDocumentId" />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Status Document</label>
+                          <input type="text" class="form-control" formControlName="statusDocument" />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Role</label>
+                          <input type="text" class="form-control" formControlName="role" />
+                        </div>
                       </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Last Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          value="Johnson"
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Email</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          value="alex.johnson@example.com"
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label class="form-label">Phone</label>
-                        <input
-                          type="tel"
-                          class="form-control"
-                          value="+1 (555) 123-4567"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label class="form-label">Bio</label>
-                        <textarea class="form-control" rows="4">
-Product designer with 5+ years of experience in creating user-centered digital solutions. Passionate about solving complex problems through simple and elegant designs.</textarea
-                        >
-                      </div>
-                    </div>
+                    </form>
                   </div>
+                  
 
                   <!-- Settings Cards -->
                   <div class="row g-4 mb-4">
