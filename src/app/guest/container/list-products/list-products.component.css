@@ -17,60 +17,6 @@
   transition: background-color 0.3s ease; /* Efecto al pasar el mouse */
 }
 
-
-/* Estilos para el buscador */
-/*.buscador {
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0px;  /* Eliminamos el espacio entre los elementos 
-    max-width: 800px; /* Aumentamos el tamaño máximo del buscador 
-    margin: 0 auto;
-}
-
-.buscador input {
-    width: 400px; /* Aumentamos el tamaño de los inputs 
-    padding: 15px; /* Aumentamos el padding para un mayor tamaño 
-    font-size: 16px;
-    border-radius: 50px 0 0 50px; /* Redondeamos solo la parte izquierda 
-    border: 1px solid #ddd;
-    transition: all 0.3s ease;
-    box-shadow: none;
-}
-
-.buscador input:focus {
-    outline: none;
-    border-color: #28a745;
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}
-
-.buscador .ubicacion input {
-    width: 250px; /* Aumentamos el tamaño del segundo input 
-    border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha 
-}
-
-.buscador button {
-  width: 150px;
-    padding: 15px 30px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 30px; /* Redondeamos el botón 
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón 
-}
-
-.buscador button:hover {
-    background-color: #218838;
-}
-
-.buscador i {
-    margin-left: 8px;
-}*/
-
 /* Estilos para el buscador */
 .buscador {
   padding: 150px 150px; 
