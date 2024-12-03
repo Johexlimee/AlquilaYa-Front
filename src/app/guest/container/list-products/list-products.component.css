@@ -69,6 +69,15 @@
 
 .card {
     height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-10px);
 }
 
 .col-3 {
@@ -79,6 +88,10 @@
     background-color: #6CC51D;
     color: white;
     padding: 5px 30px;
+}
+
+.alquilar:hover {
+  background-color: #0056b3;
 }
 
 .purpose {
@@ -124,4 +137,4 @@ body {
     flex-direction: column; /* Apila los elementos verticalmente */
   }
   
-  
+ 
