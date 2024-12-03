@@ -200,7 +200,7 @@ p {
 .row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+  
 }
 
 .col-3 {

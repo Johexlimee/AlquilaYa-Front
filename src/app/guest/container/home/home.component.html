@@ -108,8 +108,8 @@
                         <h3 class="card-title">{{ product.name }}</h3>
                         <p class="card-text">Categoría: {{ product.categoryName }}</p>
                         <p class="card-text">Precio: {{ product.price | currency }}</p>
-                        <p *ngIf="product.isAvailable">Disponible</p>
-                        <p *ngIf="!product.isAvailable">No disponible</p>
+                        <p *ngIf="product.productCondition">{{product.productCondition}}</p>
+                        <p *ngIf="product.supplierName">{{product.supplierName}}</p>
                     </div>
                     <div class="card-footer d-flex">
                         <button routerLink="/detailproduct" class="btn m-auto alquilar">Alquilar</button>
@@ -119,6 +119,12 @@
         </div>
     </div>
 </section>
+
+<div class="row my-5">
+    <div class="contenedor">
+      <button routerLink="/user/listproducts" class="boton-ver-mas">Ver más</button>
+    </div>
+  </div>
 
 
 <section class="container-fluid purpose">
