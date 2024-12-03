@@ -3,7 +3,7 @@
     background-position: center;
     background-size: cover;
 }
-.btn-filtro {
+.btn-success {
   background-color: #6CC51D; /* Color de fondo verde */
   color: black; /* Color del texto */
   padding: 10px 20px; /* Espaciado dentro del botón */
@@ -17,28 +17,23 @@
   transition: background-color 0.3s ease; /* Efecto al pasar el mouse */
 }
 
-.btn-filtro:hover {
-  background-color: #5BA317; /* Color de fondo al pasar el mouse */
-
-}
-
-
 
 /* Estilos para el buscador */
-.buscador {
+/*.buscador {
+  
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0px;  /* Eliminamos el espacio entre los elementos */
-    max-width: 800px; /* Aumentamos el tamaño máximo del buscador */
+    gap: 0px;  /* Eliminamos el espacio entre los elementos 
+    max-width: 800px; /* Aumentamos el tamaño máximo del buscador 
     margin: 0 auto;
 }
 
 .buscador input {
-    width: 300px; /* Aumentamos el tamaño de los inputs */
-    padding: 15px; /* Aumentamos el padding para un mayor tamaño */
+    width: 400px; /* Aumentamos el tamaño de los inputs 
+    padding: 15px; /* Aumentamos el padding para un mayor tamaño 
     font-size: 16px;
-    border-radius: 30px 0 0 30px; /* Redondeamos solo la parte izquierda */
+    border-radius: 50px 0 0 50px; /* Redondeamos solo la parte izquierda 
     border: 1px solid #ddd;
     transition: all 0.3s ease;
     box-shadow: none;
@@ -51,20 +46,21 @@
 }
 
 .buscador .ubicacion input {
-    width: 300px; /* Aumentamos el tamaño del segundo input */
-    border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha */
+    width: 250px; /* Aumentamos el tamaño del segundo input 
+    border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha 
 }
 
 .buscador button {
+  width: 150px;
     padding: 15px 30px;
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 30px; /* Redondeamos el botón */
+    border-radius: 30px; /* Redondeamos el botón 
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
+    margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón 
 }
 
 .buscador button:hover {
@@ -73,6 +69,55 @@
 
 .buscador i {
     margin-left: 8px;
+}*/
+
+/* Estilos para el buscador */
+.buscador {
+  padding: 150px 150px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;  /* Eliminamos el espacio entre los elementos */
+  max-width: 800px; /* Aumentamos el tamaño máximo del buscador */
+  margin: 0 auto;
+}
+
+.buscador input {
+  width: 500px; /* Aumentamos el tamaño de los inputs */
+  padding: 15px; /* Aumentamos el padding para un mayor tamaño */
+  font-size: 16px;
+  border-radius: 30px 0 0 30px; /* Redondeamos solo la parte izquierda */
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.buscador input:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.buscador .ubicacion input {
+  width: 250px; /* Aumentamos el tamaño del segundo input */
+  border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha */
+}
+
+.buscador button {
+  padding: 15px 30px;
+  background-color: #6CC51D;
+  color: white;
+  border: none;
+  border-radius: 30px; /* Redondeamos el botón */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
+}
+
+
+.buscador i {
+  margin-left: 8px;
 }
 
 
@@ -133,93 +178,4 @@ body {
     flex-direction: column; /* Apila los elementos verticalmente */
   }
   
-  /* Estilos para el buscador */
-.buscador {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0px;  /* Eliminamos el espacio entre los elementos */
-  max-width: 800px; /* Aumentamos el tamaño máximo del buscador */
-  margin: 0 auto;
-}
-
-.buscador input {
-  width: 300px; /* Aumentamos el tamaño de los inputs */
-  padding: 15px; /* Aumentamos el padding para un mayor tamaño */
-  font-size: 16px;
-  border-radius: 30px 0 0 30px; /* Redondeamos solo la parte izquierda */
-  border: 1px solid #ddd;
-  transition: all 0.3s ease;
-  box-shadow: none;
-}
-
-.buscador input:focus {
-  outline: none;
-  border-color: #28a745;
-  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}
-
-.buscador .ubicacion input {
-  width: 300px; /* Aumentamos el tamaño del segundo input */
-  border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha */
-}
-
-.buscador button {
-  padding: 15px 30px;
-  background-color: #6CC51D;
-  color: white;
-  border: none;
-  border-radius: 30px; /* Redondeamos el botón */
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
-}
-
-
-.buscador i {
-  margin-left: 8px;
-}
-
-  
-
-
-
-/* Contenedor para alinear los elementos */
-.filtro-container {
-    display: flex;
-    justify-content: space-between; /* Espacio entre los elementos */
-    align-items: center; /* Alinea verticalmente */
-    gap: 20px; /* Espacio entre el botón y el select */
-  }
-  
-  /* Estilos del botón de filtro */
-  .btn-filtro {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .btn-filtro i {
-    margin-right: 5px; /* Espacio entre el ícono y el texto */
-  }
-  
-  /* Estilos del campo de "Ordenar por" */
-  .ordenar {
-    display: flex;
-    align-items: center;
-  }
-  
-  .ordenar label {
-    margin-right: 10px; /* Espacio entre la etiqueta y el select */
-  }
-  
-  #ordenar {
-    padding: 5px 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-  }
   
