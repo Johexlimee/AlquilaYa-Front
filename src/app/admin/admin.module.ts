@@ -8,7 +8,7 @@ import { ReportsComponent } from './container/reports/reports.component';
 import { CategoryManagementComponent } from './container/category-management/category-management.component';
 import { DocumentVerifierComponent } from './container/document-verifier/document-verifier.component';
 import { ChangePasswordComponent } from './container/change-password/change-password.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -24,6 +24,8 @@ import { ChangePasswordComponent } from './container/change-password/change-pass
   imports: [
     CommonModule,
     AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ]
 })
