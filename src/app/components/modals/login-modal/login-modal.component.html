@@ -71,13 +71,20 @@
                 </div>
                 <!-- ngModel para enlazar la contraseña -->
                 <input
-                  type="password"
+                [type]="showPassword ? 'text' : 'password'"
                   class="form-control"
                   placeholder="Contraseña"
                   required
                   [(ngModel)]="password"  
                   name="password"
                 />
+                <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="togglePasswordVisibility()"
+              >
+                <i [ngClass]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+              </button>
               </div>
             </div>
           </div>
