@@ -7,6 +7,7 @@ import { DashboardComponent } from './container/dashboard/dashboard.component';
 import { ReportsComponent } from './container/reports/reports.component';
 import { CategoryManagementComponent } from './container/category-management/category-management.component';
 import { DocumentVerifierComponent } from './container/document-verifier/document-verifier.component';
+import { ChangePasswordComponent } from './container/change-password/change-password.component';
 
 
 
@@ -17,6 +18,7 @@ import { DocumentVerifierComponent } from './container/document-verifier/documen
     ReportsComponent,
     CategoryManagementComponent,
     DocumentVerifierComponent,
+    ChangePasswordComponent,
    
   ],
   imports: [
