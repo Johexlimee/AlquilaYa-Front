@@ -3,7 +3,7 @@
   class="modal fade"
   id="registerModal"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="registerModal"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
@@ -88,25 +88,23 @@
       </div>
 
       <div class="row">
-        <!-- Tipo de Documento y Número de Documento -->
-        <div class="col-md-6 mb-3">
-          <label for="typeDocumentId" class="form-label">Tipo de Documento</label>
-          <div class="input-group">
-            <select
-              id="typeDocumentId"
-              name="typeDocumentId"
-              class="form-select"
-              [(ngModel)]="typeDocumentId"
-              required
-            >
-              <option value="">Selecciona tipo de documento</option>
-              <option value="1">Cédula de Ciudadanía</option>
-              <option value="2">Cédula de Extranjería</option>
-              <option value="3">Pasaporte</option>
-              <option value="4">Tarjeta de Identidad</option>
-            </select>
-          </div>
-        </div>
+      <!-- Tipo de Documento y Número de Documento -->
+<div class="col-md-6 mb-3">
+  <label for="typeDocumentId" class="form-label">Tipo de Documento</label>
+  <div class="input-group">
+    <select
+      id="typeDocumentId"
+      name="typeDocumentId"
+      class="form-select"
+      [(ngModel)]="typeDocumentId"
+      required
+    >
+      <option *ngFor="let item of data" [value]="item.typeDocumentId">
+        {{ item.documentName }}
+      </option>
+    </select>
+  </div>
+</div>
 
         <div class="col-md-6 mb-3">
           <label for="documentNumber" class="form-label">Número de Documento</label>
@@ -193,7 +191,7 @@
               </span>
             </div>
             <input
-              type="password"
+            [type]="showPassword ? 'text' : 'password'"
               id="password"
               name="password"
               class="form-control"
@@ -201,6 +199,13 @@
               [(ngModel)]="password"
               required
             />
+            <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="togglePasswordVisibility()"
+          >
+            <i [ngClass]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+          </button>
           </div>
         </div>
       </div>

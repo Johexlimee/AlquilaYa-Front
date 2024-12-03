@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthcontrollerService } from '../../../service/authcontroller.service';
+import { TypeDocumentService } from '../../../service/type-document.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -13,8 +14,14 @@ export class RegisterModalComponent {
   lastName: string = '';
   typeDocumentId: number = 1;  
   documentNumber: string = '';
+  data: any;
+  showPassword: boolean = false;
+  constructor(private authService: AuthcontrollerService,private consume: TypeDocumentService) {}
   
-  constructor(private authService: AuthcontrollerService) {}
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
   
   register(): void {
     this.authService.register(this.email, this.password, this.firstName, this.lastName, this.typeDocumentId, this.documentNumber).subscribe({
@@ -26,5 +33,27 @@ export class RegisterModalComponent {
       }
     });
   }
+
+
+
+  getAllTipeDocument(): void {
+    this.consume.getAllTipeDocument().subscribe({
+      next: (data) => {
+        console.log("holaa ingreso");
+        console.log(data);
+        this.data = data;
+      },
+      error: (error) => console.log(error),
+      complete: () => {
+        console.log("Se completó");
+      }
+    });
+  }
+
+ 
+  ngOnInit(): void {
+    this.getAllTipeDocument();
+  }
+
   
 }

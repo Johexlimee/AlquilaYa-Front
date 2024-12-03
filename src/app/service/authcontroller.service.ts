@@ -90,34 +90,22 @@ export class AuthcontrollerService {
   }
 
   public getUserDetails(): Observable<any> {
-    // Obtén el token del localStorage
     const token = localStorage.getItem('accessToken');
-  
-    // Verifica si el token existe
     if (!token) {
       throw new Error('Token de acceso no encontrado');
     }
-  
-    // Crea los headers incluyendo el token en el Authorization header con el prefijo 'Bearer'
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  
-    // Realiza la solicitud GET
     return this.http.get<any>(`${this.apiUrl}user/details-user`, { headers });
   }
   
   public getAllUserDetails(): Observable<any> {
-    // Obtén el token del localStorage
     const token = localStorage.getItem('accessToken');
-  
-    // Verifica si el token existe
+
     if (!token) {
       throw new Error('Token de acceso no encontrado');
     }
-  
-    // Crea los headers incluyendo el token en el Authorization header con el prefijo 'Bearer'
+ 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  
-    // Realiza la solicitud GET
     return this.http.get<any>(`${this.apiUrl}admin/user-all`, { headers });
   }
 }  

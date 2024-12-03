@@ -9,17 +9,20 @@ import { CategoryManagementComponent } from './container/category-management/cat
 import { DocumentVerifierComponent } from './container/document-verifier/document-verifier.component';
 
 
+
 @NgModule({
   declarations: [
     ProfileComponent,
     DashboardComponent,
     ReportsComponent,
     CategoryManagementComponent,
-    DocumentVerifierComponent
+    DocumentVerifierComponent,
+   
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+
   ]
 })
 export class AdminModule { }

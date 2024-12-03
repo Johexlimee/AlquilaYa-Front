@@ -7,11 +7,11 @@ import { AuthcontrollerService } from '../../../service/authcontroller.service';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  data: any; // Tipar la variable 'data' como 'any', aunque sería mejor usar tipos específicos si es posible.
+  data: any; 
 
   constructor(private consume: AuthcontrollerService) {}
 
-  // Método para obtener los detalles del usuario
+
   getUserDetails(): void {
     this.consume.getAllUserDetails().subscribe({
       next: (data) => {
@@ -26,7 +26,7 @@ export class ProfileComponent {
     });
   }
 
-  // Inicializar el componente y obtener los detalles al cargarlo
+ 
   ngOnInit(): void {
     this.getUserDetails();
   }

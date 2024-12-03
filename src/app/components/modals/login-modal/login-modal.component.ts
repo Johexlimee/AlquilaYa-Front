@@ -10,9 +10,13 @@ export class LoginModalComponent {
 
     email: string = '';
     password: string = '';
-  
+    showPassword: boolean = false;
     constructor(private authService: AuthcontrollerService) {}
   
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
     login(): void {
       this.authService.login(this.email, this.password).subscribe({
         next: (response) => {
