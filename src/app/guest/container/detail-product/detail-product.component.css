@@ -7,6 +7,13 @@
     margin: 0 auto;
   }
   
+  .direccion-rating p {
+    display: inline-block;
+    margin: 0; /* Elimina márgenes por defecto */
+    padding: 0; /* Elimina padding por defecto */
+}
+
+  
   /* Sección izquierda: Imágenes */
   .image-section {
     flex: 2;
@@ -262,30 +269,5 @@ p {
     }
 }
 
-/* Estilo del botón "Ver más" */
-.boton-ver-mas {
-    background-color: #6CC51D;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 20px;
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    transition: background-color 0.3s ease;
-}
 
-.boton-ver-mas:hover {
-    background-color: #6CC51D;
-}
 
-.contenedor {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
