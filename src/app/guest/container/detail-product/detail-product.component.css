@@ -7,11 +7,13 @@
     margin: 0 auto;
   }
   
-  .direccion-rating p {
-    display: inline-block;
-    margin: 0; /* Elimina márgenes por defecto */
-    padding: 0; /* Elimina padding por defecto */
+  .direccion-rating {
+    display: flex;
+    justify-content: space-between; /* Coloca los elementos en los extremos */
+    align-items: center; /* Alinea verticalmente los elementos */
+    width: 100%; /* Asegura que ocupe todo el espacio disponible */
 }
+
 
   
   /* Sección izquierda: Imágenes */
