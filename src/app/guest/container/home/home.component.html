@@ -1,14 +1,14 @@
-
 <section class="container-fluid vh-100 fondo d-flex align-items-center justify-content-center">
     <div class="container">
         <div class="d-flex flex-wrap justify-content-center">
-            
-            <h1>Encuentra todo lo que buscas para <span style="color: #6CC51D; text-decoration: underline;">alquilar en un solo</span> lugar</h1>
+
+            <h1>Encuentra todo lo que buscas para <span style="color: #6CC51D; text-decoration: underline;">alquilar en
+                    un solo</span> lugar</h1>
 
         </div>
-        
+
         <div>
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 
             <!-- Buscador -->
             <div class="buscador">
@@ -18,7 +18,7 @@
                 </div>
                 <button class="btn btn-success">
                     Buscar <i class="fas fa-search" style="margin-left: 5px;"></i>
-                  </button>
+                </button>
             </div>
         </div>
     </div>
@@ -27,8 +27,8 @@
 
 
 
-        <section id="iconCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+<section id="iconCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
 
         <!-- Primer conjunto de íconos -->
         <div class="carousel-item active">
@@ -93,57 +93,23 @@
 </section>
 
 
-<section class="container my-5">
+<section class="container ">
     <div>
         <h1>Productos relacionados</h1>
         <p>Promocionado</p>
     </div>
     <div>
-        <div class="row">
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
+        <div class="row row-cols-4 row-cols-md-3 row-cols-lg-3 g-4">
+            <div class="col" *ngFor="let product of products">
+                <div class="card h-100">
+                    <img [src]="product.primaryPhotoUrl ? product.primaryPhotoUrl : '/default.png'"
+                        alt="Card image cap" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer d-flex">
-                        <button routerLink="/detailproduct" class="btn m-auto alquilar">Alquilar</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer  d-flex">
-                        <button routerLink="/detailproduct" class="btn m-auto alquilar">Alquilar</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer d-flex">
-                        <button routerLink="/detailproduct" class="btn m-auto alquilar">Alquilar</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
+                        <h3 class="card-title">{{ product.name }}</h3>
+                        <p class="card-text">Categoría: {{ product.categoryName }}</p>
+                        <p class="card-text">Precio: {{ product.price | currency }}</p>
+                        <p *ngIf="product.isAvailable">Disponible</p>
+                        <p *ngIf="!product.isAvailable">No disponible</p>
                     </div>
                     <div class="card-footer d-flex">
                         <button routerLink="/detailproduct" class="btn m-auto alquilar">Alquilar</button>
@@ -151,19 +117,8 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </section>
-
-
-<div class="row">
-    <div class="contenedor">
-      <button routerLink="/listproducts" class="boton-ver-mas">Ver más</button>
-    </div>
-  </div>
-  
-  
-  
 
 
 <section class="container-fluid purpose">
