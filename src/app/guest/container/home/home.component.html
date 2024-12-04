@@ -126,61 +126,34 @@
     </div>
   </div>
 
+  <div class="container">
+    <!-- Título centrado -->
 
-<section class="container-fluid purpose">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-center my-3">
-            <h1>¿Cómo funciona Alquilaya?</h1>
-        </div>
-        <div class="d-flex align-items-center justify-content-center mb-5 botones">
-            <input name="" id="" class="btn mx-5" type="button" value="Pedir Prestado"/>
-            <input name="" id="" class="btn mx-5" type="button" value="Prestar"/>
-        </div>
-        <div class="my-5">
-            <div class="row">
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/buscar.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">1. Buscar</h3>
-                            <p class="card-text">Encuentre un producto cerca de usted</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/VERIFICAR-LAS-FUENTES.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">2. Verificar</h3>
-                            <p class="card-text">Verifique su perfil para convertirse en miembro</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="reservar.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">3. Reservar</h3>
-                            <p class="card-text">Envia una solicitud a tu vecino y reserva</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/aprovchar.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">4. Aprovechar</h3>
-                            <p class="card-text">Utiliza el producto y devuelvelo en el tiempo acordado</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-center informacion">
-            <h2>Consulte nuestras preguntas frecuentes para obtener mas informacion</h2>
-        </div>
-        <div class="d-flex align-items-center justify-content-center my-5">
-            <input name="" id="" class="btn start-now mx-5" type="button" value="Empezar a pedir Prestado"/>
-        </div>
+    <div class="d-flex flex-wrap justify-content-center">
+
+        <h1>¿Cómo funciona<span style="color: #6CC51D; text-decoration: underline;">-> Alquilaya?</span></h1>
+
     </div>
-</section>
+
+    
+    <!-- Botones centrados -->
+    <div class="d-flex justify-content-center mb-5">
+      <button class="btn mx-3" (click)="mostrarPedir()">Pedir Prestado</button>
+      <button class="btn mx-3" (click)="mostrarPrestar()">Prestar</button>
+    </div>
+    
+    <!-- Contenido de tarjetas -->
+    <div class="row">
+      <div class="col-3" *ngFor="let tarjeta of tarjetas">
+        <div class="card">
+          <img class="card-img-top" [src]="tarjeta.img" [alt]="tarjeta.titulo">
+          <div class="card-body">
+            <h3 class="card-title">{{ tarjeta.titulo }}</h3>
+            <p class="card-text">{{ tarjeta.descripcion }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

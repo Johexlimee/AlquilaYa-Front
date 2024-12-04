@@ -281,7 +281,51 @@ p {
     margin-bottom: 50px;
 }
 
-/* Efecto hover */
-.boton-ver-mas:hover {
-    background-color: #E6E6E6; /* Cambio de fondo al pasar el ratón */
+//* Fondo de las secciones */
+.card-footer {
+    padding: 10px 0;
+    background-color: #6CC51D; /* Fondo verde */
+    text-align: center; /* Centrar los botones dentro del pie de la tarjeta */
 }
+
+/* Botones centrados */
+.alquilar {
+    background-color: white;
+    color: #0D0839;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    width: 100%; /* Hacer que el botón ocupe todo el ancho disponible */
+}
+
+.alquilar:hover {
+    background-color: #0056b3;
+}
+
+
+
+.btn:hover {
+    background-color: #AEDC81; /* Cambiar el color al pasar el ratón */
+}
+/* Estilos generales para los botones "Pedir prestado" y "Prestar" */
+.botones {
+    display: flex; /* Hacer que los botones sean elementos flexibles */
+    justify-content: center; /* Centrar los botones horizontalmente */
+    gap: 20px; /* Espaciado entre los botones */
+    padding: 50px 0; /* Espaciado arriba y abajo */
+}
+
+.btn {
+    background-color: #6CC51D; /* Fondo verde */
+    color: white;
+    padding: 15px 30px; /* Tamaño de los botones */
+    font-size: 18px; /* Tamaño del texto */
+    border: none;
+    border-radius: 30px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
