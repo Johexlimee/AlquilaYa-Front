@@ -1,7 +1,7 @@
 
 <div class="mt-5">
   <div class="card shadow bg-body-tertiary rounded">
-    <h2 class="red-color-text fw-bold text-center mt-3">Categorias</h2>
+    <h2 class="red-color-text fw-bold text-center mt-3">Caracteristicas del producto</h2>
     <div class="card-header">
       <div class="row p-3">
         <div class="col-12 col-md-6 col-lg-6 text-start">
@@ -16,7 +16,7 @@
             data-bs-toggle="modal"
             data-bs-target="#createModal"
           >
-          <i class="ri-add-circle-line"></i>  agregar categorias
+          <i class="ri-add-circle-line"></i>  agregar Caracteristicas
           </button>
         </div>
       </div>
@@ -30,19 +30,19 @@
             <table id="table" class="table table-striped table-bordered" >
               <thead>
                 <tr>
-                  <th class="color-bg text-light text-center bg-success">
-                   gh
+                  <th class="color-bg text-light text-center ">
+                   ID
                   </th>
                   <th class="color-bg text-light text-center">
-                   hola
+                  Nombre
                   </th>
                   <th class="color-bg text-light text-center">
-                  hola
+                 Acción
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr >
+                <tr *ngFor="let item of data" >
                   <td></td>
                   <td></td>
                   <td>

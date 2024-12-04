@@ -8,7 +8,8 @@ import { ReportsComponent } from './container/reports/reports.component';
 import { CategoryManagementComponent } from './container/category-management/category-management.component';
 import { DocumentVerifierComponent } from './container/document-verifier/document-verifier.component';
 import { ChangePasswordComponent } from './container/change-password/change-password.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductCharacteristicsComponent } from './container/product-characteristics/product-characteristics.component'; 
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoryManagementComponent,
     DocumentVerifierComponent,
     ChangePasswordComponent,
+    ProductCharacteristicsComponent,
    
   ],
   imports: [
