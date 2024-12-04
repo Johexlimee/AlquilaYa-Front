@@ -9,7 +9,8 @@ import { CategoryManagementComponent } from './container/category-management/cat
 import { DocumentVerifierComponent } from './container/document-verifier/document-verifier.component';
 import { ChangePasswordComponent } from './container/change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProductCharacteristicsComponent } from './container/product-characteristics/product-characteristics.component'; 
+import { ProductCharacteristicsComponent } from './container/product-characteristics/product-characteristics.component';
+import { ProductCharacteristicsModalComponent } from './container/modals/product-characteristics-modal/product-characteristics-modal.component'; 
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ProductCharacteristicsComponent } from './container/product-characteris
     DocumentVerifierComponent,
     ChangePasswordComponent,
     ProductCharacteristicsComponent,
+    ProductCharacteristicsModalComponent,
    
   ],
   imports: [

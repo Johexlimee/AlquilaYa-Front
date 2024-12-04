@@ -7,28 +7,38 @@ import { ProductCharacteristicsService } from '../../../service/product-characte
   styleUrl: './product-characteristics.component.css'
 })
 export class ProductCharacteristicsComponent {
-  email: string = '';
-  password: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  typeDocumentId: number = 1;  
-  documentNumber: string = '';
+  characteristicName: string = '';
+  
   data: any;
   showPassword: boolean = false;
   constructor(private productCharacteristicsService: ProductCharacteristicsService,private consume: ProductCharacteristicsService) {}
   
-
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
-  }
-  
   register(): void {
-    this.authService.register(this.email, this.password, this.firstName, this.lastName, this.typeDocumentId, this.documentNumber).subscribe({
-      next: (userId) => {
-        console.log('Registro exitoso. userId:', userId);
+    this.productCharacteristicsService.addCharacteristic(this.characteristicName).subscribe({
+      next: (characteristicId) => {
+        console.log('Registro exitoso. userId:', characteristicId);
       },
       error: (error) => {
         console.error('Error en el registro', error);
       }
     });
-}}
+}
+
+getAllCharacteristics(): void {
+  this.consume.getAllCharacteristics().subscribe({
+    next: (data) => {
+      console.log("holaa ingreso");
+      console.log(data);
+      this.data = data;
+    },
+    error: (error) => console.log(error),
+    complete: () => {
+      console.log("Se completó");
+    }
+  });
+}
+
+ngOnInit(): void {
+  this.getAllCharacteristics();
+}
+}

@@ -14,6 +14,7 @@ import { LoginModalComponent } from './components/modals/login-modal/login-modal
 import { FooterComponent } from './components/footer/footer.component';
 import { provideHttpClient } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,

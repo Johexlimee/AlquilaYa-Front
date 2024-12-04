@@ -43,8 +43,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of data" >
-                  <td></td>
-                  <td></td>
+                  <td>{{item.characteristicId}}</td>
+                  <td>{{item.characteristicName}}</td>
                   <td>
                     <div class="text-light text-center align-items-center justify-content-center">
                       <button
@@ -52,9 +52,10 @@
                         type="button"
                         data-bs-toggle="modal"
                         data-bs-target="#editModal"
-                        class="btn btn-outline-primary"
+                        class="btn btn-outline-dark"
                       >
                         <i class="ri-edit-box-line"></i> 
+                        Editar
                       </button>
                     </div>
                   </td>
@@ -70,4 +71,17 @@
 </div>
 
 
+<!-- Modal para agregar -->
+<product-characteristics-modal
+  modalId="createModal"
+  [isEditing]="false"
+  (submitForm)="addCharacteristic($event)"
+></product-characteristics-modal>
 
+<!-- Modal para editar -->
+<product-characteristics-modal
+  modalId="editModal"
+  [isEditing]="true"
+  [initialData]="selectedCharacteristic"
+  (submitForm)="updateCharacteristic($event)"
+></product-characteristics-modal>

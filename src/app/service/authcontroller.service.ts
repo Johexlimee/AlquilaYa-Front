@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, of, tap } from 'rxjs';
-
+import { AlertService } from './alert.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,7 +10,15 @@ export class AuthcontrollerService {
   private apiUrl: string = 'http://localhost:8080/api/v1/';
   private accessToken: string | null = null;
   private role: string | null = null;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,private alertService: AlertService) {}
+
+  showSuccessAlert() {
+    this.alertService.showSuccess('Operación realizada con éxito.');
+  }
+
+  showErrorAlert() {
+    this.alertService.showError('Algo salió mal.');
+  }
 
   public login(email: string, password: string): Observable<any> {
     const loginData = { email, password };
@@ -62,11 +70,13 @@ export class AuthcontrollerService {
       .pipe(
         tap((response: { userId: string | number }) => {
           if (response.userId) {
+            this.alertService.showSuccess('Operación realizada con éxito.');
             this.router.navigateByUrl('/');
           }
         }),
         catchError((error) => {
           console.error('Error en el registro', error);
+          this.alertService.showError('Algo salió mal.');
           return of(null);
         })
       );
