@@ -70,18 +70,20 @@
   </div>
 </div>
 
+<!-- 
 
-<!-- Modal para agregar -->
 <product-characteristics-modal
   modalId="createModal"
   [isEditing]="false"
-  (submitForm)="addCharacteristic($event)"
-></product-characteristics-modal>
+  (submitForm)="addCharacteristic($event)">
+</product-characteristics-modal>
 
-<!-- Modal para editar -->
+
+
+
 <product-characteristics-modal
   modalId="editModal"
   [isEditing]="true"
   [initialData]="selectedCharacteristic"
   (submitForm)="updateCharacteristic($event)"
-></product-characteristics-modal>
+></product-characteristics-modal> -->
