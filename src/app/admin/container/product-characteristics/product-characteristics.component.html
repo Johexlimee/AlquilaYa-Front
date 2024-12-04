@@ -48,15 +48,15 @@
                   <td>
                     <div class="text-light text-center align-items-center justify-content-center">
                       <button
-                       
-                        type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editModal"
-                        class="btn btn-outline-dark"
-                      >
-                        <i class="ri-edit-box-line"></i> 
-                        Editar
-                      </button>
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#editModal"
+        class="btn btn-outline-dark"
+        (click)="editCharacteristic(item)" 
+      >
+        <i class="ri-edit-box-line"></i> 
+        Editar
+      </button>
                     </div>
                   </td>
                 </tr>
@@ -70,14 +70,20 @@
   </div>
 </div>
 
-<app-product-characteristics-modal 
-modalId="createModal"
-[isEditing]="false"
-(submitForm)="addCharacteristic($event)"></app-product-characteristics-modal>
 
-<app-product-characteristics-modal 
-modalId="editModal"
-[isEditing]="true"
-[initialData]="selectedCharacteristic"
-(submitForm)="updateCharacteristic($event)">
+
+<app-product-characteristics-modal
+  modalId="createModal"
+  [isEditing]="false"
+  (submitForm)="addCharacteristic($event)">
 </app-product-characteristics-modal>
+
+
+
+
+<app-product-characteristics-modal
+  modalId="editModal"
+  [isEditing]="true"
+  [initialData]="selectedCharacteristic"
+  (submitForm)="updateCharacteristic($event)"
+></app-product-characteristics-modal> 
