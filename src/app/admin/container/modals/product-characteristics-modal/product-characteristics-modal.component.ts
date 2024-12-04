@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-product-characteristics-modal',
@@ -15,21 +15,34 @@ export class ProductCharacteristicsModalComponent {
   formError: string | null = null;
   loading: boolean = false;
 
-  ngOnChanges() {
-    this.formData = { ...this.initialData };
+  // Detectar cambios en las entradas
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['initialData'] && this.initialData) {
+      this.formData = { ...this.initialData };
+    }
   }
 
-  handleSubmit() {
+  // Manejar el envío del formulario
+  handleSubmit(): void {
     if (!this.formData.characteristicName.trim()) {
       this.formError = 'El nombre es obligatorio.';
       return;
     }
 
+    this.formError = null;
     this.loading = true;
+
+    // Simular una operación asíncrona
     setTimeout(() => {
-      this.submitForm.emit(this.formData);
+      this.submitForm.emit(this.formData); // Emitir los datos al componente principal
       this.loading = false;
+      this.resetForm(); // Reiniciar el formulario después del envío
     }, 1000);
   }
 
+  // Reiniciar el formulario
+  resetForm(): void {
+    this.formData = { characteristicName: '' };
+    this.formError = null;
+  }
 }

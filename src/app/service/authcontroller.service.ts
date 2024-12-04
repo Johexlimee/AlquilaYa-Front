@@ -12,13 +12,6 @@ export class AuthcontrollerService {
   private role: string | null = null;
   constructor(private http: HttpClient, private router: Router,private alertService: AlertService) {}
 
-  showSuccessAlert() {
-    this.alertService.showSuccess('Operación realizada con éxito.');
-  }
-
-  showErrorAlert() {
-    this.alertService.showError('Algo salió mal.');
-  }
 
   public login(email: string, password: string): Observable<any> {
     const loginData = { email, password };
