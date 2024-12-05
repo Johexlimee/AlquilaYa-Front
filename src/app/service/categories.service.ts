@@ -11,6 +11,6 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   public getAllCategories(): Observable<any> { 
-    return this.http.get<any>(`${this.apiUrl}public/categories-all`);
+    return this.http.get<any>(`${this.apiUrl}public/category-all`);
   }
 }  

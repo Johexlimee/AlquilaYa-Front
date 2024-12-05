@@ -77,6 +77,7 @@ public updateCharacteristic(characteristicId: number, characteristicName: string
 }
 
 
+
   // Método para obtener todas las características
   public getAllCharacteristics(): Observable<Characteristic[]> {
     return this.http.get<Characteristic[]>(`${this.apiUrl}public/characteristics-all`).pipe(

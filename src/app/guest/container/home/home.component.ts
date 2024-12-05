@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../service/product.service';
+import { CategoriesService } from '../../../service/categories.service';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,14 @@ import { ProductService } from '../../../service/product.service';
 })
 export class HomeComponent implements OnInit {
 
+  dataCategories: any;
   products: any;
   tarjetas: { img: string, titulo: string, descripcion: string }[] = [];
   tarjetasPedir = [
     { img: '/buscar.png', titulo: '1. Buscar', descripcion: 'Encuentre un producto cerca de usted' },
     { img: '/VERIFICAR-LAS-FUENTES.png', titulo: '2. Verificar', descripcion: 'Verifique su perfil para convertirse en miembro' },
     { img: 'reservar.jpg', titulo: '3. Reservar', descripcion: 'Envía una solicitud a tu vecino y reserva' },
-    { img: '/aprovchar.png', titulo: '4. Aprovechar', descripcion: 'Utiliza el producto y devuélvelo en el tiempo acordado' }
+    { img: '/aprovchar.png', titulo: '4. Aprovechar', descripcion: 'Utiliza  y devuélvelo en el tiempo acordado' }
   ];
   tarjetasPrestar = [
     { img: '/ofrecer.jpg', titulo: '1. Ofrecer', descripcion: 'Publica un producto para compartir' },
@@ -23,16 +25,18 @@ export class HomeComponent implements OnInit {
     { img: '/recibir.jpg', titulo: '4. Recibir', descripcion: 'Recibe el producto y verifica que esté en buen estado' }
   ];
 
-  constructor(private consume: ProductService) { }
+  constructor( private productService: ProductService, 
+    private categoriesService: CategoriesService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
-    this.mostrarPedir();  // Mostrar las tarjetas de "Pedir" por defecto
+    this.mostrarPedir(); 
+    this.getAllCategories();
   }
 
   // Método para obtener los productos
   getAllProducts(): void {
-    this.consume.getAllProducts().subscribe({
+    this.productService.getAllProducts().subscribe({
       next: (data) => {
         console.log("holaa ingreso");
         console.log(data);
@@ -44,6 +48,22 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  getAllCategories(): void {
+    this.categoriesService.getAllCategories().subscribe({
+      next: (data) => {
+        console.log("holaa ingreso");
+        console.log(data);
+        this. dataCategories = data;
+      },
+      error: (error) => console.log(error),
+      complete: () => {
+        console.log("Se completó");
+      }
+    });
+  }
+
+
 
   // Métodos para alternar entre tarjetas
   mostrarPedir() {

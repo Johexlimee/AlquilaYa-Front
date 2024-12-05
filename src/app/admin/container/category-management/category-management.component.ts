@@ -21,19 +21,6 @@ export class CategoryManagementComponent {
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
-  
-/*  register(): void {
-    this.authService.register(this.email, this.password, this.firstName, this.lastName, this.typeDocumentId, this.documentNumber).subscribe({
-      next: (userId) => {
-        console.log('Registro exitoso. userId:', userId);
-      },
-      error: (error) => {
-        console.error('Error en el registro', error);
-      }
-    });
-  }*/
-
-
 
   getAllCategories(): void {
     this.consume.getAllCategories().subscribe({
