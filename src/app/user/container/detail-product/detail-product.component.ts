@@ -6,9 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './detail-product.component.css'
 })
 export class DetailProductComponent {
+  link:String;
   apiKey:String;
+  lugar:String;
 
   constructor(){
-    this.apiKey = "AIzaSyBI5jgmZQB_p68Qge2QgLOaQ-m3mjXJOZk&q";
+    this.apiKey = "AIzaSyBI5jgmZQB_p68Qge2QgLOaQ-m3mjXJOZk";
+    this.lugar = "Uniempresarial"
+    this.link = "https://www.google.com/maps/embed/v1/place?key=" + this.apiKey + "&q" + this.lugar ;
   }
 }
