@@ -13,8 +13,11 @@ import { RegisterModalComponent } from './components/modals/register-modal/regis
 import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { provideHttpClient } from '@angular/common/http';
-
-
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { SupplierLayoutComponent } from './layouts/supplier-layout/supplier-layout.component';
+import { SupplierHeaderComponent } from './components/header/supplier-header/supplier-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,9 +29,13 @@ import { provideHttpClient } from '@angular/common/http';
     UserHeaderComponent,
     RegisterModalComponent,
     LoginModalComponent,
-    FooterComponent
+    FooterComponent,
+    SupplierLayoutComponent,
+    SupplierHeaderComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
