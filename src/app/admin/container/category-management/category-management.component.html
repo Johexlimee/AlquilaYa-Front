@@ -43,9 +43,15 @@
                   type="button"
                   data-bs-toggle="modal"
                   data-bs-target="#editModal"
-                  class="btn btn-outline-dark"
+                  class="btn btn-outline-dark btn-warning mx-3"
                   (click)="editCategory(category)">
                   <i class="ri-edit-box-line"></i> Editar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-dark btn-danger" 
+                  (click)="deleteCategory(category)">
+                  <i class="ri-edit-box-line"></i> Eliminar
                 </button>
               </td>
             </tr>

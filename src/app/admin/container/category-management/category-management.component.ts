@@ -59,10 +59,20 @@ export class CategoryManagementComponent implements OnInit {
         this.getAllCategories();
         this.selectedCategory = null;  // Resetear después de actualizar
       },
-      error: (error) => console.error('Error al actualizar la característica:', error)
+      error: (error) => console.error('Error al actualizar la categoria:', error)
     });
   }
 
+  deleteCategory(deleteCategory:any): void{
+    this.categoriesService.deleteCategory(deleteCategory.categoryId).subscribe({
+      next:(response)=>{
+        this.getAllCategories();
+        this.selectedCategory = null; 
+      },
+      error: (error) => console.error('Error al eliminar el status de la categoria:', error)
+      }
+    )
+  }
   
   // Método para cancelar la edición
   cancelEdit(): void {
