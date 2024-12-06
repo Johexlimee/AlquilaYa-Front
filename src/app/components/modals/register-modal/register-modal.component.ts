@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthcontrollerService } from '../../../service/authcontroller.service';
 import { TypeDocumentService } from '../../../service/type-document.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from '../../../service/alert.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -8,52 +10,96 @@ import { TypeDocumentService } from '../../../service/type-document.service';
   styleUrl: './register-modal.component.css'
 })
 export class RegisterModalComponent {
+  registerForm: FormGroup;
   email: string = '';
   password: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  typeDocumentId: number = 1;  
-  documentNumber: string = '';
-  data: any;
   showPassword: boolean = false;
-  constructor(private authService: AuthcontrollerService,private consume: TypeDocumentService) {}
+  errorMessage: string = '';
+
+  constructor(private authService: AuthcontrollerService, private alertService: AlertService) {
+    this.registerForm = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+    });
+  }
   
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
   
-  register(): void {
-    this.authService.register(this.email, this.password, this.firstName, this.lastName, this.typeDocumentId, this.documentNumber).subscribe({
-      next: (userId) => {
-        console.log('Registro exitoso. userId:', userId);
-      },
-      error: (error) => {
-        console.error('Error en el registro', error);
+
+  async onRegister() {
+    if (this.registerForm.invalid) {
+      this.alertService.showError('Por favor, completa todos los campos correctamente.');
+      return;
+    }
+
+    const email = this.registerForm.value.email;
+    const password = this.registerForm.value.password;
+
+    // Validación adicional para el formato de email
+    if (!this.isValidEmail(email)) {
+      this.alertService.showError('Por favor, ingresa un correo electrónico válido.');
+      return;
+    }
+
+    try {
+      const result = await this.authService.registerWithEmail(email, password);
+      console.log('Inicio de sesión exitoso:', result);
+      if(result != null){
+        this.alertService.showSuccess('Operación realizada con éxito.');
       }
-    });
-  }
-
-
-
-  getAllTipeDocument(): void {
-    this.consume.getAllTipeDocument().subscribe({
-      next: (data) => {
-        console.log("holaa ingreso");
-        console.log(data);
-        this.data = data;
-      },
-      error: (error) => console.log(error),
-      complete: () => {
-        console.log("Se completó");
-      }
-    });
-  }
-
- 
-  ngOnInit(): void {
-    this.getAllTipeDocument();
-  }
-
+      this.alertService.showError('Error al iniciar sesión. Verifica tus credenciales.');
+    } catch (error) {
+      this.alertService.showError('Error al iniciar sesión. Verifica tus credenciales.');
+    }
   
+  }
+
+  // Iniciar sesión con Google
+  loginWithGoogle(): void {
+    this.authService.loginWithGoogle().then((result) => {
+      this.handleAuthentication(result);
+    }).catch((error) => {
+      this.alertService.showError('Error al autenticar con Google. Inténtalo nuevamente.');
+    });
+  }
+
+  // Iniciar sesión con Facebook
+  loginWithFacebook(): void {
+    this.authService.loginWithFacebook().then((result) => {
+      this.handleAuthentication(result);
+    }).catch((error) => {
+      this.alertService.showError('Error al autenticar con Facebook. Inténtalo nuevamente.');
+    });
+  }
+
+    // Método para manejar la autenticación después de un login exitoso (Google/Facebook)
+    private handleAuthentication(result: any): void {
+      this.authService.firebaseAuth().subscribe({
+        next: (response) => {
+          if (response) {
+            this.alertService.showSuccess('Error al autenticar usuario con el backend');
+          } else {
+            this.alertService.showError('Error al autenticar usuario con el backend');
+          }
+        },
+        error: () => {
+          this.alertService.showError('Error al autenticar usuario con el backend');
+        }
+      });
+    }
+
+    // Método para validar el email
+    private isValidEmail(email: string): boolean {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return emailRegex.test(email);
+    }
 }

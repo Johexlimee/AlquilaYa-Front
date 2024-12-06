@@ -8,8 +8,8 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2>¡Bienvenido de nuevo!</h2>
+      <div class="modal-header d-flex">
+        <h3 class="text-center fw-bolder">¡Bienvenido de nuevo!</h3>
         <button
           type="button"
           class="btn-close"
@@ -17,85 +17,206 @@
           aria-label="Close"
         ></button>
       </div>
-
       <!-- Login Modal Body -->
       <div class="modal-body">
         <div class="contenido">
-          <div>
-            <div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="auto"
-                      height="27"
-                      fill="currentColor"
-                      class="bi bi-envelope"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
-                      />
-                    </svg>
-                  </span>
-                </div>
-                <!-- ngModel para enlazar el correo -->
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <!-- Campo de Email -->
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="auto"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-envelope"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
+                    />
+                  </svg>
+                </span>
                 <input
+                  id="email"
+                  formControlName="email"
                   type="email"
                   class="form-control"
-                  placeholder="Correo electrónico"
-                  required
-                  name="email"
-                  [(ngModel)]="email"  
+                  placeholder="Ingresa tu correo"
                 />
               </div>
-            </div>
-            <div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="auto"
-                      height="27"
-                      fill="currentColor"
-                      class="bi bi-lock-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"
-                      />
-                    </svg>
-                  </span>
+              <div
+                *ngIf="
+                  loginForm.controls['email'].touched &&
+                  loginForm.controls['email'].invalid
+                "
+              >
+                <div *ngIf="loginForm.controls['email'].errors?.['required']">
+                  El correo electrónico es obligatorio.
                 </div>
-                <!-- ngModel para enlazar la contraseña -->
+                <div *ngIf="loginForm.controls['email'].errors?.['email']">
+                  Por favor ingresa un correo electrónico válido.
+                </div>
+              </div>
+            </div>
+
+            <!-- Campo de Contraseña -->
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="auto"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-lock-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"
+                    />
+                  </svg>
+                </span>
                 <input
-                [type]="showPassword ? 'text' : 'password'"
+                  id="password"
+                  formControlName="password"
+                  [type]="showPassword ? 'text' : 'password'"
                   class="form-control"
-                  placeholder="Contraseña"
-                  required
-                  [(ngModel)]="password"  
-                  name="password"
+                  placeholder="Ingresa tu contraseña"
                 />
                 <button
-                type="button"
-                class="btn btn-outline-secondary"
-                (click)="togglePasswordVisibility()"
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <i
+                    [ngClass]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                  ></i>
+                </button>
+              </div>
+              <div
+                *ngIf="
+                  loginForm.controls['password'].touched &&
+                  loginForm.controls['password'].invalid
+                "
               >
-                <i [ngClass]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
-              </button>
+                <div
+                  *ngIf="loginForm.controls['password'].errors?.['required']"
+                >
+                  La contraseña es obligatoria.
+                </div>
+                <div
+                  *ngIf="loginForm.controls['password'].errors?.['minlength']"
+                >
+                  La contraseña debe tener al menos 6 caracteres.
+                </div>
               </div>
             </div>
-          </div>
+
+            <p class="link-secondary text-decoration-none">
+              ¿Olvidaste tu contraseña?
+              <a class="text-success fw-bolder" href="#">Recupérala aquí</a>
+            </p>
+            <div class="text-center mb-3">
+              <button type="submit" class="btn btn-lg btn-dark w-100">
+                Iniciar sesión
+              </button>
+            </div>
+          </form>
+          <p class="link-secondary text-decoration-none">
+            ¿Todavía no tienes una cuenta? 
+            <a class="text-success fw-bolder text-decoration-none" href="#">Regístrate</a>
+          </p>
           <div class="text-center">
-            <input
-              type="submit"
-              class="btn mx-5 sesion"
-              value="Iniciar sesión"
-              (click)="login()" 
-            />
-            <p>¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
+            <div class="my-3 d-flex align-items-center justify-content-center">
+              <div
+                class="bg-dark h-100 d-none d-lg-block"
+                style="width: 1px; --bs-bg-opacity: 0.1"
+              ></div>
+              <div
+                class="bg-dark w-100"
+                style="height: 1px; --bs-bg-opacity: 0.1"
+              ></div>
+              <div>or</div>
+              <div
+                class="bg-dark h-100 d-none d-lg-block"
+                style="width: 1px; --bs-bg-opacity: 0.1"
+              ></div>
+              <div
+                class="bg-dark w-100"
+                style="height: 1px; --bs-bg-opacity: 0.1"
+              ></div>
+            </div>
+
+            <div class="row justify-content-center gap-3 gap-md-0">
+              <div class="col-12 col-md-6 row-cols-lg-6">
+                <button
+                  (click)="loginWithGoogle()"
+                  class="btn bsb-btn-2xl btn-outline-dark rounded-2 d-flex align-items-center w-100"
+                >
+                  <svg
+                    xml:space="preserve"
+                    style="enable-background: new 0 0 512 512"
+                    viewBox="0 0 512 512"
+                    y="0px"
+                    x="0px"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Layer_1"
+                    width="20"
+                    version="1.1"
+                  >
+                    <path
+                      d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256
+                      c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456
+                      C103.821,274.792,107.225,292.797,113.47,309.408z"
+                      style="fill: #fbbb00"
+                    ></path>
+                    <path
+                      d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451
+                      c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.727l-10.338-64.535
+                      c29.932-17.554,53.324-45.025,65.646-77.911h-136.89V208.176h138.887L507.527,208.176L507.527,208.176z"
+                      style="fill: #518ef8"
+                    ></path>
+                    <path
+                      d="M416.253,455.624l0.014,0.014C372.396,490.901,316.666,512,256,512
+                      c-97.491,0-182.252-54.491-225.491-134.681l82.961-67.91c21.619,57.698,77.278,98.771,142.53,98.771
+                      c28.047,0,54.323-7.582,76.87-20.818L416.253,455.624z"
+                      style="fill: #28b446"
+                    ></path>
+                    <path
+                      d="M419.404,58.936l-82.933,67.896c-23.335-14.586-50.919-23.012-80.471-23.012
+                      c-66.729,0-123.429,42.957-143.965,102.724l-83.397-68.276h-0.014C71.23,56.123,157.06,0,256,0
+                      C318.115,0,375.068,22.126,419.404,58.936z"
+                      style="fill: #f14336"
+                    ></path>
+                  </svg>
+
+                  <span class="ms-2 fs-6">Continuar con Google</span>
+                </button>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6">
+                <button
+                  (click)="loginWithFacebook()"
+                  class="btn bsb-btn-2xl btn-outline-dark rounded-2 d-flex align-items-center w-100"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-facebook text-primary"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+                    />
+                  </svg>
+                  <span class="ms-2 fs-6">Continuar con Facebook</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
