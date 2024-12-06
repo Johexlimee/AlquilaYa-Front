@@ -9,7 +9,7 @@ import { CategoriesService } from '../../../service/categories.service';
 })
 export class HomeComponent implements OnInit {
 
-  dataCategories: any;
+  dataCategories: any = [];
   products: any;
   tarjetas: { img: string, titulo: string, descripcion: string }[] = [];
   tarjetasPedir = [
@@ -25,6 +25,8 @@ export class HomeComponent implements OnInit {
     { img: '/recibir.jpg', titulo: '4. Recibir', descripcion: 'Recibe el producto y verifica que esté en buen estado' }
   ];
 
+  chunkedCategories: any[] = [];  // Aquí almacenaremos los bloques de 5 categorías
+
   constructor( private productService: ProductService, 
     private categoriesService: CategoriesService) { }
 
@@ -34,7 +36,6 @@ export class HomeComponent implements OnInit {
     this.getAllCategories();
   }
 
-  // Método para obtener los productos
   getAllProducts(): void {
     this.productService.getAllProducts().subscribe({
       next: (data) => {
@@ -54,7 +55,8 @@ export class HomeComponent implements OnInit {
       next: (data) => {
         console.log("holaa ingreso");
         console.log(data);
-        this. dataCategories = data;
+        this.dataCategories = data;
+        this.chunkedCategories = this.chunkArray(data, 5);  // Dividimos las categorías en bloques de 5
       },
       error: (error) => console.log(error),
       complete: () => {
@@ -63,9 +65,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Método para dividir un array en bloques
+  chunkArray(array: any[], size: number): any[] {
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size));
+    }
+    return result;
+  }
 
-
-  // Métodos para alternar entre tarjetas
   mostrarPedir() {
     this.tarjetas = this.tarjetasPedir;
   }
@@ -74,4 +82,3 @@ export class HomeComponent implements OnInit {
     this.tarjetas = this.tarjetasPrestar;
   }
 }
-

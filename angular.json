@@ -41,7 +41,9 @@
                       "src/styles.css"
               
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+           
+            "scripts": ["node_modules/jquery/dist/jquery.min.js", 
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -108,4 +110,5 @@
   "cli": {
     "analytics": "5fc03d3f-d59e-4518-a2c8-1a1e10153e5d"
   }
+  
 }

@@ -29,14 +29,15 @@
 
 
 
-<section  id="iconCarousel" class="carousel slide" data-bs-ride="carousel">
+<section id="iconCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <!-- Iteramos sobre los nombres obtenidos de la API -->
-        <div *ngFor="let name of dataCategories; let i = index" class="carousel-item" [class.active]="i === 0">
+        <!-- Iteramos sobre los bloques de categorías -->
+        <div *ngFor="let group of chunkedCategories; let i = index" class="carousel-item" [class.active]="i === 0">
             <div class="d-flex justify-content-around align-items-center">
-                <div class="text-center">
+                <!-- Iteramos sobre cada categoría en el grupo -->
+                <div *ngFor="let name of group" class="text-center">
                     <i class="bi bi-tv" style="font-size: 5rem;"></i> 
-                    <p>{{ name.name   }}</p> 
+                    <p>{{ name.name }}</p>
                 </div>
             </div>
         </div>
@@ -52,6 +53,7 @@
         <span class="visually-hidden">Siguiente</span>
     </button>
 </section>
+
 
 
 
@@ -82,40 +84,43 @@
     </div>
 </section>
 
+
 <div class="row my-5">
     <div class="contenedor">
       <button routerLink="/user/listproducts" class="boton-ver-mas">Ver más</button>
     </div>
   </div>
 
-  <div class="container">
-    <!-- Título centrado -->
 
-    <div class="d-flex flex-wrap justify-content-center mt-5 ">
 
-        <h1>¿Cómo funciona<span style="color: #6CC51D; text-decoration: underline"> Alquilaya?</span></h1>
 
-    </div>
-
-    
+  <div class="fondo-rojo">
+    <div class="container">
+      <!-- Título centrado -->
+      <div class="d-flex flex-wrap justify-content-center mt-5">
+        <h1><span style="color:#002244">¿Cómo funciona Alquilaya?</span> </h1>
+      </div>
+  
     <!-- Botones centrados -->
-    <div class="d-flex justify-content-center mb-5 mt-5">
-      <button class="btn mx-3" (click)="mostrarPedir()">Pedir Prestado</button>
-      <button class="btn mx-3" (click)="mostrarPrestar()">Prestar</button>
-    </div>
-    
-    <!-- Contenido de tarjetas -->
-    <div class="row my-5">
-      <div class="col-3" *ngFor="let tarjeta of tarjetas">
-        <div class="card">
-          <img class="card-img-top" [src]="tarjeta.img" [alt]="tarjeta.titulo">
-          <div class="card-body">
-            <h3 class="card-title">{{ tarjeta.titulo }}</h3>
-            <p class="card-text">{{ tarjeta.descripcion }}</p>
+<div class="d-flex justify-content-center mb-5 mt-5">
+    <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPedir()">Pedir Prestado</button>
+    <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPrestar()">Prestar</button>
+  </div>
+  
+      <!-- Contenido de tarjetas -->
+      <div class="row my-5">
+        <div class="col-3" *ngFor="let tarjeta of tarjetas">
+          <div class="card">
+            <img class="card-img-top" [src]="tarjeta.img" [alt]="tarjeta.titulo">
+            <div class="card-body">
+              <h3 class="card-title">{{ tarjeta.titulo }}</h3>
+              <p class="card-text">{{ tarjeta.descripcion }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   
-
+  
+  

@@ -36,8 +36,8 @@ export class RegisterModalComponent {
 
 
 
-  getAllTipeDocument(): void {
-    this.consume.getAllTipeDocument().subscribe({
+  getAllTypeDocument(): void {
+    this.consume.getAllTypeDocuments().subscribe({
       next: (data) => {
         console.log("holaa ingreso");
         console.log(data);
@@ -52,7 +52,7 @@ export class RegisterModalComponent {
 
  
   ngOnInit(): void {
-    this.getAllTipeDocument();
+    this.getAllTypeDocument();
   }
 
   

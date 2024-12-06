@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { VisitorLayoutComponent } from './layouts/visitor-layout/visitor-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
@@ -26,7 +27,10 @@ import { provideHttpClient } from '@angular/common/http';
     UserHeaderComponent,
     RegisterModalComponent,
     LoginModalComponent,
-    FooterComponent
+    FooterComponent,
+    
+    
+    
   ],
   imports: [
     BrowserModule,
