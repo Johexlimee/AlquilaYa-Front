@@ -7,6 +7,7 @@ import { DashboardComponent } from './container/dashboard/dashboard.component';
 import { DocumentVerifierComponent } from './container/document-verifier/document-verifier.component';
 import { ReportsComponent } from './container/reports/reports.component';
 import { ProductCharacteristicsComponent } from './container/product-characteristics/product-characteristics.component';
+import { TypeDocumentComponent } from './container/type-document/type-document.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent},
       { path: 'reports', component: ReportsComponent},
       { path: 'characteristics', component: ProductCharacteristicsComponent},
+      { path: 'type-document', component: TypeDocumentComponent},
     ]
   }
 ]
