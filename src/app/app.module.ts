@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { VisitorLayoutComponent } from './layouts/visitor-layout/visitor-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
@@ -14,8 +13,11 @@ import { RegisterModalComponent } from './components/modals/register-modal/regis
 import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { provideHttpClient } from '@angular/common/http';
-
-
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { SupplierLayoutComponent } from './layouts/supplier-layout/supplier-layout.component';
+import { SupplierHeaderComponent } from './components/header/supplier-header/supplier-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,11 +30,12 @@ import { provideHttpClient } from '@angular/common/http';
     RegisterModalComponent,
     LoginModalComponent,
     FooterComponent,
-    
-    
-    
+    SupplierLayoutComponent,
+    SupplierHeaderComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
