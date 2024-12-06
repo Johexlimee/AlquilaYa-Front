@@ -4,12 +4,13 @@ import { ProductCharacteristicsService } from '../../../service/product-characte
 @Component({
   selector: 'app-product-characteristics',
   templateUrl: './product-characteristics.component.html',
-  styleUrl: './product-characteristics.component.css'
+  styleUrls: ['./product-characteristics.component.css']
 })
 export class ProductCharacteristicsComponent implements OnInit {
   characteristicName: string = '';
   data: any[] = [];
   selectedCharacteristic: any = null;
+  searchTerm: string = '';
 
   constructor(private productCharacteristicsService: ProductCharacteristicsService) {}
 
@@ -21,7 +22,6 @@ export class ProductCharacteristicsComponent implements OnInit {
   addCharacteristic(characteristic: any): void {
     this.productCharacteristicsService.addCharacteristic(characteristic.characteristicName).subscribe({
       next: (response) => {
-        console.log('Registro exitoso. Característica añadida:', response);
         this.getAllCharacteristics();
       },
       error: (error) => {
@@ -41,25 +41,23 @@ export class ProductCharacteristicsComponent implements OnInit {
   }
 
   editCharacteristic(item: any): void {
-    // Guardar los datos de la característica seleccionada en `selectedCharacteristic`
-    this.selectedCharacteristic = { ...item };  
-    console.log('Característica seleccionada para editar:', this.selectedCharacteristic);  // Verificar que los datos están correctos
+    this.selectedCharacteristic = { ...item };  // Guardar los datos de la característica seleccionada
   }
-  
 
   updateCharacteristic(updatedCharacteristic: any): void {
-    console.log('ID de la característica:', updatedCharacteristic.characteristicId); 
-    console.log('Nombre de la característica:', updatedCharacteristic.characteristicName);  
-  
-    this.productCharacteristicsService
-      .updateCharacteristic(updatedCharacteristic.characteristicId, updatedCharacteristic.characteristicName)
-      .subscribe({
-        next: (response) => {
-          console.log('Característica actualizada:', response);
-          this.getAllCharacteristics();
-          this.selectedCharacteristic = null;
-        },
-        error: (error) => console.error('Error al actualizar la característica:', error)
-      });
+    this.productCharacteristicsService.updateCharacteristic(updatedCharacteristic.characteristicId, updatedCharacteristic.characteristicName).subscribe({
+      next: (response) => {
+        this.getAllCharacteristics();
+        this.selectedCharacteristic = null;  // Resetear después de actualizar
+      },
+      error: (error) => console.error('Error al actualizar la característica:', error)
+    });
+  }
+
+  // Filtrar características
+  get filteredCharacteristics() {
+    return this.data.filter(characteristic =>
+      characteristic.characteristicName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }

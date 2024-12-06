@@ -1,73 +1,71 @@
-
 <div class="mt-5">
   <div class="card shadow bg-body-tertiary rounded">
-    <h2 class="red-color-text fw-bold text-center mt-3">Categorias</h2>
+    <h2 class="red-color-text fw-bold text-center mt-3">Categorías</h2>
     <div class="card-header">
       <div class="row p-3">
         <div class="col-12 col-md-6 col-lg-6 text-start">
-         
-          
+          <!-- Buscador -->
+          <input type="text" class="form-control mb-3" placeholder="Buscar categoría..." />
         </div>
         <div class="col-12 col-md-6 col-lg-6 text-end mt-2">
-          <!--button modal lcth-->
+          <!-- Botón para abrir el modal para agregar categoría -->
           <button
-            class="color-bg btn fw-semibold text-white"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#createModal"
-          >
-          <i class="ri-add-circle-line"></i>  agregar categorias
-          </button>
+          class="color-bg btn fw-semibold text-white"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#createModal"
+        >
+          <i class="ri-add-circle-line"></i> Agregar Categorìas
+        </button>
         </div>
       </div>
     </div>
     <div class="card-body">
-      <div>
-        <input type="text"  class="form-control mb-3" />
-        <div class="table-responsive m-1">
-        
-          <div >
-            <table id="table" class="table table-striped table-bordered" >
-              <thead>
-                <tr>
-                  <th class="color-bg text-light text-center bg-success">
-                   gh
-                  </th>
-                  <th class="color-bg text-light text-center">
-                   hola
-                  </th>
-                  <th class="color-bg text-light text-center">
-                  hola
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr >
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div class="text-light text-center align-items-center justify-content-center">
-                      <button
-                       
-                        type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editModal"
-                        class="btn btn-outline-primary"
-                      >
-                        <i class="ri-edit-box-line"></i> 
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          
-          </div>
-        </div>
+      <div class="table-responsive m-1">
+        <!-- Tabla de categorías -->
+        <table id="table" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="color-bg text-light text-center bg-success">ID</th>
+              <th class="color-bg text-light text-center">Nombre</th>
+              <th class="color-bg text-light text-center">Descripción</th>
+              <th class="color-bg text-light text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of categories">
+              <td>{{ category.categoryId }}</td> <!-- ID de la categoría -->
+              <td>{{ category.name }}</td>
+              <td>{{ category.description }}</td>
+              <td class="text-center">
+                <!-- Botón para editar una categoría -->
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                  class="btn btn-outline-dark"
+                  (click)="editCategory(category)">
+                  <i class="ri-edit-box-line"></i> Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
+<app-categories-modal
+  modalId="createModal"
+  [isEditing]="false"
+  (submitForm)="addCategory($event)">
+</app-categories-modal>
 
+<app-categories-modal
+  modalId="editModal"
+  [isEditing]="true"
+  [initialData]="selectedCategory"
+  (submitForm)="updateCategory($event)">
+</app-categories-modal>
 

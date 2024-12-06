@@ -1,89 +1,73 @@
-
 <div class="mt-5">
   <div class="card shadow bg-body-tertiary rounded">
-    <h2 class="red-color-text fw-bold text-center mt-3">Caracteristicas del producto</h2>
+    <h2 class="red-color-text fw-bold text-center mt-3">Características del producto</h2>
     <div class="card-header">
       <div class="row p-3">
         <div class="col-12 col-md-6 col-lg-6 text-start">
-         
-          
+          <!-- Campo de búsqueda -->
+          <input
+            type="text"
+            class="form-control mb-3"
+            [(ngModel)]="searchTerm"
+            placeholder="Buscar característica"
+          />
         </div>
         <div class="col-12 col-md-6 col-lg-6 text-end mt-2">
-          <!--button modal lcth-->
           <button
             class="color-bg btn fw-semibold text-white"
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#createModal"
           >
-          <i class="ri-add-circle-line"></i>  agregar Caracteristicas
+            <i class="ri-add-circle-line"></i> Agregar Características
           </button>
         </div>
       </div>
     </div>
     <div class="card-body">
-      <div>
-        <input type="text"  class="form-control mb-3" />
-        <div class="table-responsive m-1">
-        
-          <div >
-            <table id="table" class="table table-striped table-bordered" >
-              <thead>
-                <tr>
-                  <th class="color-bg text-light text-center ">
-                   ID
-                  </th>
-                  <th class="color-bg text-light text-center">
-                  Nombre
-                  </th>
-                  <th class="color-bg text-light text-center">
-                 Acción
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of data" >
-                  <td>{{item.characteristicId}}</td>
-                  <td>{{item.characteristicName}}</td>
-                  <td>
-                    <div class="text-light text-center align-items-center justify-content-center">
-                      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#editModal"
-        class="btn btn-outline-dark"
-        (click)="editCharacteristic(item)" 
-      >
-        <i class="ri-edit-box-line"></i> 
-        Editar
-      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          
-          </div>
-        </div>
+      <div class="table-responsive m-1">
+        <table id="table" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="color-bg text-light text-center">ID</th>
+              <th class="color-bg text-light text-center">Nombre</th>
+              <th class="color-bg text-light text-center">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of filteredCharacteristics">
+              <td>{{ item.characteristicId }}</td>
+              <td>{{ item.characteristicName }}</td>
+              <td>
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                  class="btn btn-outline-dark"
+                  (click)="editCharacteristic(item)"
+                >
+                  <i class="ri-edit-box-line"></i> Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
-
-
+<!-- Modal para agregar característica -->
 <app-product-characteristics-modal
   modalId="createModal"
   [isEditing]="false"
   (submitForm)="addCharacteristic($event)">
 </app-product-characteristics-modal>
 
-
-
-
+<!-- Modal para editar característica -->
 <app-product-characteristics-modal
   modalId="editModal"
   [isEditing]="true"
   [initialData]="selectedCharacteristic"
-  (submitForm)="updateCharacteristic($event)"
-></app-product-characteristics-modal> 
+  (submitForm)="updateCharacteristic($event)">
+</app-product-characteristics-modal>

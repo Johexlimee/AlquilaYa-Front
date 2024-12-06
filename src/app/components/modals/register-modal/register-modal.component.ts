@@ -60,6 +60,7 @@ export class RegisterModalComponent {
     } catch (error) {
       this.alertService.showError('Error al iniciar sesión. Verifica tus credenciales.');
     }
+
   
   }
 

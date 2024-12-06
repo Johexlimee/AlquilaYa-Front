@@ -329,3 +329,21 @@ p {
 }
 
 
+.fondo-rojo {
+    background-color: #AEDC81;
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .container {
+    max-width: 1140px; /* Ajusta este valor según el tamaño de tu contenedor */
+    margin: 0 auto;
+  }
+
+  .btn-azul-oscuro {
+    background-color: #002244; /* Azul oscuro */
+    color: white; /* Color del texto blanco */
+    border: none; /* Eliminar borde por defecto */
+  }
+  
+ 

@@ -1,0 +1,91 @@
+<div class="mt-5">
+  <div class="card shadow bg-body-tertiary rounded">
+    <h2 class="red-color-text fw-bold text-center mt-3">Tipos de Documento</h2>
+    <div class="card-header">
+      <div class="row p-3">
+        <div class="col-12 col-md-6 col-lg-6 text-start">
+          <!-- Buscador (si es necesario) -->
+          <input type="text" class="form-control mb-3" placeholder="Buscar tipo de documento..." />
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 text-end mt-2">
+          <!-- Botón para abrir el modal para agregar tipo de documento -->
+          <button class="color-bg btn fw-semibold text-white" type="button" (click)="editTypeDocument(null)">
+            <i class="ri-add-circle-line"></i> Agregar Tipo de Documento
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive m-1">
+        <!-- Tabla de tipos de documentos -->
+        <table id="table" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="color-bg text-light text-center bg-success">ID</th>
+              <th class="color-bg text-light text-center">Nombre</th>
+              <th class="color-bg text-light text-center">Descripción</th>
+              <th class="color-bg text-light text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let typeDocument of data">
+              <td>{{ typeDocument.id }}</td>
+              <td>{{ typeDocument.name }}</td>
+              <td>{{ typeDocument.description }}</td>
+              <td class="text-center">
+                <!-- Botón para editar un tipo de documento -->
+                <button type="button" (click)="editTypeDocument(typeDocument)" class="btn btn-outline-dark">
+                  <i class="ri-edit-box-line"></i> Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para agregar/editar tipo de documento -->
+<div class="modal fade" id="typeDocumentModal" tabindex="-1" aria-labelledby="typeDocumentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="typeDocumentModalLabel">{{ selectedTypeDocument ? 'Editar Tipo de Documento' : 'Agregar Tipo de Documento' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="selectedTypeDocument ? updateTypeDocument() : addTypeDocument()">
+          <div class="mb-3">
+            <label for="documentName" class="form-label">Nombre</label>
+            <input 
+              type="text" 
+              id="documentName" 
+              class="form-control" 
+              [(ngModel)]="name" 
+              name="name" 
+              required 
+            />
+          </div>
+          <div class="mb-3">
+            <label for="documentDescription" class="form-label">Descripción</label>
+            <input 
+              type="text" 
+              id="documentDescription" 
+              class="form-control" 
+              [(ngModel)]="description" 
+              name="description" 
+              required 
+            />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">
+              {{ selectedTypeDocument ? 'Actualizar' : 'Agregar' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
