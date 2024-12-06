@@ -23,7 +23,7 @@ import { MyShopComponent } from './container/my-shop/my-shop.component';
     DetailProductComponent,
     ProfileComponent,
     DocumentComponent,
-    MyShopComponent
+    MyShopComponent,
   ],
   imports: [
     CommonModule,

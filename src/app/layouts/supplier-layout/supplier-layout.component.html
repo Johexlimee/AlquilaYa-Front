@@ -1,0 +1,9 @@
+<div >
+  <!-- Header con Sidebar -->
+  <app-supplier-header (toggleSidebar)="onToggleSidebar()" [isSidebarCollapsed]="isSidebarCollapsed"></app-supplier-header>
+
+  <!-- Contenido Principal -->
+  <main [style.marginLeft]="isSidebarCollapsed ? '80px' : '280px'" class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

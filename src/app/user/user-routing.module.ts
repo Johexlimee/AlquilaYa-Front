@@ -10,6 +10,7 @@ import { HomeComponent } from './container/home/home.component';
 import { ListProductsComponent } from './container/list-products/list-products.component';
 import { MyShopComponent } from './container/my-shop/my-shop.component';
 import { CartComponent } from './container/cart/cart.component';
+import { SupplierLayoutComponent } from '../layouts/supplier-layout/supplier-layout.component';
 
 const routes: Routes = [
   {
@@ -23,10 +24,15 @@ const routes: Routes = [
       { path: 'favorite', component: FavoriteComponent},
       { path: '', component: HomeComponent},
       { path: 'listproducts', component: ListProductsComponent},
-      { path: 'myshop', component: MyShopComponent},
       { path: 'profile', component: ProfileComponent},
     ]
-  }
+
+  },
+  { path: 'myshop', component: SupplierLayoutComponent,
+    children:[
+      { path: 'myshop', component: MyShopComponent},
+    ]
+  },
 
 ];
 
