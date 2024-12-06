@@ -3,11 +3,28 @@
         <h1>Mi Perfil</h1>
     </div>
     <div class="my-5 p-5 border border-success rounded-4 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
-        <div class="row">
-        
+        <div class="row pb-5">
+            <div class="col-md-6 text-center d-flex justify-content-center">
+                <div class="img-user">
+                    <img class="object-fit-cover rounded-circle border border-secondary h-100 w-100" src="/camara.jpg" alt="img-user">
+                </div>
+            </div>
+            <div class="col-md-6 p-5">
+                <div class="text-center">
+                    <h3 class="form-control bg-danger text-white">Estado de la cuenta: Inactivo</h3>
+                </div>
+                <div class="row p-5">
+                    <div class="col-md-6 text-center">
+                        <a class="btn btn-primary" routerLink="/user/document">Subir Documentos</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a class="btn btn-primary" href="">Actualizar Contraseña</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="mb-3">
                     <label for="" class="form-label">Nombre del Negocio</label>
                     <input type="text" class="form-control" name="" id="" placeholder=""/>
@@ -21,7 +38,7 @@
                     <input type="number" class="form-control" name="" id="" placeholder=""/>
                 </div>  
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="mb-3">
                     <label for="" class="form-label">Tipo de negocio</label>
                     <input type="text" class="form-control" name="" id="" placeholder=""/>
@@ -37,7 +54,7 @@
             </div>
         </div>
         <div class="row my-5">
-            <div class="col-3">
+            <div class="col align-self-center text-center">
                 <input name="" id="" class="btn btn-success" type="button" value="Guardar Cambios"/>
             </div>
         </div>

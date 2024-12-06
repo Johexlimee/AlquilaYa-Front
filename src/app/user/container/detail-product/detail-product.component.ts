@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './detail-product.component.css'
 })
 export class DetailProductComponent {
+  apiKey:String;
 
+  constructor(){
+    this.apiKey = "AIzaSyBI5jgmZQB_p68Qge2QgLOaQ-m3mjXJOZk&q";
+  }
 }
