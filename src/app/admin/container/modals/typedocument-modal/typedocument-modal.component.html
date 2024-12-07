@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" [id]="modalId + 'Label'">
-          {{ isEditing ? 'Editar Categoría' : 'Agregar Nueva Categoría' }}
+          {{ isEditing ? 'Editar ' : 'Agregar Nueva tipo de documento' }}
         </h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" (click)="handleCancel()">
           <span aria-hidden="true">&times;</span>
@@ -19,13 +19,13 @@
         <!-- Formulario de Categoría -->
         <form (ngSubmit)="handleSubmit()">
           <div class="form-group">
-            <label for="typeDocument">Tipo de documento</label>
-            <input type="text" id="typeDocument" class="form-control" [(ngModel)]="formData.name" name="name" required />
+            <label for="typeDocument">Id</label>
+            <input type="text" id="typeDocument" class="form-control" [(ngModel)]="formData.typeDocumentId" name="Id" required />
           </div>
           
           <div class="form-group">
-            <label for="categoryDescription">nombre</label>
-            <textarea id="categoryDescription" class="form-control" [(ngModel)]="formData.description" name="description" required></textarea>
+            <label for="typeDocument">nombre</label>
+            <textarea id="typeDocument" class="form-control" [(ngModel)]="formData.documentName" name="nombre" required></textarea>
           </div>
           
           <div class="modal-footer">

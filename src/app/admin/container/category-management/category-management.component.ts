@@ -11,6 +11,7 @@ export class CategoryManagementComponent implements OnInit {
   description: string = '';
   categories: any[] = [];
   selectedCategory: any = null;
+  searchTerm: string = '';
 
   constructor(private categoriesService: CategoriesService) {}
 
@@ -77,5 +78,13 @@ export class CategoryManagementComponent implements OnInit {
   // Método para cancelar la edición
   cancelEdit(): void {
     this.selectedCategory = null; // Limpiar la selección de categoría
+  }
+
+  // Filtrar 
+  get filteredCategories() {
+    return this.categories.filter(category =>
+      category.categoryName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  
   }
 }

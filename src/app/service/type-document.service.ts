@@ -19,8 +19,8 @@ export class TypeDocumentService {
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) { }
 
   // Método para registrar un nuevo tipo de documento
-  public addTypeDocument(name: string, description: string): Observable<TypeDocument | null> {
-    const typeDocumentData = { name, description };
+  public addTypeDocument(typeDocumentId: number, documentName: string): Observable<TypeDocument | null> {
+    const typeDocumentData = { typeDocumentId, documentName };
     const token = localStorage.getItem('accessToken');
 
     if (!token) {
@@ -48,8 +48,8 @@ export class TypeDocumentService {
   }
 
   // Método para actualizar un tipo de documento
-  public updateTypeDocument(id: number, name: string): Observable<TypeDocument | null> {
-    const typeDocumentData = { id, name};
+  public updateTypeDocument(typeDocumentId: number, documentName: string): Observable<TypeDocument | null> {
+    const typeDocumentData = { typeDocumentId, documentName};
     const token = localStorage.getItem('accessToken');
 
     if (!token) {
@@ -59,7 +59,7 @@ export class TypeDocumentService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http
-      .put<TypeDocument>(`${this.apiUrl}admin/typedocuments-update?id=${id}`, typeDocumentData, { headers })
+      .put<TypeDocument>(`${this.apiUrl}admin/typedocuments-update?id=${typeDocumentId}`, typeDocumentData, { headers })
       .pipe(
         tap((response) => {
           console.log('Actualización:', response);
@@ -87,8 +87,8 @@ export class TypeDocumentService {
   }
 
   // Método para obtener un tipo de documento por ID
-  public getTypeDocumentById(id: number): Observable<TypeDocument | null> {
-    return this.http.get<TypeDocument>(`${this.apiUrl}public/typedocuments-user?id=${id}`).pipe(
+  public getTypeDocumentById(typeDocumentId: number): Observable<TypeDocument | null> {
+    return this.http.get<TypeDocument>(`${this.apiUrl}public/typedocuments-user?id=${typeDocumentId}`).pipe(
       catchError((error) => {
         console.error('Error al obtener el tipo de documento por ID:', error);
         return of(null); // Retorna null en caso de error

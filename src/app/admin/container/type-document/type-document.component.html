@@ -4,12 +4,19 @@
     <div class="card-header">
       <div class="row p-3">
         <div class="col-12 col-md-6 col-lg-6 text-start">
-          <!-- Buscador (si es necesario) -->
           <input type="text" class="form-control mb-3" placeholder="Buscar tipo de documento..." />
         </div>
         <div class="col-12 col-md-6 col-lg-6 text-end mt-2">
+
+
           <!-- Botón para abrir el modal para agregar tipo de documento -->
-          <button class="color-bg btn fw-semibold text-white" type="button" (click)="editTypeDocument(null)">
+          <button
+          class="color-bg btn fw-semibold text-white"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#createModal"
+        >
+            
             <i class="ri-add-circle-line"></i> Agregar Tipo de Documento
           </button>
         </div>
@@ -33,8 +40,13 @@
              
               <td class="text-center">
                 <!-- Botón para editar un tipo de documento -->
-                <button type="button" (click)="editTypeDocument(typeDocument)" class="btn btn-outline-dark btn-warning mx-3" >
-                  <i class="ri-edit-box-line"></i> Editar
+                <button type="button" 
+                data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                  class="btn btn-outline-dark btn-warning mx-1"
+                (click)="editTypeDocument(typeDocument)" > 
+                
+                <i class="ri-edit-box-line btn-warning mx-3" ></i> Editar
                 </button>
               </td>
             </tr>

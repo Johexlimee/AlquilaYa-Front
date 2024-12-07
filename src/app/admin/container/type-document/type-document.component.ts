@@ -11,7 +11,7 @@ export class TypeDocumentComponent implements OnInit {
   description: string = ''; // Agregar campo para descripción
   data: any[] = [];
   selectedTypeDocument: any = null;
-
+  searchTerm: string = '';
   constructor(private typeDocumentService: TypeDocumentService) {}
 
   ngOnInit(): void {

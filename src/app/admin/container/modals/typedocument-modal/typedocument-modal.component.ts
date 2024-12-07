@@ -8,10 +8,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angu
 export class TypeDocumentModalComponent {
   @Input() modalId: string = 'createModal';
   @Input() isEditing: boolean = false;
-  @Input() initialData: any = { name: '', description: '' };  // Campos modificados a 'name' y 'description'
+  @Input() initialData: any = { typeDocumentId: '', documentName: '' };  
   @Output() submitForm = new EventEmitter<any>();
 
-  formData = { name: '', description: '' };  // Campos modificados a 'name' y 'description'
+  formData = { typeDocumentId: '', documentName: '' };  
   formError: string | null = null;
   loading: boolean = false;
 
@@ -24,8 +24,8 @@ export class TypeDocumentModalComponent {
   }
 
   handleSubmit() {
-    if (!this.formData.name.trim()) {
-      this.formError = 'El nombre es obligatorio.';
+    if (!this.formData.typeDocumentId.trim() || !this.formData.documentName.trim()) {
+      this.formError = 'Ambos campos son obligatorios.';
       return;
     }
 
@@ -38,7 +38,7 @@ export class TypeDocumentModalComponent {
   }
 
     handleCancel(): void {
-      this.formData = { name: '', description: '' };
+      this.formData = { typeDocumentId: '', documentName: '' };
       this.formError = null;
     }
   }

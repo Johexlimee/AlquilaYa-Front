@@ -1,13 +1,21 @@
 <div class="mt-5">
   <div class="card shadow bg-body-tertiary rounded">
-    <h2 class="red-color-text fw-bold text-center mt-3">Categorías</h2>
+    <h2 class="red-color-text fw-bold text-center mt-3">Categorias </h2>
     <div class="card-header">
       <div class="row p-3">
         <div class="col-12 col-md-6 col-lg-6 text-start">
-          <!-- Buscador -->
-          <input type="text" class="form-control mb-3" placeholder="Buscar categoría..." />
+          <!-- Campo de búsqueda -->
+          <input
+            type="text"
+            class="form-control mb-3"
+            [(ngModel)]="searchTerm"
+            placeholder="Buscar Categoria"
+          />
         </div>
         <div class="col-12 col-md-6 col-lg-6 text-end mt-2">
+
+
+          
           <!-- Botón para abrir el modal para agregar categoría -->
           <button
           class="color-bg btn fw-semibold text-white"
