@@ -89,28 +89,34 @@ export class CategoriesService {
     );
   }
 
-   /*// Método para eliminar una categoría
-  public deleteCategory(categoryId: number): Observable<boolean> {
-    const token = localStorage.getItem('accessToken');
 
-    if (!token) {
-      throw new Error('Token de acceso no encontrado');
-    }
+ // Método para eliminar status de una categoría
+ public deleteCategory(categoryId: number ): Observable<Category | null> {
+  const token = localStorage.getItem('accessToken');
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  if (!token) {
+    throw new Error('Token de acceso no encontrado');
+  }
 
-   return this.http
-      .delete(`${this.apiUrl}admin/category-delete?id=${categoryId}`, { headers })
-      .pipe(
-        tap(() => {
-          console.log('Eliminación exitosa');
-          this.alertService.showSuccess('La categoría fue eliminada con éxito.');
-        }),
-        catchError((error) => {
-          console.error('Error al eliminar categoría:', error);
-          this.alertService.showError('No se pudo eliminar la categoría.');
-          return of(false);
-        })
-      );*/
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  return this.http
+    .delete<Category>(`${this.apiUrl}admin/category-delete?id=${categoryId}`)
+    .pipe(
+      tap((response) => {
+        console.log('eliminar status:', response);
+        if (response && response.categoryId) { // Aquí validas el id correcto
+          console.log('eliminacion de status exitosa:', response);
+          this.alertService.showSuccess('Categoría eliminada de status con éxito.');
+        }
+      }),
+      catchError((error) => {
+        console.error('Error en la actualización:', error);
+        this.alertService.showError('No se pudo actualizar la categoría.');
+        return of(null);
+      })
+    );
+}
+   
   }
 

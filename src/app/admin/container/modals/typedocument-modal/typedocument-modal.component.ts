@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-typedocument-modal',
@@ -15,9 +15,12 @@ export class TypeDocumentModalComponent {
   formError: string | null = null;
   loading: boolean = false;
 
+  constructor(private cdRef: ChangeDetectorRef) {}
+
   ngOnChanges() {
     // Se actualizan los datos iniciales cuando cambian los inputs
     this.formData = { ...this.initialData };
+    this.cdRef.detectChanges();
   }
 
   handleSubmit() {
@@ -26,15 +29,17 @@ export class TypeDocumentModalComponent {
       return;
     }
 
-    if (!this.formData.description.trim()) {
-      this.formError = 'La descripción es obligatoria.';
-      return;
-    }
-
     this.loading = true;
     setTimeout(() => {
       this.submitForm.emit(this.formData); // Emitir datos al componente padre
       this.loading = false;
+      this.formError = null;  
     }, 1000);
   }
-}
+
+    handleCancel(): void {
+      this.formData = { name: '', description: '' };
+      this.formError = null;
+    }
+  }
+  

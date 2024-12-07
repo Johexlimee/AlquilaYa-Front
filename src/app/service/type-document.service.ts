@@ -48,8 +48,8 @@ export class TypeDocumentService {
   }
 
   // Método para actualizar un tipo de documento
-  public updateTypeDocument(id: number, name: string, description: string): Observable<TypeDocument | null> {
-    const typeDocumentData = { name, description };
+  public updateTypeDocument(id: number, name: string): Observable<TypeDocument | null> {
+    const typeDocumentData = { id, name};
     const token = localStorage.getItem('accessToken');
 
     if (!token) {

@@ -19,16 +19,16 @@ export class TypeDocumentComponent implements OnInit {
   }
 
   // Método para agregar un nuevo tipo de documento
-  addTypeDocument(): void {
-    const typeDocument = { name: this.name, description: this.description };
-    this.typeDocumentService.addTypeDocument(typeDocument.name, typeDocument.description).subscribe({
+  addTypeDocument(typeDocument:any): void {
+    this.typeDocumentService.addTypeDocument(typeDocument.typeDocumentId, typeDocument.documentName).subscribe({
       next: (response) => {
-        console.log('Tipo de documento añadido:', response);
-        this.getAllTypeDocument();
-        this.clearForm();
+        if (response) {
+          console.log('documento agregado con éxito:', response);
+          this.getAllTypeDocument(); // Actualizar la lista de categorías
+        }
       },
       error: (error) => {
-        console.error('Error al añadir tipo de documento:', error);
+        console.error('Error al agregar tipo de documento:', error);
       }
     });
   }
@@ -38,31 +38,24 @@ export class TypeDocumentComponent implements OnInit {
     this.typeDocumentService.getAllTypeDocuments().subscribe({
       next: (data) => {
         this.data = data;
+        
       },
       error: (error) => console.error('Error al obtener tipos de documentos:', error)
     });
   }
 
-  // Método para editar un tipo de documento
-  editTypeDocument(item: any): void {
-    this.selectedTypeDocument = { ...item };
-    this.name = this.selectedTypeDocument.name;  // Rellenar los campos con los valores seleccionados
-    this.description = this.selectedTypeDocument.description;
-    console.log('Tipo de documento seleccionado para editar:', this.selectedTypeDocument);
-  }
-
+  // Método para seleccionar 
+  editTypeDocument(typeDocument: any): void {
+    this.selectedTypeDocument = { ...typeDocument }; 
+    }
   // Método para actualizar un tipo de documento
-  updateTypeDocument(): void {
-    if (!this.selectedTypeDocument) return;
-    
-    this.typeDocumentService.updateTypeDocument(this.selectedTypeDocument.id, this.name, this.description).subscribe({
+  updateTypeDocument(updateTypeDocument: any): void {
+    this.typeDocumentService.updateTypeDocument(updateTypeDocument.typeDocumentId, updateTypeDocument.documentName ).subscribe({
       next: (response) => {
-        console.log('Tipo de documento actualizado:', response);
         this.getAllTypeDocument();
-        this.selectedTypeDocument = null;
-        this.clearForm();
+        this.selectedTypeDocument = null;  // Resetear después de actualizar
       },
-      error: (error) => console.error('Error al actualizar el tipo de documento:', error)
+      error: (error) => console.error('Error al actualizar, intenta de nuevo ', error)
     });
   }
 
