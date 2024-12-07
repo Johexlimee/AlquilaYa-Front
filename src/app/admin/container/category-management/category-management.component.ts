@@ -81,10 +81,12 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   // Filtrar 
-  get filteredCategories() {
-    return this.categories.filter(category =>
-      category.categoryName.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-  
+// Método para filtrar las categorías
+get filteredCategories() {
+  return this.categories.filter(category =>
+    category.name.toLowerCase().includes(this.searchTerm.toLowerCase()) // Usa 'name' en lugar de 'categoryName'
+  );
+
+
   }
 }
