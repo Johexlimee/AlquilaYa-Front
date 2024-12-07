@@ -20,6 +20,7 @@ import { SupplierLayoutComponent } from './layouts/supplier-layout/supplier-layo
 import { SupplierHeaderComponent } from './components/header/supplier-header/supplier-header.component';
 import { RecoverPasswordComponent } from './components/modals/recover-password/recover-password.component';
 import { AuthcontrollerService } from './service/authcontroller.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { AuthcontrollerService } from './service/authcontroller.service';
     FooterComponent,
     SupplierLayoutComponent,
     SupplierHeaderComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

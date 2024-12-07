@@ -1,0 +1,33 @@
+body {
+  background-color: #f8f9fa;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+}
+.error-container {
+  text-align: center;
+  max-width: 600px;
+}
+.error-code {
+  font-size: 8rem;
+  font-weight: bold;
+  color: #FF7C03;
+}
+.error-message {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.error-illustration {
+  max-width: 100%;
+  height: auto;
+}
+.btn-primary {
+  background-color: #FF7C03;
+  border-color: #FF7C03;
+}
+.btn-primary:hover {
+  background-color: #e66c02;
+  border-color: #e66c02;
+}
