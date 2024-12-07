@@ -28,7 +28,7 @@ const routes: Routes = [
     ]
 
   },
-  { path: 'myshop', component: SupplierLayoutComponent,
+  { path: '', component: SupplierLayoutComponent,
     children:[
       { path: 'myshop', component: MyShopComponent},
     ]

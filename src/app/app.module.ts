@@ -19,6 +19,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SupplierLayoutComponent } from './layouts/supplier-layout/supplier-layout.component';
 import { SupplierHeaderComponent } from './components/header/supplier-header/supplier-header.component';
 import { RecoverPasswordComponent } from './components/modals/recover-password/recover-password.component';
+import { AuthcontrollerService } from './service/authcontroller.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,7 @@ import { RecoverPasswordComponent } from './components/modals/recover-password/r
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers:[provideHttpClient()],
+  providers:[provideHttpClient(),AuthcontrollerService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

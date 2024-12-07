@@ -250,4 +250,30 @@ export class AuthcontrollerService {
     }
   }
 
+   // Método para cerrar sesión
+   public logout(): Observable<any> {
+    return new Observable((observer) => {
+      // Cerrar sesión en Firebase
+      this.afAuth.signOut().then(() => {
+        console.log('Sesión cerrada en Firebase');
+        
+        // Limpiar tokens en memoria
+        this.firebaseTokenInMemory = null;
+        this.accessToken = null;
+        localStorage.removeItem('refreshToken');
+        
+        // Redirigir al usuario a la página de inicio o login
+        this.router.navigate(['/']);
+        
+        observer.next({ success: true, message: 'Sesión cerrada exitosamente' });
+        observer.complete();
+      }).catch((error) => {
+        console.error('Error al cerrar sesión:', error);
+        observer.next({ success: false, message: 'Error al cerrar sesión' });
+        observer.complete();
+      });
+    });
+  }
+
+
 }
