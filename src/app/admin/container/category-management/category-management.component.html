@@ -41,12 +41,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let category of categories">
-              <td>{{ category.categoryId }}</td> <!-- ID de la categoría -->
+            <tr *ngFor="let category of filteredCategories">
+              <td>{{ category.categoryId }}</td>
               <td>{{ category.name }}</td>
               <td>{{ category.description }}</td>
               <td class="text-center">
-                <!-- Botón para editar una categoría -->
                 <button
                   type="button"
                   data-bs-toggle="modal"
@@ -59,7 +58,7 @@
                   type="button"
                   class="btn btn-outline-dark btn-danger" 
                   (click)="deleteCategory(category)">
-                  <i class="ri-edit-box-line"></i> Eliminar
+                  <i class="ri-delete-bin-2-line"></i> Eliminar
                 </button>
               </td>
             </tr>
