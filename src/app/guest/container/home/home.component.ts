@@ -27,13 +27,31 @@ export class HomeComponent implements OnInit {
 
   chunkedCategories: any[] = [];  // Aquí almacenaremos los bloques de 5 categorías
 
-  constructor( private productService: ProductService, 
-    private categoriesService: CategoriesService) { }
+  constructor(private productService: ProductService, 
+              private categoriesService: CategoriesService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
     this.mostrarPedir(); 
     this.getAllCategories();
+  }
+
+  // Función para obtener el icono correspondiente al nombre de la categoría
+  getCategoryIcon(categoryName: string): string {
+    const iconMap: { [key: string]: string } = {
+      'Tecnología': 'bi bi-laptop',  // Cambia estos según las categorías y sus iconos
+      'Muebles': 'bi bi-house-door',
+      'Electrodomésticos': 'bi bi-basket',
+      'Juguetes': 'bi bi-gift',
+      'Deportes': 'bi bi-football',
+      'Ropa': 'bi bi-wardrobe',
+      'Herramientas': 'bi bi-tools',
+      'Automóviles': 'bi bi-car-front'
+      // Agrega más categorías e iconos aquí según sea necesario
+    };
+
+    // Devuelve el icono correspondiente a la categoría o un icono por defecto
+    return iconMap[categoryName] || 'bi bi-question-circle';  // icono por defecto si no se encuentra la categoría
   }
 
   getAllProducts(): void {
