@@ -24,8 +24,8 @@ export class TypeDocumentModalComponent {
   }
 
   handleSubmit() {
-    if (!this.formData.typeDocumentId.trim() || !this.formData.documentName.trim()) {
-      this.formError = 'Ambos campos son obligatorios.';
+    if (!this.formData.documentName.trim()) {
+      this.formError = 'El nombre es obligatorio.';
       return;
     }
 
