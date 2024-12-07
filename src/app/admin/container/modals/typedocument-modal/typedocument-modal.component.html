@@ -6,9 +6,10 @@
         <h5 class="modal-title" [id]="modalId + 'Label'">
           {{ isEditing ? 'Editar ' : 'Agregar Nueva tipo de documento' }}
         </h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" (click)="handleCancel()">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="handleCancel()">
+          <i class="ri-close-line"></i>  <!-- Remplace con el icono Remix -->
         </button>
+
       </div>
       <div class="modal-body">
         <!-- Mensaje de error -->

@@ -12,6 +12,7 @@ export class TypeDocumentComponent implements OnInit {
   data: any[] = [];
   selectedTypeDocument: any = null;
   searchTerm: string = '';
+
   constructor(private typeDocumentService: TypeDocumentService) {}
 
   ngOnInit(): void {
@@ -64,4 +65,11 @@ export class TypeDocumentComponent implements OnInit {
     this.name = '';
     this.description = '';
   }
+
+// Filtrar características
+get filteredtypedoc() {
+  return this.data.filter(characteristic =>
+    characteristic.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+  );
+}
 }

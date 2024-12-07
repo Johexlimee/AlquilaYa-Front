@@ -1,27 +1,38 @@
 <div class="mt-5">
   <div class="card shadow bg-body-tertiary rounded">
     <h2 class="red-color-text fw-bold text-center mt-3">Tipos de Documento</h2>
+    
+    
     <div class="card-header">
       <div class="row p-3">
         <div class="col-12 col-md-6 col-lg-6 text-start">
-          <input type="text" class="form-control mb-3" placeholder="Buscar tipo de documento..." />
+          <!-- Campo de búsqueda -->
+          <input
+            type="text"
+            class="form-control mb-3"
+            [(ngModel)]="searchTerm"
+            placeholder="Buscar tipo de documento"/>
         </div>
+        
+        
+        
         <div class="col-12 col-md-6 col-lg-6 text-end mt-2">
-
-
-          <!-- Botón para abrir el modal para agregar tipo de documento -->
+  <!-- Botón para abrir el modal para agregar tipo de documento -->
           <button
           class="color-bg btn fw-semibold text-white"
           type="button"
           data-bs-toggle="modal"
-          data-bs-target="#createModal"
-        >
+          data-bs-target="#createModal">
             
             <i class="ri-add-circle-line"></i> Agregar Tipo de Documento
           </button>
         </div>
       </div>
     </div>
+   
+  
+
+
     <div class="card-body">
       <div class="table-responsive m-1">
         <!-- Tabla de tipos de documentos -->
@@ -46,7 +57,7 @@
                   class="btn btn-outline-dark btn-warning mx-1"
                 (click)="editTypeDocument(typeDocument)" > 
                 
-                <i class="ri-edit-box-line btn-warning mx-3" ></i> Editar
+                <i class="ri-edit-box-line btn-warning" ></i>Editar
                 </button>
               </td>
             </tr>
