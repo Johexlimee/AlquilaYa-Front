@@ -44,3 +44,15 @@
     </div>
   </div>
 </div>
+
+<app-typedocument-modal
+modalId="createModal"
+[isEditing]="false"
+(submitForm)="addTypeDocument($event)">
+</app-typedocument-modal>
+
+<app-typedocument-modal
+modalId="editModal"
+[isEditing]="true"
+(submitForm)="updateTypeDocument($event)">
+</app-typedocument-modal>
