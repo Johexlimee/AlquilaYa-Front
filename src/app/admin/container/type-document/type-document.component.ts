@@ -38,6 +38,7 @@ export class TypeDocumentComponent implements OnInit {
     this.typeDocumentService.getAllTypeDocuments().subscribe({
       next: (data) => {
         this.data = data;
+        
       },
       error: (error) => console.error('Error al obtener tipos de documentos:', error)
     });

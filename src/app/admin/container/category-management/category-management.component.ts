@@ -38,7 +38,7 @@ export class CategoryManagementComponent implements OnInit {
     this.categoriesService.getAllCategories().subscribe({
       next: (data) => {
         this.categories = data;
-        console.log('Categorías obtenidas:', this.categories);
+        
       },
       error: (error) => {
         console.error('Error al obtener categorías:', error);

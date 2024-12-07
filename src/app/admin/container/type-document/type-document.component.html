@@ -23,68 +23,23 @@
             <tr>
               <th class="color-bg text-light text-center bg-success">ID</th>
               <th class="color-bg text-light text-center">Nombre</th>
-              <th class="color-bg text-light text-center">Descripción</th>
               <th class="color-bg text-light text-center">Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let typeDocument of data">
-              <td>{{ typeDocument.id }}</td>
-              <td>{{ typeDocument.name }}</td>
-              <td>{{ typeDocument.description }}</td>
+              <td>{{ typeDocument.typeDocumentId }}</td>
+              <td>{{ typeDocument.documentName }}</td>
+             
               <td class="text-center">
                 <!-- Botón para editar un tipo de documento -->
-                <button type="button" (click)="editTypeDocument(typeDocument)" class="btn btn-outline-dark">
+                <button type="button" (click)="editTypeDocument(typeDocument)" class="btn btn-outline-dark btn-warning mx-3" >
                   <i class="ri-edit-box-line"></i> Editar
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal para agregar/editar tipo de documento -->
-<div class="modal fade" id="typeDocumentModal" tabindex="-1" aria-labelledby="typeDocumentModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="typeDocumentModalLabel">{{ selectedTypeDocument ? 'Editar Tipo de Documento' : 'Agregar Tipo de Documento' }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="selectedTypeDocument ? updateTypeDocument() : addTypeDocument()">
-          <div class="mb-3">
-            <label for="documentName" class="form-label">Nombre</label>
-            <input 
-              type="text" 
-              id="documentName" 
-              class="form-control" 
-              [(ngModel)]="name" 
-              name="name" 
-              required 
-            />
-          </div>
-          <div class="mb-3">
-            <label for="documentDescription" class="form-label">Descripción</label>
-            <input 
-              type="text" 
-              id="documentDescription" 
-              class="form-control" 
-              [(ngModel)]="description" 
-              name="description" 
-              required 
-            />
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">
-              {{ selectedTypeDocument ? 'Actualizar' : 'Agregar' }}
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
