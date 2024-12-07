@@ -116,17 +116,27 @@
 
             <p class="link-secondary text-decoration-none">
               ¿Olvidaste tu contraseña?
-              <a class="text-success fw-bolder" href="#">Recupérala aquí</a>
+              <span  type="button" class="text-success fw-bolder text-decoration-none cursor-pointer" 
+            data-bs-toggle="modal" data-bs-target="#recoverModal">
+            Recupérala aquí
+      </span>
+             
             </p>
             <div class="text-center mb-3">
-              <button type="submit" class="btn btn-lg btn-dark w-100">
+              <button type="submit" class="btn btn-lg btn-dark w-100"
+              data-bs-dismiss="modal"
+          aria-label="Close">
                 Iniciar sesión
               </button>
             </div>
           </form>
           <p class="link-secondary text-decoration-none">
             ¿Todavía no tienes una cuenta? 
-            <a class="text-success fw-bolder text-decoration-none" href="#">Regístrate</a>
+            <span  type="button" class="text-success fw-bolder text-decoration-none cursor-pointer" 
+            data-bs-toggle="modal" data-bs-target="#registerModal">
+        Regístrate
+      </span>
+            
           </p>
           <div class="text-center">
             <div class="my-3 d-flex align-items-center justify-content-center">
@@ -154,7 +164,9 @@
                 <button
                   (click)="loginWithGoogle()"
                   class="btn bsb-btn-2xl btn-outline-dark rounded-2 d-flex align-items-center w-100"
-                >
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  >
                   <svg
                     xml:space="preserve"
                     style="enable-background: new 0 0 512 512"
@@ -200,7 +212,9 @@
                 <button
                   (click)="loginWithFacebook()"
                   class="btn bsb-btn-2xl btn-outline-dark rounded-2 d-flex align-items-center w-100"
-                >
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

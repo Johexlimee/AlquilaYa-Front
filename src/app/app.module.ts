@@ -18,6 +18,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SupplierLayoutComponent } from './layouts/supplier-layout/supplier-layout.component';
 import { SupplierHeaderComponent } from './components/header/supplier-header/supplier-header.component';
+import { RecoverPasswordComponent } from './components/modals/recover-password/recover-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { SupplierHeaderComponent } from './components/header/supplier-header/sup
     LoginModalComponent,
     FooterComponent,
     SupplierLayoutComponent,
-    SupplierHeaderComponent
+    SupplierHeaderComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
