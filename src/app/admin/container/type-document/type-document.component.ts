@@ -67,9 +67,10 @@ export class TypeDocumentComponent implements OnInit {
   }
 
 // Filtrar características
+// Método para filtrar los tipos de documentos
 get filteredtypedoc() {
-  return this.data.filter(characteristic =>
-    characteristic.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+  return this.data.filter(typeDocument =>
+    typeDocument.documentName.toLowerCase().includes(this.searchTerm.toLowerCase())
   );
 }
 }

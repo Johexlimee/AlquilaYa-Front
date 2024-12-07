@@ -44,29 +44,27 @@
               <th class="color-bg text-light text-center">Acciones</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let typeDocument of data">
-              <td>{{ typeDocument.typeDocumentId }}</td>
-              <td>{{ typeDocument.documentName }}</td>
-             
-              <td class="text-center">
-                <!-- Botón para editar un tipo de documento -->
-                <button type="button" 
+        <tbody>
+          <tr *ngFor="let typeDocument of filteredtypedoc">
+            <td>{{ typeDocument.typeDocumentId }}</td>
+            <td>{{ typeDocument.documentName }}</td>
+            <td class="text-center">
+              <button 
+                type="button" 
                 data-bs-toggle="modal"
-                  data-bs-target="#editModal"
-                  class="btn btn-outline-dark btn-warning mx-1"
-                (click)="editTypeDocument(typeDocument)" > 
-                
-                <i class="ri-edit-box-line btn-warning" ></i>Editar
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+                data-bs-target="#editModal"
+                class="btn btn-outline-dark btn-warning mx-1"
+                (click)="editTypeDocument(typeDocument)" >
+                <i class="ri-edit-box-line btn-warning"></i> Editar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+  
+     
+
+ 
+
 
 <app-typedocument-modal
 modalId="createModal"
