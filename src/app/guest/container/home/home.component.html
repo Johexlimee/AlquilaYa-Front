@@ -24,38 +24,32 @@
     </div>
 </section>
 
-
-
-
-
-
 <section id="iconCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <!-- Iteramos sobre los bloques de categorías -->
-        <div *ngFor="let group of chunkedCategories; let i = index" class="carousel-item" [class.active]="i === 0">
-            <div class="d-flex justify-content-around align-items-center">
-                <!-- Iteramos sobre cada categoría en el grupo -->
-                <div *ngFor="let name of group" class="text-center">
-                    <i class="bi bi-tv" style="font-size: 5rem;"></i> 
-                    <p>{{ name.name }}</p>
-                </div>
-            </div>
+      <!-- Iteramos sobre los bloques de categorías -->
+      <div *ngFor="let group of chunkedCategories; let i = index" class="carousel-item" [class.active]="i === 0">
+        <div class="d-flex justify-content-around align-items-center">
+          <!-- Iteramos sobre cada categoría en el grupo -->
+          <div *ngFor="let name of group" class="text-center">
+            <!-- Usamos la función getCategoryIcon para obtener el icono -->
+            <i [ngClass]="getCategoryIcon(name.name)" style="font-size: 5rem;"></i>
+            <p>{{ name.name }}</p>
+          </div>
         </div>
+      </div>
     </div>
-
+  
     <!-- Controles -->
     <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
     </button>
-</section>
-
-
-
+  </section>
+  
 
 <section class="container ">
     <div>
@@ -93,23 +87,22 @@
 
 
 
-
   <div class="fondo-rojo">
     <div class="container">
       <!-- Título centrado -->
       <div class="d-flex flex-wrap justify-content-center mt-5">
-        <h1><span style="color:#002244">¿Cómo funciona Alquilaya?</span> </h1>
+        <h1><span style="color:#002244">¿Cómo funciona Alquilaya?</span></h1>
       </div>
   
-    <!-- Botones centrados -->
-<div class="d-flex justify-content-center mb-5 mt-5">
-    <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPedir()">Pedir Prestado</button>
-    <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPrestar()">Prestar</button>
-  </div>
-  
+      <!-- Botones centrados -->
+      <div class="d-flex justify-content-center mb-5 mt-5">
+        <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPedir()">Pedir Prestado</button>
+        <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPrestar()">Prestar</button>
+      </div>
+      
       <!-- Contenido de tarjetas -->
       <div class="row my-5">
-        <div class="col-3" *ngFor="let tarjeta of tarjetas">
+        <div class="col-md-3 mb-4" *ngFor="let tarjeta of tarjetas">
           <div class="card">
             <img class="card-img-top" [src]="tarjeta.img" [alt]="tarjeta.titulo">
             <div class="card-body">
@@ -121,6 +114,4 @@
       </div>
     </div>
   </div>
-  
-  
   
