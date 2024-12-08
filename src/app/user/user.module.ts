@@ -12,7 +12,7 @@ import { ProfileComponent } from './container/profile/profile.component';
 import { DocumentComponent } from './container/document/document.component';
 import { MyShopComponent } from './container/my-shop/my-shop.component';
 import { AddProductComponent } from './container/add-product/add-product.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateProductComponent } from './container/update-product/update-product.component';
 
 
@@ -34,6 +34,7 @@ import { UpdateProductComponent } from './container/update-product/update-produc
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class UserModule { }

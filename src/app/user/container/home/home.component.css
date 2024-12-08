@@ -1,42 +1,117 @@
-.fondo {
-    background-image: url("/mujer 205.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
 
-/* Estilos para el buscador */
-.buscador {
+
+.custom-input {
+    border-radius: 0 30px 30px 0; /* Bordes redondeados en el input */
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-input:focus {
+    outline: none;
+    border-color: #6CC51D; /* Color verde cuando el input está enfocado */
+    box-shadow: 0 0 5px rgba(108, 197, 29, 0.5); /* Sombra verde al enfocarse */
+  }
+  
+  .custom-btn {
+    background-color: #6CC51D; /* Verde atractivo */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-btn:hover {
+    background-color: #4ca017; /* Verde más oscuro al pasar el mouse */
+  }
+  
+  .custom-btn i {
+    margin-left: 8px;
+  }
+  
+  @media (max-width: 768px) {
+    .custom-select,
+    .custom-input {
+      width: 100%; /* Asegura que los inputs ocupen el 100% del espacio en pantallas pequeñas */
+      margin-bottom: 10px; /* Añade margen inferior */
+    }
+  
+    .custom-btn {
+      width: 100%; /* Hace que el botón ocupe todo el ancho */
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .fondo {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+  }
+  .btn-success {
+    background-color: #6CC51D; /* Color de fondo verde */
+    color: black; /* Color del texto */
+    padding: 10px 20px; /* Espaciado dentro del botón */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    display: flex; /* Para alinear el texto e ícono */
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Efecto al pasar el mouse */
+  }
+  
+  /* Estilos para el buscador */
+  .buscador {
+    padding: 150px 150px; 
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0px;  /* Eliminamos el espacio entre los elementos */
     max-width: 800px; /* Aumentamos el tamaño máximo del buscador */
     margin: 0 auto;
-}
-
-.buscador input {
-    width: 300px; /* Aumentamos el tamaño de los inputs */
+  }
+  
+  .buscador input {
+    width: 500px; /* Aumentamos el tamaño de los inputs */
     padding: 15px; /* Aumentamos el padding para un mayor tamaño */
     font-size: 16px;
     border-radius: 30px 0 0 30px; /* Redondeamos solo la parte izquierda */
     border: 1px solid #ddd;
     transition: all 0.3s ease;
     box-shadow: none;
-}
-
-.buscador input:focus {
+  }
+  
+  .buscador input:focus {
     outline: none;
     border-color: #28a745;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}
-
-.buscador .ubicacion input {
-    width: 300px; /* Aumentamos el tamaño del segundo input */
+  }
+  
+  .buscador .ubicacion input {
+    width: 250px; /* Aumentamos el tamaño del segundo input */
     border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha */
-}
-
-.buscador button {
+  }
+  
+  .buscador button {
     padding: 15px 30px;
     background-color: #6CC51D;
     color: white;
@@ -46,242 +121,64 @@
     cursor: pointer;
     transition: background-color 0.3s;
     margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
-}
-
-
-.buscador i {
+  }
+  
+  
+  .buscador i {
     margin-left: 8px;
-}
-
-/* General */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
   }
-  
-  /* Carrusel */
-  #iconCarousel {
-    max-width: 1200px; 
-    margin: 30px auto;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px 0;
-  }
-  
-  /* Íconos */
-  .carousel-item i {
-    color: #5a5a5a;
-    transition: transform 0.3s ease;
-  }
-  
-  .carousel-item i:hover {
-    transform: scale(1.2);
-    color: #151616;
-  }
-  
-  /* Textos */
-  .carousel-item p {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #555;
-  }
-  
- /* Controles */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: #111111;
-  border-radius: 50%;
-  width: 20px; /* Tamaño reducido */
-  height: 20px; /* Tamaño reducido */
-  background-size: 50%; /* Ajustar tamaño del icono dentro del círculo */
-  margin-top: -10px; /* Centrar mejor respecto al contenido */
-}
 
-/* Efectos al pasar el mouse */
-.carousel-control-prev-icon:hover,
-.carousel-control-next-icon:hover {
-  background-color: #343536;
-}
-
-
-.carousel-control-prev,
-.carousel-control-next {
-  width: 40px; /* Ancho más pequeño para las zonas activas */
-}
-
-  
-  /* Alineación de íconos */
-  .carousel-item .d-flex {
-    padding: 10px 20px;
-  }
-  
-  .text-center {
-    text-align: center;
-    flex: 1; 
-    max-width: 150px; 
-  }
-  
-  .contenedor {
-    text-align: center;
-}
-
-
-
-/* Estilo para el encabezado */
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-p {
-    font-size: 1.2rem;
-    color: #555;
-}
-
-/* Estilo de las tarjetas */
-.card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-}
-
-.card-img-top {
+  /* Fondo semi-transparente */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
+    height: 100%;
+    background: rgba(48, 48, 49, 0.377);
+    z-index: 0;
+  }
 
-.card-body {
-    padding: 20px;
-}
+  /* Personalización de los inputs */
+  .custom-input {
+    padding: 15px;
+    border-radius: 25px;
+  }
 
-.card-title {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.card-text {
-    font-size: 1rem;
-    color: #777;
-}
-
-/* Estilo para el pie de la tarjeta (botón) */
-.card-footer {
-    padding: 10px 0;
-    background-color: white;
-
-}
-
-.alquilar {
-    background-color: #6CC51D;
+  /* Botón personalizado */
+  .custom-btn {
+    background-color: #6cc51d;
+    border-radius: 25px;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    padding: 12px 25px;
+  }
+  
+  .custom-btn:hover {
+    background-color: #5db71e;
+  }
 
-.alquilar:hover {
-    background-color: #0056b3;
-}
 
-/* Estilos de la fila (row) */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.col-3 {
-    flex: 1;
-    max-width: calc(25% - 20px);
-}
-
-@media (max-width: 1200px) {
-    .col-3 {
-        max-width: calc(33.33% - 20px);
-    }
-}
-
-@media (max-width: 768px) {
-    .col-3 {
-        max-width: calc(50% - 20px);
-    }
-}
-
-@media (max-width: 480px) {
-    .col-3 {
-        max-width: 100%;
-    }
-}
+  .card-img-top {
+    height: 200px;
+    object-fit: contain;
+  }
+  
 
 
 
-
-
-.purpose {
+  .purpose {
     background-color: #AEDC81;
     padding: 80px 10px;
     h1, h2 {
         color: #0D0839;
         font-weight: 700;
     }
-}
-
-.botones {
-    padding: 50px 0px;
-    .btn {
-        color: #0D0839;
-        background-color: white;
-        width: 15%;
-        padding: 10px;
-        font-weight: 500;
+    button{
+      background: #0D0839;
+      color: white;
     }
 }
 
-.informacion {
-    padding-top: 60px;
-}
-
-.start-now {
-    color: #0D0839;
-    background-color: white;
-    width: 25%;
-    padding: 10px;
-    font-weight: 500;
-}
 
 
 
-
-
-
-/* Estilo del botón */
-.boton-ver-mas {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #2B2350; /* Color del texto */
-    background-color: #F7F7F7; /* Color de fondo */
-    border: 1px solid #111111; /* Borde */
-    border-radius: 10px; /* Bordes redondeados */
-    padding: 10px 30px; /* Espaciado interno */
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-bottom: 50px;
-}
-
-/* Efecto hover */
-.boton-ver-mas:hover {
-    background-color: #E6E6E6; /* Cambio de fondo al pasar el ratón */
-}

@@ -156,6 +156,15 @@ export class ProductService {
     );
   }
   
+  getSearchProduct(name: string, city: string): Observable<any> {
+    const params = new HttpParams()
+      .set('name', name)
+      .set('city', city);
+    
+    return this.http.get<any>(`${this.apiUrl}public/search`, { params });
+  }
+  
+
 
   getProductById(productId: number): Observable<any> {
     return this.authService.getAccessToken().pipe(
