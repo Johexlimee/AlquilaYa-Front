@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthcontrollerService } from '../../../service/authcontroller.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { AlertService } from '../../../service/alert.service';
 
 @Component({
@@ -36,7 +35,7 @@ export class LoginModalComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.authService.firebaseAuth().subscribe((response) => {
         if (response) {
-          this.alertService.showSuccess('Operación realizada con éxito.');
+          this.alertService.showSuccessTop('Ingreso exitoso.');
         }
       });
     }

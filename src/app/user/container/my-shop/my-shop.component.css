@@ -1,0 +1,9 @@
+.color-bg{
+  background: var(--background-quaternary);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: contain;
+}
+

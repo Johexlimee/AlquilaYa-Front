@@ -11,6 +11,7 @@ import { ListProductsComponent } from './container/list-products/list-products.c
 import { MyShopComponent } from './container/my-shop/my-shop.component';
 import { CartComponent } from './container/cart/cart.component';
 import { SupplierLayoutComponent } from '../layouts/supplier-layout/supplier-layout.component';
+import { UpdateProductComponent } from './container/update-product/update-product.component';
 
 const routes: Routes = [
   {
@@ -25,15 +26,19 @@ const routes: Routes = [
       { path: '', component: HomeComponent},
       { path: 'listproducts', component: ListProductsComponent},
       { path: 'profile', component: ProfileComponent},
+     
     ]
 
   },
-  { path: '', component: SupplierLayoutComponent,
-    children:[
-      { path: 'myshop', component: MyShopComponent},
-    ]
-  },
-
+  {
+  path: 'myshop', 
+  component: SupplierLayoutComponent,
+  children: [
+    { path: '', component: MyShopComponent },
+    { path: 'details/:id', component: UpdateProductComponent },
+  
+  ]
+  }
 ];
 
 @NgModule({

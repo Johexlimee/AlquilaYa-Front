@@ -51,4 +51,14 @@ export class AlertService {
       cancelButtonText: 'Cancelar'
     });
   }
+
+  showSuccessTop( title: string = '¡Éxito!'){
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: title,
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
 }

@@ -176,7 +176,7 @@ export class AuthcontrollerService {
             if (this.role === 'ADMIN') {
               this.router.navigateByUrl('/admin/profile');
             } else if (this.role === 'CUSTOMER') {
-              this.router.navigateByUrl('/user/profile');
+              this.router.navigateByUrl('/user');
             } else {
               this.router.navigate(['/']);
             }
@@ -257,10 +257,10 @@ export class AuthcontrollerService {
       this.afAuth.signOut().then(() => {
         console.log('Sesión cerrada en Firebase');
         
+        localStorage.removeItem('refreshToken');
         // Limpiar tokens en memoria
         this.firebaseTokenInMemory = null;
         this.accessToken = null;
-        localStorage.removeItem('refreshToken');
         
         // Redirigir al usuario a la página de inicio o login
         this.router.navigate(['/']);
@@ -276,4 +276,30 @@ export class AuthcontrollerService {
   }
 
 
+  decodeTokenAndGetUserId(token: string): number | null {
+    try {
+      // Validar si el token es un Bearer Token y extraer la parte JWT
+      if (token.startsWith('Bearer ')) {
+        token = token.replace('Bearer ', '');
+      }
+  
+      // Extraer el payload del token (segunda parte del JWT)
+      const base64Url = token.split('.')[1];
+      if (!base64Url) {
+        throw new Error('Token inválido');
+      }
+  
+      // Reemplazar caracteres específicos de Base64 para decodificar
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const decodedPayload = JSON.parse(atob(base64)); 
+  
+      // Retornar el userId del usuario
+      const userId = decodedPayload?.userId;
+      return userId || null;
+    } catch (error) {
+      console.error('Error al decodificar el token:', error);
+      return null;
+    }
+  }
+  
 }

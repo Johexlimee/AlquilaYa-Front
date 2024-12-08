@@ -1,1 +1,58 @@
-<p>my-shop works!</p>
+<section class="container pt-5">
+  <div>
+    <h3>Mis productos</h3>
+  </div>
+  <div>
+    <div class="d-flex align-items-end justify-content-end mt-5">
+      <button
+        class="color-bg btn fw-semibold text-white"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#addProductModal"
+      >
+        <i class="ri-add-circle-line"></i> Agregar producto
+      </button>
+    </div>
+  </div>
+
+  <div
+    class=" row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4"
+  >
+    <div class="col"  *ngFor="let product of products">
+      <div class="card h-100">
+        <img [src]="product.primaryPhotoUrl ? product.primaryPhotoUrl : '/default.png'"
+                        alt="Card image cap" class="card-img-top img-fluid">
+        <div class="card-body">
+          <div class="d-flex justify-content-end">
+            <span class="badge rounded-pill text-bg-secondary">{{ product.productCondition }}</span>
+          </div>
+          <h3 class="card-title">{{ product.name }}</h3>
+          <p class="card-text">Categoría: {{ product.categoryName }}</p>
+          <p class="card-text">Precio: {{ product.price | currency }}</p>
+        </div>
+         <!-- Card Footer -->
+         <div class="card-footer">
+          <div class="row align-items-center g-0">
+            <div class="col">
+              <button
+              class="btn btn-success"
+              type="button"
+             (click)="idProduct(product.productId)"
+            >
+              Ver/Editar Detalles
+            </button>
+            </div>
+
+            <div class="col-auto">
+              <a href="#" class="text-inherit">
+                <i class="fa-solid fa-trash fs-3" style="color: var(--red);"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-add-product></app-add-product>

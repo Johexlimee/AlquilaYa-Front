@@ -11,6 +11,9 @@ import { DetailProductComponent } from './container/detail-product/detail-produc
 import { ProfileComponent } from './container/profile/profile.component';
 import { DocumentComponent } from './container/document/document.component';
 import { MyShopComponent } from './container/my-shop/my-shop.component';
+import { AddProductComponent } from './container/add-product/add-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateProductComponent } from './container/update-product/update-product.component';
 
 
 @NgModule({
@@ -24,10 +27,13 @@ import { MyShopComponent } from './container/my-shop/my-shop.component';
     ProfileComponent,
     DocumentComponent,
     MyShopComponent,
+    AddProductComponent,
+    UpdateProductComponent,
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class UserModule { }
