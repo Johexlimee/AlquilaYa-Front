@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../../../service/alert.service';
 import { ProductService } from '../../../service/product.service';
 import { CategoriesService } from '../../../service/categories.service';
+import { ProductDetailsService } from '../../../service/product-details.service';
+import { ProductCharacteristicsValueService } from '../../../service/product-characteristics-value.service';
+import { ProductPhotoService } from '../../../service/product-photo.service';
 
 @Component({
   selector: 'app-update-product',
@@ -13,6 +16,9 @@ import { CategoriesService } from '../../../service/categories.service';
 export class UpdateProductComponent {
   productForm: FormGroup;
   categories: any[] = [];
+  ProductDetailsData: any[] = [];
+  productPhotoData: any[] = [];
+  ProductCharacteristicsData: any[] = [];
   isLoading: boolean = false;
   productId: number | null = null;
 
@@ -21,7 +27,10 @@ export class UpdateProductComponent {
     private route: ActivatedRoute,
     private alertService: AlertService,
     private productService: ProductService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private ProductDetails:ProductDetailsService,
+    private ProductCharacteristics: ProductCharacteristicsValueService,
+    private productPhoto:ProductPhotoService,
   ) {
     // Define the form with required fields
     this.productForm = new FormGroup({
@@ -51,6 +60,9 @@ export class UpdateProductComponent {
     if (id) {
       this.productId = +id;
       this.loadProductData(this.productId);
+      this.loadProductDetailData(this.productId)
+      this.loadProductCharacteristicslData(this.productId)
+      this.loadProductPhotoData(this.productId)
       console.log(id)
     }
    
@@ -74,6 +86,46 @@ export class UpdateProductComponent {
       },
     });
   }
+
+
+    // Load product details
+    loadProductDetailData(productId: number): void {
+      console.log("loooooo",productId)
+      this.ProductDetails.getAllProductDetails(productId).subscribe({
+        next: (product) => {
+         this.ProductDetailsData =product
+        },
+        error: (error) => {
+          this.alertService.showError('No se pudo cargar la información del producto.');
+        },
+      });
+    }
+
+       // Load product details
+       loadProductPhotoData(productId: number): void {
+        console.log("loooooo",productId)
+        this.productPhoto.getAllProductPhoto(productId).subscribe({
+          next: (product) => {
+           this.productPhotoData =product
+          },
+          error: (error) => {
+            this.alertService.showError('No se pudo cargar la información del producto.');
+          },
+        });
+      }
+
+        // Load product data for editing
+        loadProductCharacteristicslData(productId: number): void {
+          console.log("loooooo",productId)
+          this.ProductCharacteristics.getAllProductCharacteristics(productId).subscribe({
+            next: (product) => {
+             this.ProductCharacteristicsData =product
+            },
+            error: (error) => {
+              this.alertService.showError('No se pudo cargar la información del producto.');
+            },
+          });
+        }
 
   // Get all product categories
   getAllCategories(): void {

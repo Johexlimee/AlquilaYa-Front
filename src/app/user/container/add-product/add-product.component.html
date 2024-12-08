@@ -19,10 +19,11 @@
       </div>
       <!-- Modal Body -->
       <div class="modal-body">
-        <div class="contenido">
-          <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+        <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+          <!-- Primera Fila -->
+          <div class="row">
             <!-- Campo de Nombre -->
-            <div class="mb-3">
+            <div class="col-md-6 mb-3">
               <label for="productName" class="form-label">Nombre del Producto</label>
               <input
                 id="productName"
@@ -31,17 +32,13 @@
                 class="form-control"
                 placeholder="Ingresa el nombre del producto"
               />
-              <!-- Error handling for name field -->
               <div *ngIf="productForm.controls['name']?.touched && productForm.controls['name']?.hasError('required')" class="text-danger">
                 El nombre del producto es obligatorio.
-              </div>
-              <div *ngIf="productForm.controls['name']?.touched && productForm.controls['name']?.hasError('minlength')" class="text-danger">
-                El nombre debe tener al menos 3 caracteres.
               </div>
             </div>
 
             <!-- Campo de Precio -->
-            <div class="mb-3">
+            <div class="col-md-6 mb-3">
               <label for="productPrice" class="form-label">Precio</label>
               <input
                 id="productPrice"
@@ -50,59 +47,47 @@
                 class="form-control"
                 placeholder="Ingresa el precio del producto"
               />
-              <!-- Error handling for price field -->
               <div *ngIf="productForm.controls['price']?.touched && productForm.controls['price']?.hasError('required')" class="text-danger">
                 El precio es obligatorio.
               </div>
-              <div *ngIf="productForm.controls['price']?.touched && productForm.controls['price']?.hasError('min')" class="text-danger">
-                El precio debe ser mayor que cero.
-              </div>
             </div>
+          </div>
 
+          <!-- Segunda Fila -->
+          <div class="row">
             <!-- Campo de Categoría -->
-            <div class="mb-3">
+            <div class="col-md-6 mb-3">
               <label for="category" class="form-label">Categoría</label>
               <select
                 id="category"
                 formControlName="categoryId"
                 class="form-select"
-                aria-label="Seleccionar categoría"
               >
                 <option value="">Seleccionar categoría</option>
                 <option *ngFor="let category of categories" [value]=category.categoryId>
                   {{ category.name }}
                 </option>
               </select>
-              <!-- Error handling for category field -->
-              <div *ngIf="productForm.controls['categoryId']?.touched && productForm.controls['categoryId']?.hasError('required')" class="text-danger">
-                La categoría es obligatoria.
-              </div>
             </div>
 
-              <!-- Campo de Categoría -->
-           <!-- Campo de Condición -->
-<div class="mb-3">
-  <label for="productCondition" class="form-label">Condición</label>
-  <select
-    id="productCondition"
-    formControlName="productCondition"
-    class="form-select"
-    aria-label="Seleccionar Condición"
-  >
-    <option value="">Seleccionar Condición</option>
-    <option value="bueno">Bueno</option>
-    <option value="usado">Usado</option>
-  </select>
-  <!-- Error handling for condition field -->
-  <div *ngIf="productForm.controls['productCondition']?.touched && productForm.controls['productCondition']?.hasError('required')" class="text-danger">
-    La condición es obligatoria.
-  </div>
-</div>
+            <!-- Campo de Condición -->
+            <div class="col-md-6 mb-3">
+              <label for="productCondition" class="form-label">Condición</label>
+              <select
+                id="productCondition"
+                formControlName="productCondition"
+                class="form-select"
+              >
+                <option value="">Seleccionar Condición</option>
+                <option value="bueno">Bueno</option>
+                <option value="usado">Usado</option>
+              </select>
+            </div>
+          </div>
 
-            
-
-            <!-- Campo de Descripción -->
-            <div class="mb-3">
+          <!-- Fila para Descripción -->
+          <div class="row">
+            <div class="col-12 mb-3">
               <label for="description" class="form-label">Descripción</label>
               <textarea
                 id="description"
@@ -111,27 +96,23 @@
                 rows="3"
                 placeholder="Ingresa la descripción del producto"
               ></textarea>
-              <!-- Error handling for description field -->
               <div *ngIf="productForm.controls['description']?.touched && productForm.controls['description']?.hasError('required')" class="text-danger">
                 La descripción es obligatoria.
               </div>
-              <div *ngIf="productForm.controls['description']?.touched && productForm.controls['description']?.hasError('minlength')" class="text-danger">
-                La descripción debe tener al menos 10 caracteres.
-              </div>
             </div>
+          </div>
 
-            <!-- Botón de Enviar -->
-            <div class="text-center mb-3">
-              <button
-                type="submit"
-                class="btn btn-lg btn-dark w-100"
-                [disabled]="productForm.invalid || isLoading"
-              >
-                Agregar Producto
-              </button>
-            </div>
-          </form>
-        </div>
+          <!-- Botón de Enviar -->
+          <div class="text-center mb-3">
+            <button
+              type="submit"
+              class="btn btn-lg btn-dark w-100"
+              [disabled]="productForm.invalid || isLoading"
+            >
+              Agregar Producto
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

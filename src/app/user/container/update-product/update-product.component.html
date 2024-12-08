@@ -1,115 +1,294 @@
-<div class="modal-body">
-  <div class="contenido">
-    <form [formGroup]="productForm" (ngSubmit)="editProduct()">
-      <!-- Campo de Nombre -->
-      <div class="mb-3">
-        <label for="productName" class="form-label">Nombre del Producto</label>
-        <input
-          id="productName"
-          formControlName="name"
-          type="text"
-          class="form-control"
-          placeholder="Ingresa el nombre del producto"
-        />
-        <!-- Error handling for name field -->
-        <div *ngIf="productForm.controls['name']?.touched && productForm.controls['name']?.hasError('required')" class="text-danger">
-          El nombre del producto es obligatorio.
-        </div>
-        <div *ngIf="productForm.controls['name']?.touched && productForm.controls['name']?.hasError('minlength')" class="text-danger">
-          El nombre debe tener al menos 3 caracteres.
-        </div>
+<section class="container pt-5">
+  <div>
+    <h3>Mis productos</h3>
+  </div>
+
+  <div class="row">
+    <!-- Formulario de edición de producto -->
+    <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
+      <div class="card shadow-sm p-3">
+        <form [formGroup]="productForm" (ngSubmit)="editProduct()">
+          <!-- Campo de Nombre -->
+          <div class="mb-3">
+            <label for="productName" class="form-label"
+              >Nombre del Producto</label
+            >
+            <input
+              id="productName"
+              formControlName="name"
+              type="text"
+              class="form-control"
+              placeholder="Ingresa el nombre del producto"
+            />
+            <!-- Mensajes de error -->
+            <div
+              *ngIf="
+                productForm.controls['name']?.touched &&
+                productForm.controls['name']?.hasError('required')
+              "
+              class="text-danger"
+            >
+              El nombre del producto es obligatorio.
+            </div>
+            <div
+              *ngIf="
+                productForm.controls['name']?.touched &&
+                productForm.controls['name']?.hasError('minlength')
+              "
+              class="text-danger"
+            >
+              El nombre debe tener al menos 3 caracteres.
+            </div>
+          </div>
+
+          <!-- Campo de Precio -->
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Precio</label>
+            <input
+              id="productPrice"
+              formControlName="price"
+              type="number"
+              class="form-control"
+              placeholder="Ingresa el precio del producto"
+            />
+            <!-- Mensajes de error -->
+            <div
+              *ngIf="
+                productForm.controls['price']?.touched &&
+                productForm.controls['price']?.hasError('required')
+              "
+              class="text-danger"
+            >
+              El precio es obligatorio.
+            </div>
+            <div
+              *ngIf="
+                productForm.controls['price']?.touched &&
+                productForm.controls['price']?.hasError('min')
+              "
+              class="text-danger"
+            >
+              El precio debe ser mayor que cero.
+            </div>
+          </div>
+
+          <!-- Campo de Categoría -->
+          <div class="mb-3">
+            <label for="category" class="form-label">Categoría</label>
+            <select
+              id="category"
+              formControlName="categoryId"
+              class="form-select"
+              aria-label="Seleccionar categoría"
+            >
+              <option value="">Seleccionar categoría</option>
+              <option
+                *ngFor="let category of categories"
+                [value]="category.categoryId"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+            <!-- Mensajes de error -->
+            <div
+              *ngIf="
+                productForm.controls['categoryId']?.touched &&
+                productForm.controls['categoryId']?.hasError('required')
+              "
+              class="text-danger"
+            >
+              La categoría es obligatoria.
+            </div>
+          </div>
+
+          <!-- Campo de Condición -->
+          <div class="mb-3">
+            <label for="productCondition" class="form-label">Condición</label>
+            <select
+              id="productCondition"
+              formControlName="productCondition"
+              class="form-select"
+              aria-label="Seleccionar Condición"
+            >
+              <option value="">Seleccionar Condición</option>
+              <option value="bueno">Bueno</option>
+              <option value="usado">Usado</option>
+            </select>
+            <!-- Mensajes de error -->
+            <div
+              *ngIf="
+                productForm.controls['productCondition']?.touched &&
+                productForm.controls['productCondition']?.hasError('required')
+              "
+              class="text-danger"
+            >
+              La condición es obligatoria.
+            </div>
+          </div>
+
+          <!-- Campo de Descripción -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea
+              id="description"
+              formControlName="description"
+              class="form-control"
+              rows="3"
+              placeholder="Ingresa la descripción del producto"
+            ></textarea>
+            <!-- Mensajes de error -->
+            <div
+              *ngIf="
+                productForm.controls['description']?.touched &&
+                productForm.controls['description']?.hasError('required')
+              "
+              class="text-danger"
+            >
+              La descripción es obligatoria.
+            </div>
+            <div
+              *ngIf="
+                productForm.controls['description']?.touched &&
+                productForm.controls['description']?.hasError('minlength')
+              "
+              class="text-danger"
+            >
+              La descripción debe tener al menos 10 caracteres.
+            </div>
+          </div>
+
+          <!-- Botón de Enviar -->
+          <div class="text-center mb-3">
+            <button
+              type="submit"
+              class="btn btn-lg btn-dark w-100"
+              [disabled]="productForm.invalid || isLoading"
+            >
+              Editar
+            </button>
+          </div>
+        </form>
       </div>
+    </div>
 
-      <!-- Campo de Precio -->
-      <div class="mb-3">
-        <label for="productPrice" class="form-label">Precio</label>
-        <input
-          id="productPrice"
-          formControlName="price"
-          type="number"
-          class="form-control"
-          placeholder="Ingresa el precio del producto"
-        />
-        <!-- Error handling for price field -->
-        <div *ngIf="productForm.controls['price']?.touched && productForm.controls['price']?.hasError('required')" class="text-danger">
-          El precio es obligatorio.
-        </div>
-        <div *ngIf="productForm.controls['price']?.touched && productForm.controls['price']?.hasError('min')" class="text-danger">
-          El precio debe ser mayor que cero.
-        </div>
-      </div>
-
-      <!-- Campo de Categoría -->
-      <div class="mb-3">
-        <label for="category" class="form-label">Categoría</label>
-        <select
-          id="category"
-          formControlName="categoryId"
-          class="form-select"
-          aria-label="Seleccionar categoría"
-        >
-          <option value="">Seleccionar categoría</option>
-          <option *ngFor="let category of categories" [value]=category.categoryId>
-            {{ category.name }}
-          </option>
-        </select>
-        <!-- Error handling for category field -->
-        <div *ngIf="productForm.controls['categoryId']?.touched && productForm.controls['categoryId']?.hasError('required')" class="text-danger">
-          La categoría es obligatoria.
-        </div>
-      </div>
-
-        <!-- Campo de Categoría -->
-     <!-- Campo de Condición -->
-<div class="mb-3">
-<label for="productCondition" class="form-label">Condición</label>
-<select
-id="productCondition"
-formControlName="productCondition"
-class="form-select"
-aria-label="Seleccionar Condición"
->
-<option value="">Seleccionar Condición</option>
-<option value="bueno">Bueno</option>
-<option value="usado">Usado</option>
-</select>
-<!-- Error handling for condition field -->
-<div *ngIf="productForm.controls['productCondition']?.touched && productForm.controls['productCondition']?.hasError('required')" class="text-danger">
-La condición es obligatoria.
-</div>
-</div>
-
-      
-
-      <!-- Campo de Descripción -->
-      <div class="mb-3">
-        <label for="description" class="form-label">Descripción</label>
-        <textarea
-          id="description"
-          formControlName="description"
-          class="form-control"
-          rows="3"
-          placeholder="Ingresa la descripción del producto"
-        ></textarea>
-        <!-- Error handling for description field -->
-        <div *ngIf="productForm.controls['description']?.touched && productForm.controls['description']?.hasError('required')" class="text-danger">
-          La descripción es obligatoria.
-        </div>
-        <div *ngIf="productForm.controls['description']?.touched && productForm.controls['description']?.hasError('minlength')" class="text-danger">
-          La descripción debe tener al menos 10 caracteres.
-        </div>
-      </div>
-
-      <!-- Botón de Enviar -->
-      <div class="text-center mb-3">
+    <!-- Productos y características -->
+    <div class="col-lg-6 col-md-12 col-sm-12">
+      <!-- Agregar producto -->
+      <div class="d-flex   mt-3">
         <button
-          type="submit"
-          class="btn btn-lg btn-dark w-100"
-          [disabled]="productForm.invalid || isLoading"
+          class="btn bg-success text-white"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#addProductModal"
         >
-          Agregar Producto
+          <i class="ri-add-circle-line"></i> Agregar Foto
         </button>
       </div>
-    </form>
+
+      <!-- Características -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="row">
+            <!-- Imagen 1 -->
+            <div class="col-4 mb-3 " *ngFor="let data of productPhotoData">
+              <img [src]="data.photoUrl ? data.photoUrl : '/default.png'"
+              alt="Card image cap" class="card-img-top img-fluid">
+            
+            </div>
+         
+          </div>
+        </div>
+      </div>
+
+      <!-- Características -->
+      <div class="card mt-4">
+        <div
+          class="card-header bg-dark text-light d-flex justify-content-between align-items-center"
+        >
+          <h5>Características del Producto</h5>
+          <!-- Botón Agregar -->
+          <button class="btn-light btn">Agregar</button>
+        </div>
+
+        <div class="card-body">
+          <div *ngIf="ProductCharacteristicsData.length === 0">
+            <p>No hay características disponibles aún.</p>
+          </div>
+          <div *ngIf="ProductCharacteristicsData.length > 0">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="text-center">Característica</th>
+                  <th class="text-center">Valor</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of ProductCharacteristicsData">
+                  <td>{{ data.productCharacteristic.characteristicName }}</td>
+                  <td>{{ data.value }}</td>
+                  <td class="text-center">
+                    <button
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editModal"
+                      class="btn btn-outline-dark btn-warning"
+                    >
+                      <i class="ri-edit-box-line"></i> Editar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  <!-- Detalles del Producto -->
+  <div class="card mt-4">
+    <div
+      class="card-header bg-dark text-light d-flex justify-content-between align-items-center"
+    >
+      <h5>Detalles del Producto</h5>
+      <!-- Botón Agregar -->
+      <button class="btn-light btn">Agregar</button>
+    </div>
+    <div class="card-body">
+      <div *ngIf="ProductCharacteristicsData.length === 0">
+        <p>No hay detalles disponibles aún.</p>
+      </div>
+      <div *ngIf="ProductCharacteristicsData.length > 0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="text-center">Dirección</th>
+              <th class="text-center">Ciudad</th>
+              <th class="text-center">Departamento</th>
+              <th class="text-center">Cantidad</th>
+              <th class="text-center">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of ProductCharacteristicsData">
+              <td>{{ ProductDetailsData[0].address }}</td>
+              <td>{{ ProductDetailsData[0].city }}</td>
+              <td>{{ ProductDetailsData[0].department }}</td>
+              <td>{{ ProductDetailsData[0].stock }}</td>
+              <td class="text-center">
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                  class="btn btn-outline-dark btn-warning"
+                >
+                  <i class="ri-edit-box-line"></i> Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
