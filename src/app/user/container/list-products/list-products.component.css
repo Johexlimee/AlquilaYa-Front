@@ -1,3 +1,70 @@
+.custom-select {
+  border-radius: 30px 0 0 30px; /* Bordes redondeados en el select */
+  border: 1px solid #ddd;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.custom-input {
+  border-radius: 0 30px 30px 0; /* Bordes redondeados en el input */
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: #6CC51D; /* Color verde cuando el input está enfocado */
+  box-shadow: 0 0 5px rgba(108, 197, 29, 0.5); /* Sombra verde al enfocarse */
+}
+
+.custom-btn {
+  background-color: #6CC51D; /* Verde atractivo */
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.custom-btn:hover {
+  background-color: #4ca017; /* Verde más oscuro al pasar el mouse */
+}
+
+.custom-btn i {
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .custom-select,
+  .custom-input {
+    width: 100%; /* Asegura que los inputs ocupen el 100% del espacio en pantallas pequeñas */
+    margin-bottom: 10px; /* Añade margen inferior */
+  }
+
+  .custom-btn {
+    width: 100%; /* Hace que el botón ocupe todo el ancho */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .fondo {
     background-repeat: no-repeat;
     background-position: center;
@@ -67,22 +134,9 @@
 }
 
 
-.card {
-    height: 100%;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-}
 
-.card:hover {
-  transform: translateY(-10px);
-}
 
-.col-3 {
-    margin-top: 25px;
-}
+
 
 .alquilar {
     background-color: #6CC51D;
@@ -137,4 +191,10 @@ body {
     flex-direction: column; /* Apila los elementos verticalmente */
   }
   
+
+  
+.card-img-top {
+  height: 200px;
+  object-fit: contain;
+}
  

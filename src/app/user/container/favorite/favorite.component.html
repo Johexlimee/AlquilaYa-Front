@@ -1,217 +1,192 @@
 <section class="container pt-5">
-    <div>
-        <h1>Tus Favoritos</h1>
+  <div class="text-center">
+    <h1>Mis Favoritos</h1>
+  </div>
+  <!-- Barra de ordenación -->
+  <div class="d-flex align-items-center justify-content-between flex-wrap mb-4">
+    <label for="sortBy" class="form-label me-2">Ordenar por:</label>
+    <select id="sortBy" class="form-select w-auto">
+      <option selected hidden disabled>Seleccione una opción</option>
+      <option value="recommended">Recomendados</option>
+      <option value="recent">Recientes</option>
+      <option value="popular">Populares</option>
+    </select>
+  </div>
+  <!-- Lista de favoritos -->
+  <div class="row g-3 justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-5" *ngFor="let item of favorites">
+      <div class="card h-100">
+        <div class="row g-0">
+          <!-- Imagen -->
+          <div class="col-4">
+            <img
+              [src]="
+                item.primaryPhotoUrl ? item.primaryPhotoUrl : '/default.png'
+              "
+              alt="Imagen del producto"
+              class="img-fluid rounded-start"
+            />
+          </div>
+          <!-- Contenido -->
+          <div class="col-7">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <span class="badge text-bg-dark">{{
+                item.productCondition
+              }}</span>
+              <div class="d-flex justify-content-between">
+                <small class="text-muted"
+                  >Proveedor: {{ item.supplierName }}</small
+                >
+              </div>
+              <p class="card-text text-truncate" title="{{ item.description }}">
+                {{ item.description }}
+              </p>
+              <p class="card-text">Precio: {{ item.price }}</p>
+
+              <button class="btn btn-success w-100">Ver oferta</button>
+            </div>
+          </div>
+          <!-- Ícono de eliminar -->
+          <div
+            class="col-1 d-flex align-items-start justify-content-center pt-3 pe-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="#FF0000"
+              class="bi bi-trash-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-        <div class="d-flex align-items-end justify-content-end mb-5">
-            <div class="mx-2">
-                <label for="" class="form-label d-flex">Ordenar por:</label>
-            </div>
-            <div class="col-3">
-                <select class="form-select rounded" name="" id="">
-                    <option selected hidden disabled>Seleccione una opcion</option>
-                    <option value="">Recomendados</option>
-                    <option value="">Recientes</option>
-                    <option value="">Populares</option>
-                </select>
-            </div>
-        </div>     
+  </div>
+
+  <div class="my-5">
+    <div class="my-1">
+      <h2>Productos relacionados</h2>
     </div>
-    <div class="my-5 d-flex justify-content-around row">
-        <div class="col-6">
-            <div class="card mb-3" style="max-width: 650px; min-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="/indicator-svgrepo-com.svg" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <div class="row">
-                                <div class="col-6"><small class="text-body-secondary">Ciudad</small></div>
-                                <div class="col-6"><small class="text-body-secondary">Puntuacion</small></div>
-                            </div>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p class="card-text">Precio: Mucho</p>
-                            <button class="btn btn-success form-control ">Ver oferta</button>
-                        </div>
-                    </div>
-                    <div class="col-md-1 pt-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#FF0000" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                    </div>
-                </div>
+    <div class="my-4">
+      <div class="row">
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img src="/camara.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Titulo</h5>
+              <small class="text-body-secondary">Categoria</small>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="#FF0000"
+                  class="bi bi-geo-alt-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
+                  /></svg
+                ><small class="text-body-secondary mx-1">Ubicacion</small>
+              </div>
+              <p class="card-text">Precio</p>
+              <div>
+                <button class="btn btn-success form-control">Alquilar</button>
+              </div>
             </div>
+          </div>
         </div>
 
-        <div class="col-6">
-            <div class="card mb-3" style="max-width: 650px; min-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="/indicator-svgrepo-com.svg" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <div class="row">
-                                <div class="col-6"><small class="text-body-secondary">Ciudad</small></div>
-                                <div class="col-6"><small class="text-body-secondary">Puntuacion</small></div>
-                            </div>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p class="card-text">Precio: Mucho</p>
-                            <button class="btn btn-success form-control ">Ver oferta</button>
-                        </div>
-                    </div>
-                    <div class="col-md-1 pt-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#FF0000" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                    </div>
-                </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img src="/camara.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Titulo</h5>
+              <small class="text-body-secondary">Categoria</small>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="#FF0000"
+                  class="bi bi-geo-alt-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
+                  /></svg
+                ><small class="text-body-secondary mx-1">ubicacion</small>
+              </div>
+              <p class="card-text">Precio</p>
+              <div>
+                <button class="btn btn-success form-control">Alquilar</button>
+              </div>
             </div>
-        </div>
-        
-        <div class="col-6">
-            <div class="card mb-3" style="max-width: 650px; min-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="/indicator-svgrepo-com.svg" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <div class="row">
-                                <div class="col-6"><small class="text-body-secondary">Ciudad</small></div>
-                                <div class="col-6"><small class="text-body-secondary">Puntuacion</small></div>
-                            </div>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p class="card-text">Precio: Mucho</p>
-                            <button class="btn btn-success form-control ">Ver oferta</button>
-                        </div>
-                    </div>
-                    <div class="col-md-1 pt-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#FF0000" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <div class="col-6">
-            <div class="card mb-3" style="max-width: 650px; min-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="/indicator-svgrepo-com.svg" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <div class="row">
-                                <div class="col-6"><small class="text-body-secondary">Ciudad</small></div>
-                                <div class="col-6"><small class="text-body-secondary">Puntuacion</small></div>
-                            </div>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p class="card-text">Precio: Mucho</p>
-                            <button class="btn btn-success form-control ">Ver oferta</button>
-                        </div>
-                    </div>
-                    <div class="col-md-1 pt-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#FF0000" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                    </div>
-                </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img src="/camara.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Titulo</h5>
+              <small class="text-body-secondary">Categoria</small>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="#FF0000"
+                  class="bi bi-geo-alt-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
+                  /></svg
+                ><small class="text-body-secondary mx-1">ubicacion</small>
+              </div>
+              <p class="card-text">Precio</p>
+              <div>
+                <button class="btn btn-success form-control">Alquilar</button>
+              </div>
             </div>
+          </div>
         </div>
 
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img src="/camara.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Titulo</h5>
+              <small class="text-body-secondary">Categoria</small>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="#FF0000"
+                  class="bi bi-geo-alt-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
+                  /></svg
+                ><small class="text-body-secondary mx-1">ubicacion</small>
+              </div>
+              <p class="card-text">Precio</p>
+              <div>
+                <button class="btn btn-success form-control">Alquilar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="my-5">
-        <div class="my-1">
-            <h2>Productos relacionados</h2>
-        </div>
-        <div class="my-4">
-            <div class="row">
-
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/camara.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <small class="text-body-secondary">Categoria</small>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                </svg><small class="text-body-secondary mx-1">Ubicacion</small>
-                            </div>
-                            <p class="card-text">Precio</p>
-                            <div>
-                                <button class="btn btn-success form-control ">Alquilar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/camara.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <small class="text-body-secondary">Categoria</small>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                </svg><small class="text-body-secondary mx-1">ubicacion</small>
-                            </div>
-                            <p class="card-text">Precio</p>
-                            <div>
-                                <button class="btn btn-success form-control ">Alquilar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/camara.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <small class="text-body-secondary">Categoria</small>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                </svg><small class="text-body-secondary mx-1">ubicacion</small>
-                            </div>
-                            <p class="card-text">Precio</p>
-                            <div>
-                                <button class="btn btn-success form-control ">Alquilar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/camara.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Titulo</h5>
-                            <small class="text-body-secondary">Categoria</small>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                </svg><small class="text-body-secondary mx-1">ubicacion</small>
-                            </div>
-                            <p class="card-text">Precio</p>
-                            <div>
-                                <button class="btn btn-success form-control ">Alquilar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+  </div>
 </section>

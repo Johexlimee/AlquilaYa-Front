@@ -13,40 +13,49 @@
         <i class="ri-add-circle-line"></i> Agregar producto
       </button>
     </div>
-  </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-3">
+      <div class="col" *ngFor="let product of products">
+        <div class="card h-100 shadow-sm border-0">
+          <!-- Imagen del producto -->
+          <img
+            [src]="
+              product.primaryPhotoUrl ? product.primaryPhotoUrl : '/default.png'
+            "
+            alt="{{ product.name }}"
+            class="card-img-top img-fluid rounded"
+          />
 
-  <div
-    class=" row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4"
-  >
-    <div class="col"  *ngFor="let product of products">
-      <div class="card h-100">
-        <img [src]="product.primaryPhotoUrl ? product.primaryPhotoUrl : '/default.png'"
-                        alt="Card image cap" class="card-img-top img-fluid">
-        <div class="card-body">
-          <div class="d-flex justify-content-end">
-            <span class="badge rounded-pill text-bg-secondary">{{ product.productCondition }}</span>
-          </div>
-          <h3 class="card-title">{{ product.name }}</h3>
-          <p class="card-text">Categoría: {{ product.categoryName }}</p>
-          <p class="card-text">Precio: {{ product.price | currency }}</p>
-        </div>
-         <!-- Card Footer -->
-         <div class="card-footer">
-          <div class="row align-items-center g-0">
-            <div class="col">
-              <button
-              class="btn btn-success"
-              type="button"
-             (click)="idProduct(product.productId)"
-            >
-              Ver/Editar Detalles
-            </button>
+          <!-- Cuerpo de la tarjeta -->
+          <div class="card-body">
+            <div class="d-flex justify-content-end">
+              <span class="badge rounded-pill bg-secondary text-white">
+                {{ product.productCondition }}
+              </span>
             </div>
+            <h5 class="card-title mt-2 text-primary">{{ product.name }}</h5>
+            <p class="card-text text-muted mb-2">
+              <i class="fa-solid fa-tag"></i> Categoría:
+              {{ product.categoryName }}
+            </p>
+            <p class="card-text text-success fw-bold">
+              <i class="fa-solid fa-dollar-sign"></i>
+              {{ product.price | currency }}
+            </p>
+          </div>
 
-            <div class="col-auto">
-              <a href="#" class="text-inherit">
-                <i class="fa-solid fa-trash fs-3" style="color: var(--red);"></i>
-              </a>
+          <!-- Pie de tarjeta -->
+          <div class="card-footer bg-light border-top-0">
+            <div class="row align-items-center g-2">
+              <!-- Botón de detalles -->
+              <div class="col">
+                <button
+                  class="btn btn-success w-100"
+                  (click)="idProduct(product.productId)"
+                  type="button"
+                >
+                  <i class="fa-solid fa-eye"></i> Ver/Editar Detalles
+                </button>
+              </div>
             </div>
           </div>
         </div>
