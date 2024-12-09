@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { AuthcontrollerService } from './authcontroller.service';
 import { Router } from '@angular/router';
+import { AlertService } from './alert.service';
 
 interface Favorite {
   favoriteId: number;
@@ -28,7 +29,8 @@ export class FavoriteService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: AuthcontrollerService
+    private authService: AuthcontrollerService,
+    private alertService: AlertService, 
   ) {}
 
   // Método para obtener todos los favoritos públicos
@@ -60,22 +62,57 @@ export class FavoriteService {
   }
 
   // Método para agregar un favorito
-  public addFavorite(productId: number): Observable<any> {
+
+  public addFavorite(
+    productId: number,
+  ): Observable<any> {
     return this.authService.getAccessToken().pipe(
       switchMap((token) => {
         if (!token) {
           throw new Error('Token de acceso no encontrado');
         }
-
+  
+        // Decodificar el userId desde el token
+        const userId = this.authService.decodeTokenAndGetUserId(token);
+        if (!userId) {
+          throw new Error('No se pudo obtener el userId del token');
+        }
+  
+        const registerData = {
+          product: {
+            productId: productId
+          },
+          user: {
+             userId: userId 
+          }
+        };
+  
+        console.log("register", registerData);
+  
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        return this.http.post<any>(`${this.apiUrl}customer/add-favorite`, { productId }, { headers });
+        
+        return this.http.post<{ favoriteId: number }>(
+          `${this.apiUrl}user/favorite-add`,
+          registerData,
+          { headers }
+        );
+      }),
+      tap((response) => {
+       
+        if (response && response.favoriteId) {
+          console.log("Producto agregado:", response);
+        } else {
+          // Si la respuesta no contiene un productId, mostrar un mensaje de error
+          this.alertService.showError('No se pudo agregar el producto. Inténtalo de nuevo.');
+        }
       }),
       catchError((error) => {
-        console.error('Error al agregar favorito:', error);
-        return throwError(() => new Error('No se pudo agregar el favorito. Inténtalo de nuevo más tarde.'));
+        console.error('Error al agregar el producto:', error);
+        return of(null);
       })
     );
   }
+  
 
   // Método para eliminar un favorito
   public removeFavorite(favoriteId: number): Observable<any> {

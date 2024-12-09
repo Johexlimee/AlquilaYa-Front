@@ -43,7 +43,7 @@
                       type="text"
                       [(ngModel)]="name"
                       class="form-control fs-4 custom-input"
-                      placeholder="Search..."
+                      placeholder="Nombre producto..."
                     />
 
                     <!-- Botón de búsqueda -->
@@ -168,9 +168,11 @@
             <!-- Corazón al lado derecho del título -->
             <div class="d-flex justify-content-between align-items-center">
               <h4 class="card-title text-primary mb-0">{{ product.name }}</h4>
+
               <i
                 class="fa-solid fa-heart fs-3 text-danger"
                 style="cursor: pointer"
+                (click)="addFavorite(product.productId)"
               ></i>
             </div>
             <span class="badge rounded-pill bg-secondary text-white">
@@ -195,8 +197,8 @@
             <div class="row align-items-center g-2">
               <!-- Botón de detalles -->
               <div class="col">
-                <button class="btn btn-success w-100" type="button">
-                  Alquilar
+                <button class="btn btn-success w-100" type="button"   (click)="idProduct(product.productId)">
+                Ver detalles
                 </button>
               </div>
             </div>

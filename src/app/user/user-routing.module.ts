@@ -20,7 +20,7 @@ const routes: Routes = [
     children: [
       { path: 'favorite', component: FavoriteComponent },
       { path: 'cart', component: CartComponent},
-      { path: 'detailcomponent', component: DetailProductComponent},
+      { path: 'detail/:id', component: DetailProductComponent},
       { path: 'document', component: DocumentComponent},
       { path: 'favorite', component: FavoriteComponent},
       { path: '', component: HomeComponent},
