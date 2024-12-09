@@ -1,10 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from './alert.service';
 import { AuthcontrollerService } from './authcontroller.service';
-import { catchError, Observable, of } from 'rxjs';
-
+import { catchError, Observable, of, switchMap, tap } from 'rxjs';
 interface ProductDetail {
   productDetailsId: number;
   address: string;
@@ -21,14 +20,77 @@ export class ProductDetailsService {
   public accessToken: string | null = null;
   constructor(private http: HttpClient, private router: Router,private alertService: AlertService,private authService: AuthcontrollerService) { }
 
-  // Método para obtener todas las características
+
+  
+ // Método para registrar 
+ public addProductDetails(productDetailsId: number, address: string, city: string, department: string,  stock: number): Observable<ProductDetail | null> {
+  const ProductDetailsData = { productDetailsId, address, city, department,  stock };
+
+  return this.authService.getAccessToken().pipe(
+    switchMap((token) => {
+      if (!token) {
+        throw new Error('Token de acceso no encontrado');
+      }
+
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.post<ProductDetail>(
+        `${this.apiUrl}user/add-details`,
+        ProductDetailsData,
+        { headers }
+      );
+    }),
+    tap((response): void => {
+      if (response?.productDetailsId) {
+        this.alertService.showSuccess('Operación realizada con éxito.');
+      }
+    }),
+    catchError((error) => {
+      console.error('Error en el registro:', error);
+      this.alertService.showError('No se pudo registrar.');
+      return of(null);
+    })
+  );
+}
+
+// Método para actualizar un detalle de producto existente
+public updateProductDetails(productDetailsId: number, address: string, city: string, department: string,  stock: number): Observable<ProductDetail | null> {
+  const ProductDetailsData = { productDetailsId, address, city, department,  stock };
+
+  return this.authService.getAccessToken().pipe(
+    switchMap((token) => {
+      if (!token) {
+        throw new Error('Token de acceso no encontrado');
+      }
+
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.put<ProductDetail>(
+        `${this.apiUrl}/user/update-details?id=${productDetailsId}`,
+        ProductDetailsData,
+        { headers }
+      );
+    }),
+    tap((response) => {
+      if (response?.productDetailsId) {
+        this.alertService.showSuccess('El detalle del producto se actualizó con éxito.');
+      }
+    }),
+    catchError((error) => {
+      console.error('Error en la actualización:', error);
+      this.alertService.showError('No se pudo actualizar el detalle del producto.');
+      return of(null);
+    })
+  );
+}
+
+  // Método para obtener todos los detalles producto
 public getAllProductDetails( productId: number,): Observable<ProductDetail[]> {
   const params = new HttpParams().set('productId', productId.toString())
   return this.http.get<ProductDetail[]>(`${this.apiUrl}public/product-details-id`, {  params }).pipe(
     catchError((error) => {
-      console.error('Error al obtener características:', error);
+      console.error('Error al obtener productos:', error);
       return of([]);
     })
   );
+
 }
 }
