@@ -239,7 +239,7 @@
                       data-bs-toggle="modal"
                       data-bs-target="#editModal1"
                       class="btn btn-outline-dark btn-warning"
-                    >
+                      (click)="editProductCharactetistics(data)">
                       <i class="ri-edit-box-line"></i> Editar
                     </button>
                   </td>
@@ -336,6 +336,6 @@
 <app-product-characteristics-value-modal
   modalId="editModal1"
   [isEditing]="true"
-  [initialData]=""
+  [initialData]="selectedProductChara"
   (submitForm)="updateProductCharacteristics($event)">
 </app-product-characteristics-value-modal>

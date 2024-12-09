@@ -19,8 +19,16 @@ interface ProductCharacteristics {
 export class ProductCharacteristicsValueService {
   private apiUrl: string = 'http://localhost:8080/api/v1/';
   public accessToken: string | null = null;
-  constructor(private http: HttpClient, private router: Router,private alertService: AlertService,private authService: AuthcontrollerService) { }
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private alertService: AlertService,
+    private authService: AuthcontrollerService
+  ) { }
 
+  public getAllcharacteristics(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}public/characteristics-all`);
+  }
 
  // Método para registrar 
  public addCharacteristics(valueId: number, product: string, productCharacteristic: string, value: number): Observable<ProductCharacteristics | null> {

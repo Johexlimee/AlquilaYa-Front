@@ -14,13 +14,12 @@ import { ProductPhotoService } from '../../../service/product-photo.service';
   styleUrls: ['./update-product.component.css']
 })
 export class UpdateProductComponent {
-editProduct() {
-}
   productForm: FormGroup;
   categories: any[] = [];
   ProductDetailsData: any[] = [];
   productPhotoData: any[] = [];
   ProductCharacteristics: any[] = [];
+  selectedProductChara: any = null;
   isLoading: boolean = false;
   productId: number | null = null;
 
@@ -53,6 +52,10 @@ editProduct() {
       this.loadProductCharacteristics(this.productId);
       this.loadProductPhotoData(this.productId);
     }
+  }
+
+  editProduct() {
+
   }
 
   // Método para abrir el modal de agregar detalles
@@ -95,7 +98,7 @@ editProduct() {
   loadProductCharacteristics(productId: number): void {
     this.productCharacteristicsService.getAllProductCharacteristics(productId).subscribe({
       next: (characteristics) => {
-        this.ProductCharacteristics= characteristics;
+        this.ProductCharacteristics = characteristics;
       },
       error: () => {
         this.alertService.showError('No se pudieron cargar las características del producto.');
@@ -155,6 +158,10 @@ editProduct() {
         this.alertService.showError('No se pudo agregar la característica del producto.');
       }
     });
+  }
+
+  editProductCharactetistics(productChara: any): void {
+    this.selectedProductChara = { ...productChara};
   }
 
   // Actualizar características del producto
