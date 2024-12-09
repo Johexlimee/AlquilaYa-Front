@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../../service/product.service';
 import { CategoriesService } from '../../../service/categories.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -35,12 +36,17 @@ export class HomeComponent {
       { img: '/entregar4.jpg', titulo: '3. Entregar', descripcion: 'Entrega el producto al solicitante' },
       { img: '/recibir.jpg', titulo: '4. Recibir', descripcion: 'Recibe el producto y verifica que esté en buen estado' }
     ];
-  constructor(private productService: ProductService,  private categoriesService: CategoriesService){}
+  constructor(private productService: ProductService,private router: Router,  private categoriesService: CategoriesService){}
 
 ngOnInit(): void {
 this.getAllProducts();
 this.getAllCategories()
 this.mostrarPedir();
+}
+
+idProduct(productId: number): void {
+  this.router.navigate([`/user/detail/${productId}`]);
+  console.log(productId)
 }
 
 getAllCategories(): void {

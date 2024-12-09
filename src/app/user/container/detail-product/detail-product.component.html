@@ -1,184 +1,148 @@
-<section class="my-5">
-    <div class="container py-5 bg-white rounded">
-        <div class="row px-4 d-flex justify-content-around">
-            <div class="col-md-8">
-                <div class="my-2">
-                    <h1>Titulo</h1>
-                </div>
-                <div class="d-flex align-items-center justify-content-between my-2">
-                    <div class="d-flex align-items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                        </svg><h3 class="mx-2 text-body-secondary">Bogota, Colombia</h3>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <h3 class="">Puntuacion</h3>
-                    </div>
-                </div >
-                <div class="row">
-                    <div class="col-md-7 p-2 img-principal rounded">
-                        <img class="object-fit-cover img-fluid rounded border border-secondary shadow-lg h-100 w-100" src="alquilar1.jpg" alt="">
-                    </div>
-                    <div class="col-md-5">
-                        <div class="p-2 img-secondary">
-                            <img class="object-fit-cover img-fluid rounded border border-secondary shadow-lg h-100 w-100" src="alquilar1.jpg" alt="">
-                        </div>
-                        <div class="p-2 img-secondary">
-                            <img class="object-fit-cover img-fluid rounded border border-secondary shadow-lg h-100 w-100" src="alquilar1.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 pt-3 border border-success shadow rounded">
-                <div>
-                    <h3>Precio: </h3>
-                    <p class="text-justify bg-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, optio eum quo debitis corrupti necessitatibus aspernatur?</p>
-                </div>
-                <div class="my-2 text-center mb-3">
-                    <input type="date" class="form-control my-1" name="" id="">
-                    <input type="button" class="btn btn-success my-1" value="Ver detalles del alquiler">
-                </div>
-                <div class="row d-flex mb-5">
-                    <div class="col-md-6 justify-content-start">
-                        <h6>Precio del dia:</h6>
-                        <h6>Otros:</h6>
-                    </div>
-                    <div class="col-md-6 text-end">
-                        <h6>9.999.999</h6>
-                        <h6>99.999</h6>
-                    </div>
-                </div>
-                <div class="row d-flex mb-1">
-                    <div class="col-md-6 justify-content-start">
-                        <h4>Total:</h4>
-                    </div>
-                    <div class="col-md-6 text-end">
-                        <h4>9.999.999</h4>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <input type="button" class="btn btn-primary my-1" value="Añadir al carrito">
-                </div>
-            </div>
+<section class="pd-top">
+  <div class="container py-5  p-5 rounded shadow">
+    <a routerLink="/user/listproducts" class="btn btn-outline-success mb-3"
+      ><i class="bi bi-arrow-left"></i> Volver a todos los productos</a
+    >
+    <div class="row">
+      <h1 class="text-success">{{ products.name }}</h1>
+      <!-- Imagen principal y miniaturas -->
+      <div class="col-md-8">
+        <div>
+          <img
+            [src]="
+              products.primaryPhotoUrl
+                ? products.primaryPhotoUrl
+                : '/default.png'
+            "
+            alt="Producto principal"
+            class="img-fluid rounded mb-3 border"
+            style="max-height: 400px; object-fit: cover; width: 100%"
+          />
+          <div class="d-flex justify-content-start gap-2 overflow-auto">
+            <img
+              *ngFor="let item of productPhotoData"
+              [src]="
+                item.primaryPhotoUrl ? item.primaryPhotoUrl : '/default.png'
+              "
+              alt="Miniatura"
+              class="img-thumbnail border"
+              style="
+                max-width: 80px;
+                max-height: 80px;
+                cursor: pointer;
+                object-fit: cover;
+              "
+            />
+          </div>
         </div>
-        <div class="row p-5">
-            <div class="col-md-7">
-                <div class="my-3">
-                    <h1>Descripcion</h1>
-                </div>
-                <div class="my-3">
-                    <p class="text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi distinctio ipsa ducimus odio nisi corporis quaerat, obcaecati fugiat ipsum quidem facere ad, at, dicta accusamus odit fugit. Error, natus corrupti! Maiores totam minus accusamus dolorem itaque cumque quibusdam unde quod quas dignissimos iusto nisi distinctio reiciendis doloribus consectetur praesentium, dolores ea? Alias corporis provident doloremque molestias aliquid eveniet voluptatem nemo.Rem, culpa. Molestiae ut facere, perspiciatis ullam nam ipsam fuga nisi magnam obcaecati possimus, praesentium nesciunt reiciendis maiores est! Eos repellat, laboriosam qui dolore excepturi repellendus libero recusandae aut animi.</p>
-                    <p class="text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi distinctio ipsa ducimus odio nisi corporis quaerat, obcaecati fugiat ipsum quidem facere ad, at, dicta accusamus odit fugit. Error, natus corrupti! Maiores totam minus accusamus dolorem itaque cumque quibusdam unde quod quas dignissimos iusto nisi distinctio reiciendis doloribus consectetur praesentium, dolores ea? Alias corporis provident doloremque molestias aliquid eveniet voluptatem nemo.Rem, culpa. Molestiae ut facere, perspiciatis ullam nam ipsam fuga nisi magnam obcaecati possimus, praesentium nesciunt reiciendis maiores est! Eos repellat, laboriosam qui dolore excepturi repellendus libero recusandae aut animi.</p>
-                </div>
-                
-            </div>
-            <div class="col-md-5">
-                <iframe width="100%" height="400px" style="border:0;" loading="lazy" allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBI5jgmZQB_p68Qge2QgLOaQ-m3mjXJOZk
-                    &q=Uniempresarial">
-                </iframe>
-            </div>
-        </div>
-        <div class="row px-5 d-flex align-items-center">
-            <div class="col-md-1 img-supplier">
-                <img class="object-fit-cover rounded-circle border border-secondary h-100 w-100" src="/camara.jpg" alt="img-user">
-            </div>
-            <div class="col-md-5">
-                <h3>Nombre del supplier</h3>
-                <small>Dueño</small>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Productos relacionados -->
+      </div>
 
-    <div class="container pt-5">
-        <div class="my-5">
-            <div class="my-1">
-                <h2>Productos relacionados</h2>
-            </div>
-            <div class="my-4">
-                <div class="row">
-    
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="/camara.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Titulo</h5>
-                                <small class="text-body-secondary">Categoria</small>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                    </svg><small class="text-body-secondary mx-1">Ubicacion</small>
-                                </div>
-                                <p class="card-text">Precio</p>
-                                <div>
-                                    <button class="btn btn-success form-control ">Alquilar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="/camara.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Titulo</h5>
-                                <small class="text-body-secondary">Categoria</small>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                    </svg><small class="text-body-secondary mx-1">ubicacion</small>
-                                </div>
-                                <p class="card-text">Precio</p>
-                                <div>
-                                    <button class="btn btn-success form-control ">Alquilar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="/camara.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Titulo</h5>
-                                <small class="text-body-secondary">Categoria</small>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                    </svg><small class="text-body-secondary mx-1">ubicacion</small>
-                                </div>
-                                <p class="card-text">Precio</p>
-                                <div>
-                                    <button class="btn btn-success form-control ">Alquilar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="/camara.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Titulo</h5>
-                                <small class="text-body-secondary">Categoria</small>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FF0000" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                    </svg><small class="text-body-secondary mx-1">ubicacion</small>
-                                </div>
-                                <p class="card-text">Precio</p>
-                                <div>
-                                    <button class="btn btn-success form-control ">Alquilar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
+      <!-- Información del producto -->
+      <div class="col-md-4 p-4 border border-success shadow rounded bg-white">
+        <h1 class="mb-3 text-success">{{ products.name }}</h1>
+        <span class="badge bg-dark text-white small">{{
+          products.productCondition
+        }}</span>
+        <h4 class="mb-2 text-success">
+          Precio: {{ products.price | currency }}
+        </h4>
+
+        <p class="text-muted mb-3 text-truncate">{{ products.description }}</p>
+
+        <div class="mb-4">
+          <label for="startDate" class="form-label">Fecha de inicio</label>
+          <input type="date" id="startDate" class="form-control mb-2" />
+
+          <label for="days" class="form-label">Número de días</label>
+          <input type="number" id="days" class="form-control" />
+          <label for="location" class="form-label"
+            >Seleccione la ubicación</label
+          >
+          <select id="location" class="form-control">
+            <option
+              *ngFor="let data of ProductDetailsData"
+              [value]="data.address"
+            >
+              {{ data.address }}
+            </option>
+          </select>
         </div>
+
+        <div class="d-flex justify-content-between border-top pt-3">
+          <div>
+            <h4>Total:</h4>
+          </div>
+          <div class="text-end">
+            <h4 class="text-success">9.999.999</h4>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-success w-100">Añadir al carrito</button>
+        </div>
+      </div>
     </div>
+
+    <div class="row mt-5">
+      <!-- Detalles del producto -->
+      <div class="col-md-7">
+        <h2 class="text-success mb-3">Detalles del Producto</h2>
+        <div>
+          <p class="fw-bold">Proveedor: {{ products.supplierName }}</p>
+          <p>{{ products.description }}</p>
+        </div>
+
+        <h3 class="text-muted mt-4">Características</h3>
+        <ul class="list-group mb-4">
+          <li
+            class="list-group-item"
+            *ngIf="ProductCharacteristicsData.length === 0"
+          >
+            No hay características disponibles.
+          </li>
+          <li
+            class="list-group-item"
+            *ngFor="let item of ProductCharacteristicsData"
+          >
+            <strong>{{ item.productCharacteristic.characteristicName }}</strong>
+            : {{ item.value }}
+          </li>
+        </ul>
+
+        <h3 class="text-muted">Ubicaciones Disponibles</h3>
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th class="text-center">Dirección</th>
+              <th class="text-center">Ciudad</th>
+              <th class="text-center">Departamento</th>
+              <th class="text-center">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of ProductDetailsData">
+              <td>{{ ProductDetailsData[0].address }}</td>
+              <td>{{ ProductDetailsData[0].city }}</td>
+              <td>{{ ProductDetailsData[0].department }}</td>
+              <td>{{ ProductDetailsData[0].stock }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mapa de ubicación -->
+      <div class="col-md-5">
+        <h2 class="text-success mb-3">Ubicación</h2>
+        <iframe
+          width="100%"
+          height="400px"
+          style="border: 0"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          [src]="mapUrl"
+        ></iframe>
+      </div>
+    </div>
+  </div>
 </section>
