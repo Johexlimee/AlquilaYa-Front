@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateProductComponent } from './container/update-product/update-product.component';
 import { DetailProductModalComponent } from './container/modals/detail-product-modal/detail-product-modal.component';
 import { ProductCharacteristicsValueModalComponent } from './container/modals/product-characteristics-value-modal/product-characteristics-value-modal.component';
+import { PostPhotoModalComponent } from './container/modals/post-photo-modal/post-photo-modal.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ProductCharacteristicsValueModalComponent } from './container/modals/pr
     UpdateProductComponent,
     DetailProductModalComponent,
     ProductCharacteristicsValueModalComponent,
+    PostPhotoModalComponent,
   ],
   imports: [
     CommonModule,

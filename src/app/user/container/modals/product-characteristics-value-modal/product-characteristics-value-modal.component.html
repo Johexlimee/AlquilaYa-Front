@@ -15,7 +15,9 @@
               <label for="characteristicName" class="form-label">Característica</label>
               <select name="characteristicName" id="characteristicName" class="form-control" required> 
                 <option value="" disabled selected hidden>Selecciona una opción</option> 
-                <option *ngFor="let data of dataProductChara" [value]="data.characteristicId">{{ data.characteristicName }}</option> 
+                <option *ngFor="let data of dataProductChara"
+                 [value]="data.characteristicId">
+                 {{ data.characteristicName }}</option> 
               </select>
               <label for="characteristicName" class="form-label">Valor</label>
               <input
