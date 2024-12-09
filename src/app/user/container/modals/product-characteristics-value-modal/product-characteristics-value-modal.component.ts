@@ -25,7 +25,6 @@ ngOnChanges() {
 
 handleSubmit() {
   if (!this.formData.product.trim() ||!this.formData.productCharacteristic.trim() ||!this.formData.value.trim() ) {
-    this.formError = 'El nombre es obligatorio.';
     return;
   }
 

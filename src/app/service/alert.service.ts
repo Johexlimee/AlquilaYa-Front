@@ -5,6 +5,9 @@ import Swal, { SweetAlertOptions } from 'sweetalert2';
   providedIn: 'root'
 })
 export class AlertService {
+  showInfo(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor() {}
 
   // Método genérico para mostrar una alerta

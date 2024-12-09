@@ -64,7 +64,7 @@ public updateProductDetails(productDetailsId: number, address: string, city: str
 
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.http.put<ProductDetail>(
-        `${this.apiUrl}/user/update-details?id=${productDetailsId}`,
+        `${this.apiUrl}user/update-details?id=${productDetailsId}`,
         ProductDetailsData,
         { headers }
       );

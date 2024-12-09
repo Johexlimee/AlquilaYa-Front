@@ -10,15 +10,7 @@
         <div class="modal-body">
           <form (ngSubmit)="handleSubmit()">
             <div class="mb-3">
-                <label for="characteristicName" 
-              class="form-label">producto </label>
-              <input
-                type="text"
-                class="form-control"
-                id="characteristicName"
-                [(ngModel)]="formData.product"
-                name="characteristicName"
-                required />
+            
                 
               <label for="characteristicName" 
               class="form-label">característica</label>
@@ -40,8 +32,6 @@
                 name="characteristicName"
                 required
               />
-          
-
             </div>
   
             <div *ngIf="formError" class="alert alert-danger">{{ formError }}</div>

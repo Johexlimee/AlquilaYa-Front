@@ -64,7 +64,7 @@ public updateProductCharacteristics(valueId: number, product: string, productCha
 
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.http.put<ProductCharacteristics>(
-        `${this.apiUrl}/user/update-details?id=${valueId}`,
+        `${this.apiUrl}user/update-details?id=${valueId}`,
         ProductDetailsData,
         { headers }
       );
