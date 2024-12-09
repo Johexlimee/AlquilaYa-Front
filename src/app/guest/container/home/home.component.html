@@ -1,117 +1,256 @@
-<section class="container-fluid vh-100 fondo d-flex align-items-center justify-content-center">
-    <div class="container">
-        <div class="d-flex flex-wrap justify-content-center">
+<!-- hero -->
+<div class=" position-relative z-index">
+  <div id="header-carousel " class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" style="height: 600px">
+      <div class="carousel-item active" style="height: 600px">
+        <img class="w-100" src="/hero6.jpg" alt="Image" />
+        <div
+          class="carousel-caption d-flex justify-content-center align-items-center"
+          style="top: 50%; transform: translateY(-50%); z-index: 1"
+        >
+          <div class="container text-center pd-top ">
+            <div class="row justify-content-center">
+              <div class="col-lg-12 ">
+                <h1
+                  class="text-white text mb-4"
+                  style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)"
+                >
+                  Encuentra todo lo que buscas para
+                  <span class="span-text rounded-2 px-3 border border-2 border-white">
+                    alquilar 
+                  </span>
+                 en un solo lugar
+                </h1>
+              </div>
+              <!-- Buscador -->
+              <div class="col-12 pt-3 ">
+                <div class="pd-top-search">
+                  <div class="input-group mb-4">
+                    <!-- Selección de Categoría -->
+                    <select
+                      class="form-select fs-4 custom-input rounded-start-5"
+                      aria-label="Category select"
+                      [(ngModel)]="city"
+                    >
+                    <option value="" disabled selected>Seleccione una ciudad</option>
+                      <option *ngFor="let city of cities" [value]="city">
+                        {{ city }}
+                      </option>
+                    </select>
 
-            <h1>Encuentra todo lo que buscas para <span style="color: #6CC51D; text-decoration: underline;">alquilar en
-                    un solo</span> lugar</h1>
+                    <!-- Input de búsqueda -->
+                    <input
+                      type="text"
+                      [(ngModel)]="name"
+                      class="form-control fs-4 custom-input"
+                      placeholder="Nombre producto..."
+                    />
 
-        </div>
-
-        <div>
-
-
-            <!-- Buscador -->
-            <div class="buscador">
-                <input type="text" class="form-control" placeholder="¿Qué estás buscando?">
-                <div class="ubicacion">
-                    <input type="text" class="form-control" placeholder="¿Dónde?">
+                    <!-- Botón de búsqueda -->
+                    <button
+                      class="btn custom-btn"
+                      type="submit"
+                      (click)="getSearchProduct(name, city)"
+                    >
+                      Buscar <i class="fas fa-search"></i>
+                    </button>
+                  </div>
                 </div>
-                <button class="btn btn-success">
-                    Buscar <i class="fas fa-search" style="margin-left: 5px;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fondo semi-transparente para mejorar la visibilidad del texto -->
+        <div class="overlay"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Categorías -->
+<section class="py-5 overflow-hidden">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="section-header d-flex flex-wrap justify-content-between mb-2"
+        >
+          <h2 class="section-title text-center">Categorías</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row bg-white border rounded-3 py-5">
+      <div class="col-md-12">
+        <!-- Carrusel de categorías -->
+        <div
+          id="categoryCarousel"
+          class="carousel slide mx-auto"
+          data-bs-ride="carousel"
+          data-bs-interval="3000"
+          style="max-width: 90%"
+        >
+          <div class="carousel-inner text-center">
+            <!-- Dividir las categorías en grupos -->
+            <div
+              class="carousel-item"
+              [class.active]="i === 0"
+              *ngFor="let group of groupedCategories(); let i = index"
+            >
+              <div class="d-flex justify-content-center">
+                <button
+                  class="btn btn-success fs-3 mx-1 text-white"
+                  *ngFor="let item of group"
+                  style="
+                    min-width: 100px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  "
+                >
+                  {{ item.name }}
                 </button>
+              </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<section id="iconCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <!-- Iteramos sobre los bloques de categorías -->
-      <div *ngFor="let group of chunkedCategories; let i = index" class="carousel-item" [class.active]="i === 0">
-        <div class="d-flex justify-content-around align-items-center">
-          <!-- Iteramos sobre cada categoría en el grupo -->
-          <div *ngFor="let name of group" class="text-center">
-            <!-- Usamos la función getCategoryIcon para obtener el icono -->
-            <i [ngClass]="getCategoryIcon(name.name)" style="font-size: 5rem;"></i>
-            <p>{{ name.name }}</p>
           </div>
+          <!-- Controles del carrusel -->
+          <button
+            class="carousel-control-prev position-absolute top-50"
+            type="button"
+            data-bs-target="#categoryCarousel"
+            data-bs-slide="prev"
+            style="transform: translateY(-50%); z-index: 1"
+          >
+            <span
+              class="carousel-control-prev-icon bg-dark"
+              aria-hidden="true"
+            ></span>
+          </button>
+          <button
+            class="carousel-control-next position-absolute top-50"
+            type="button"
+            data-bs-target="#categoryCarousel"
+            data-bs-slide="next"
+            style="transform: translateY(-50%); z-index: 1"
+          >
+            <span
+              class="carousel-control-next-icon bg-dark"
+              aria-hidden="true"
+            ></span>
+          </button>
         </div>
       </div>
-    </div>
-  
-    <!-- Controles -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Siguiente</span>
-    </button>
-  </section>
-  
-
-<section class="container ">
-    <div>
-        <h1>Productos relacionados</h1>
-        <p>Promocionado</p>
-    </div>
-    <div>
-        <div class="row row-cols-4 row-cols-md-3 row-cols-lg-3 g-4">
-            <div class="col" *ngFor="let product of products">
-                <div class="card h-100">
-                    <img [src]="product.primaryPhotoUrl ? product.primaryPhotoUrl : '/default.png'"
-                        alt="Card image cap" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">{{ product.name }}</h3>
-                        <p class="card-text">Categoría: {{ product.categoryName }}</p>
-                        <p class="card-text">Precio: {{ product.price | currency }}</p>
-                        <p *ngIf="product.productCondition">{{product.productCondition}}</p>
-                        <p *ngIf="product.supplierName">{{product.supplierName}}</p>
-                    </div>
-                    <div class="card-footer d-flex">
-                        <button routerLink="/detailproduct" class="btn m-auto alquilar">Alquilar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<div class="row my-5">
-    <div class="contenedor">
-      <button routerLink="/user/listproducts" class="boton-ver-mas">Ver más</button>
     </div>
   </div>
+</section>
 
+<!-- Contenido card productos -->
+<section class="my-2">
+  <div class="container mt-4">
+    <h2>Productos más vendidos</h2>
+    <!-- Mensaje cuando no hay productos -->
+<div *ngIf="products.length === 0" class="alert alert-success">
+  No hay productos disponibles.
+</div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-2" *ngIf="products.length > 0">
+      <div class="col" *ngFor="let product of randomProducts">
+        <div class="card h-100 shadow-sm border-0 position-relative">
+          <!-- Imagen del producto -->
+          <img
+            [src]="
+              product.primaryPhotoUrl ? product.primaryPhotoUrl : '/default.png'
+            "
+            alt="{{ product.name }}"
+            class="card-img-top img-fluid rounded"
+          />
 
+          <!-- Cuerpo de la tarjeta -->
+          <div class="card-body">
+            <!-- Corazón al lado derecho del título -->
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="card-title text-primary mb-0">{{ product.name }}</h4>
+              
+            </div>
+            <span class="badge rounded-pill bg-secondary text-white">
+              {{ product.productCondition }}
+            </span>
+            <p class="card-text text-muted mb-2">
+              <i class="fa-solid fa-tag"></i> Categoría:
+              {{ product.categoryName }}
+            </p>
+            <p class="card-text text-muted mb-2">
+              <i class="fa-solid fa-user"></i> Proveedor:
+              {{ product.supplierName }}
+            </p>
+            <p class="card-text text-success fw-bold">
+              <i class="fa-solid fa-dollar-sign"></i>
+              {{ product.price | currency }}
+            </p>
+          </div>
 
-  <div class="fondo-rojo">
-    <div class="container">
-      <!-- Título centrado -->
-      <div class="d-flex flex-wrap justify-content-center mt-5">
-        <h1><span style="color:#002244">¿Cómo funciona Alquilaya?</span></h1>
-      </div>
-  
-      <!-- Botones centrados -->
-      <div class="d-flex justify-content-center mb-5 mt-5">
-        <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPedir()">Pedir Prestado</button>
-        <button class="btn mx-3 btn-azul-oscuro" (click)="mostrarPrestar()">Prestar</button>
-      </div>
-      
-      <!-- Contenido de tarjetas -->
-      <div class="row my-5">
-        <div class="col-md-3 mb-4" *ngFor="let tarjeta of tarjetas">
-          <div class="card">
-            <img class="card-img-top" [src]="tarjeta.img" [alt]="tarjeta.titulo">
-            <div class="card-body">
-              <h3 class="card-title">{{ tarjeta.titulo }}</h3>
-              <p class="card-text">{{ tarjeta.descripcion }}</p>
+          <!-- Pie de tarjeta -->
+          <div class="card-footer bg-light border-top-0">
+            <div class="row align-items-center g-2">
+              <!-- Botón de detalles -->
+              <div class="col">
+                <button class="btn btn-success w-100" type="button"   (click)="idProduct(product.productId)">
+                Ver detalles
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</section>
+
+<!-- iboton ver todos los productos -->
+<div class=" my-5">
+  <div class="d-flex justify-content-center">
+    <button routerLink="/user/listproducts" class="btn btn-lg btn-outline-dark">
+      Ver más
+    </button>
+  </div>
+</div>
+
+<div class="purpose bg-opacity-10 py-5 pb-5">
+  <div class="container">
+    <!-- Título centrado -->
+    <div class="text-center my-5">
+      <h1>¿Cómo funciona Alquilaya?</h1>
+    </div>
+
+    <div class="text-center mb-5">
+      <button 
+        class="btn btn-lg mx-2" 
+        (click)="setTarjetas('pedir')"
+        aria-label="Pedir producto prestado">
+        Pedir Prestado
+      </button>
+      <button 
+        class="btn btn-lg  mx-2" 
+        (click)="setTarjetas('prestar')"
+        aria-label="Prestar producto">
+        Prestar
+      </button>
+    </div>
+    
+
+    <!-- Contenido de tarjetas -->
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col" *ngFor="let tarjeta of tarjetas">
+        <div class="card h-100 shadow-sm">
+          <img
+            class="card-img-top"
+            [src]="tarjeta.img"
+            [alt]="tarjeta.titulo"
+          />
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ tarjeta.titulo }}</h5>
+            <p class="card-text text-muted">{{ tarjeta.descripcion }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
