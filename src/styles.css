@@ -20,7 +20,4 @@
     --sidebar-width: 280px;
     --sidebar-width-collapsed: 80px;
   }
-body {
-    background-color: #F0F0F0;
-}
-
+/* Aplicar box-sizing a todos los elementos */
