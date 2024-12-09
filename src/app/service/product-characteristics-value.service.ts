@@ -19,9 +19,13 @@ interface ProductCharacteristics {
 export class ProductCharacteristicsValueService {
   private apiUrl: string = 'http://localhost:8080/api/v1/';
   public accessToken: string | null = null;
-  constructor(private http: HttpClient, private router: Router,private alertService: AlertService,private authService: AuthcontrollerService) { }
-
-
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private alertService: AlertService,
+    private authService: AuthcontrollerService
+  ) { }
+  
  // Método para registrar 
  public addCharacteristics(valueId: number, product: string, productCharacteristic: string, value: number): Observable<ProductCharacteristics | null> {
   const ProductDetailsData = { valueId, product, productCharacteristic, value };
@@ -64,7 +68,7 @@ public updateProductCharacteristics(valueId: number, product: string, productCha
 
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.http.put<ProductCharacteristics>(
-        `${this.apiUrl}/user/update-details?id=${valueId}`,
+        `${this.apiUrl}user/update-details?id=${valueId}`,
         ProductDetailsData,
         { headers }
       );
@@ -84,13 +88,16 @@ public updateProductCharacteristics(valueId: number, product: string, productCha
 
 
   // Método para obtener todas las características
-public getAllProductCharacteristics( valueId: number,): Observable<ProductCharacteristics[]> {
-  const params = new HttpParams().set('productId', valueId.toString())
-  return this.http.get<ProductCharacteristics[]>(`${this.apiUrl}product-characteristics-value/public/productId`, {  params }).pipe(
-    catchError((error) => {
-      console.error('Error al obtener valor:', error);
-      return of([]);
-    })
-  );
-}
+  public getAllProductCharacteristics( valueId: number,): Observable<ProductCharacteristics[]> {
+    const params = new HttpParams().set('productId', valueId.toString())
+    return this.http.get<ProductCharacteristics[]>(`${this.apiUrl}product-characteristics-value/public/productId`, { params }).pipe(
+      tap((data) => { 
+        console.log('Datos recibidos:', data);
+      }),
+      catchError((error) => {
+        console.error('Error al obtener valor:', error);
+        return of([]);
+      })
+    );
+  }
 }

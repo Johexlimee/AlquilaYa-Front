@@ -200,21 +200,27 @@
         </div>
       </div>
 
-      <!-- Características -->
+      <!-- Detalles -->
       <div class="card mt-4">
         <div
           class="card-header bg-dark text-light d-flex justify-content-between align-items-center"
         >
+
           <h5>Características del Producto</h5>
           <!-- Botón Agregar -->
-          <button class="btn-light btn">Agregar</button>
-        </div>
+       
+         <button type="button"
+         data-bs-toggle="modal"
+         data-bs-target="#createModal1"
+         class="btn btn-primary"
+        (click)="openAddModal()">Agregar </button>
 
+        </div>
         <div class="card-body">
-          <div *ngIf="ProductCharacteristicsData.length === 0">
+          <div *ngIf="ProductCharacteristics.length === 0">
             <p>No hay características disponibles aún.</p>
           </div>
-          <div *ngIf="ProductCharacteristicsData.length > 0">
+          <div *ngIf="ProductCharacteristics.length > 0">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -224,16 +230,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of ProductCharacteristicsData">
+                <tr *ngFor="let data of ProductCharacteristics">
                   <td>{{ data.productCharacteristic.characteristicName }}</td>
                   <td>{{ data.value }}</td>
                   <td class="text-center">
                     <button
                       type="button"
                       data-bs-toggle="modal"
-                      data-bs-target="#editModal"
+                      data-bs-target="#editModal1"
                       class="btn btn-outline-dark btn-warning"
-                    >
+                      (click)="editProductCharactetistics(data)">
                       <i class="ri-edit-box-line"></i> Editar
                     </button>
                   </td>
@@ -245,20 +251,30 @@
       </div>
     </div>
   </div>
-  <!-- Detalles del Producto -->
+
+
+
+
+  <!-- caracteristicas -->
   <div class="card mt-4">
     <div
-      class="card-header bg-dark text-light d-flex justify-content-between align-items-center"
-    >
+      class="card-header bg-dark text-light d-flex justify-content-between align-items-center">
+
       <h5>Detalles del Producto</h5>
       <!-- Botón Agregar -->
-      <button class="btn-light btn">Agregar</button>
+      <button type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#createModal"
+      class="btn btn-primary"
+      (click)="openAddModal()">Agregar</button>
     </div>
+
+
     <div class="card-body">
-      <div *ngIf="ProductCharacteristicsData.length === 0">
+      <div *ngIf="ProductCharacteristics.length === 0">
         <p>No hay detalles disponibles aún.</p>
       </div>
-      <div *ngIf="ProductCharacteristicsData.length > 0">
+      <div *ngIf="ProductCharacteristics.length > 0">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -270,18 +286,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of ProductCharacteristicsData">
+            <tr *ngFor="let data of ProductCharacteristics">
               <td>{{ ProductDetailsData[0].address }}</td>
               <td>{{ ProductDetailsData[0].city }}</td>
               <td>{{ ProductDetailsData[0].department }}</td>
               <td>{{ ProductDetailsData[0].stock }}</td>
               <td class="text-center">
+               
                 <button
                   type="button"
                   data-bs-toggle="modal"
                   data-bs-target="#editModal"
-                  class="btn btn-outline-dark btn-warning"
-                >
+                  class="btn btn-outline-dark btn-warning">
                   <i class="ri-edit-box-line"></i> Editar
                 </button>
               </td>
@@ -309,17 +325,17 @@
   (submitForm)="updateProductDetails($event)">
 </app-detail-product-modal>
 
-<!-- Modal para agregar característica -->
+<!-- Modal para agregar detalles -->
 <app-product-characteristics-value-modal
-  modalId="createModal"
+  modalId="createModal1"
   [isEditing]="false"
   (submitForm)="addCharacteristics($event)">
 </app-product-characteristics-value-modal>
 
-<!-- Modal para editar característica -->
+<!-- Modal para editar detalles -->
 <app-product-characteristics-value-modal
-  modalId="editModal"
+  modalId="editModal1"
   [isEditing]="true"
-  [initialData]=""
+  [initialData]="selectedProductChara"
   (submitForm)="updateProductCharacteristics($event)">
 </app-product-characteristics-value-modal>

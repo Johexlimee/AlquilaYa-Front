@@ -13,7 +13,11 @@ import { AuthcontrollerService } from './authcontroller.service';
 export class ProductService {
   private apiUrl: string = 'http://localhost:8080/api/v1/';
   alertService: any;
-  constructor(private http: HttpClient, private router: Router,private authService: AuthcontrollerService) { }
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private authService: AuthcontrollerService
+  ) { }
 
   public getAllProducts(): Observable<any> { 
     return this.http.get<any>(`${this.apiUrl}public/all-products`);

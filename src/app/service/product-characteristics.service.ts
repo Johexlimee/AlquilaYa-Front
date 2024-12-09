@@ -16,7 +16,11 @@ export class ProductCharacteristicsService {
 
   private apiUrl: string = 'http://localhost:8080/api/v1/';
   public accessToken: string | null = null;
-  constructor(private http: HttpClient, private router: Router,private alertService: AlertService,private authService: AuthcontrollerService) { }
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private alertService: AlertService,
+    private authService: AuthcontrollerService) { }
 
  // Método para registrar una nueva característica
  public addCharacteristic(characteristicName: string): Observable<Characteristic | null> {

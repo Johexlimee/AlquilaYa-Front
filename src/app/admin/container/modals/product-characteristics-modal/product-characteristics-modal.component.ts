@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ProductCharacteristicsService } from '../../../../service/product-characteristics.service';
 
 @Component({
   selector: 'app-product-characteristics-modal',
@@ -6,6 +7,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angu
   styleUrls: ['./product-characteristics-modal.component.css']
 })
 export class ProductCharacteristicsModalComponent {
+  dataProductChara: any = [];
   @Input() modalId: string = 'createModal';
   @Input() isEditing: boolean = false;
   @Input() initialData: any = { characteristicName: '' };
@@ -15,11 +17,28 @@ export class ProductCharacteristicsModalComponent {
   formError: string | null = null;
   loading: boolean = false;
 
-  constructor(private cdRef: ChangeDetectorRef) {}
+  constructor(
+    private productCharaService: ProductCharacteristicsService,
+    private cdRef: ChangeDetectorRef,
+  ) {}
 
   ngOnChanges() {
     this.formData = { ...this.initialData };
     this.cdRef.detectChanges();
+  }
+
+  getAllCaracteristics(): void {
+    this.productCharaService.getAllCharacteristics().subscribe({
+      next: (data) => {
+        console.log('holaa ingreso');
+        console.log(data);
+        this.dataProductChara = data;
+      },
+      error: (error) => console.log(error),
+      complete: () => {
+        console.log('Se completó');
+      },
+    })
   }
 
   handleSubmit() {
