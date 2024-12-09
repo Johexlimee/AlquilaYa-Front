@@ -128,6 +128,21 @@
     margin-left: 8px;
   }
 
+  .pd-top-search{
+    padding-top: 80px;
+  }
+.pd-top{
+  padding-bottom: 25px;
+}
+  .span-text{
+   color: #ffffff; 
+   background: var(--logo-border);
+   
+  
+  }
+  .text{
+    font-size: 50px;
+  }
   /* Fondo semi-transparente */
   .overlay {
     position: absolute;
@@ -135,7 +150,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(48, 48, 49, 0.377);
+    background: rgba(0, 2, 20, 0.514);
     z-index: 0;
   }
 

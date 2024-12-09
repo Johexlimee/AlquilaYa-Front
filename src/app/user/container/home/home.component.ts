@@ -64,6 +64,7 @@ getAllProducts(): void {
       console.log("Productos obtenidos:", data);
       // Asegurarse de que los datos sean un array
       this.products = Array.isArray(data) ? data : [];
+      this.getRandomProducts(6);
     },
     error: (error) => console.log(error),
     complete: () => {
