@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../../service/product.service';
 import { CategoriesService } from '../../../service/categories.service';
 import { Router } from '@angular/router';
+import { FavoriteService } from '../../../service/favorite.service';
 
 @Component({
   selector: 'app-home',
@@ -85,7 +86,8 @@ export class HomeComponent {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private favorite: FavoriteService,
   ) {}
 
   ngOnInit(): void {
@@ -163,6 +165,19 @@ export class HomeComponent {
     console.log('Productos aleatorios seleccionados:');
     console.log(this.randomProducts);
   }
+
+
+    // Método para agregar una nueva característica
+    addFavorite( productId: number): void {
+      this.favorite.addFavorite(productId).subscribe({
+        next: (response) => {
+         console.log("agregado")
+        },
+        error: (error) => {
+          console.error('Error en el registro:', error);
+        }
+      });
+    }
 
   mostrarPedir() {
     this.tarjetas = this.tarjetasPedir;

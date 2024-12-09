@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '../config/firebase.config';
 import { catchError, tap, switchMap } from 'rxjs/operators';
+import { FavoriteService } from './favorite.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class AuthcontrollerService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
   ) {}
 
   // Recuperar el accessToken desde la memoria
