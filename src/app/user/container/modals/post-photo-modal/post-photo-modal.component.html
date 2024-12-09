@@ -8,10 +8,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="mb-3"> 
+                    <label for="parameter" class="form-label">Parámetro</label> 
+                    <input type="number" id="parameter" class="form-control" [(ngModel)]="id" required> 
+                </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Imagen</label>
                     <input type="file" id="image" class="form-control" accept="image/*" (change)="upload($event)">
                 </div>
+                <button type="button" class="btn btn-primary" (click)="submit()">Guardar</button>
                 <div *ngIf="url">
                     <img [src]="url" alt="" class="img-fluid img-thumbnail">
                 </div>

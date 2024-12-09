@@ -31,8 +31,8 @@ export class ProductPhotoService {
     );
   }
 
-  public postPhoto(formData: FormData): Observable<any> {
-    return this.http.post(`${this.apiUrl}photo-add?id=2`, formData).pipe(
+  public postPhoto(formData: FormData, id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}photo-add?id=${id}`, formData).pipe(
       catchError((error) => {
         console.error('Error al agregar una foto:', error);
         return of([]);
