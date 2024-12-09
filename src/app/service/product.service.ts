@@ -164,6 +164,13 @@ export class ProductService {
     return this.http.get<any>(`${this.apiUrl}public/search`, { params });
   }
   
+    
+  getCategoryProduct(categoryId: number): Observable<any> {
+    const params = new HttpParams()
+      .set('categoryId', categoryId)
+    
+    return this.http.get<any>(`${this.apiUrl}public/filter-category`, { params });
+  }
 
 
   getProductById(productId: number): Observable<any> {
