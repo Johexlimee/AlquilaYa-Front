@@ -47,12 +47,14 @@ export class CartComponent implements OnInit {
     this.totalCost = this.orderDetails.reduce((acc: number, item: any) => acc + (item.product.price * item.quantity), 0); 
   }
 
-  completeOrder(completeOrder:any): void {
-    this.orderService.completeOrder(completeOrder.orderId, completeOrder.userId).subscribe({
+  completeOrder(order: number): void {
+    console.log('Ordenando productos para el pedido con ID:', order);
+    this.orderService.completeOrder(order).subscribe({
       next:(response)=>{
+        console.log('Respuesta del servicio de orden:', response);
         this.getAllProductsInCart();
       },
-      error: (error) => console.error('Error al eliminar el status de la categoria:', error)
+      error: (error)=> console.error('Error al ordenar los productos', error)
     })
   }
   
