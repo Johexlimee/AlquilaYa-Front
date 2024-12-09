@@ -22,7 +22,7 @@
             <img
               *ngFor="let item of productPhotoData"
               [src]="
-                item.primaryPhotoUrl ? item.primaryPhotoUrl : '/default.png'
+                item.photoUrl ? item.photoUrl : '/default.png'
               "
               alt="Miniatura"
               class="img-thumbnail border"

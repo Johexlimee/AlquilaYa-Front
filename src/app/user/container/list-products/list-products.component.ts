@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../../service/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-products',
@@ -17,13 +18,18 @@ export class ListProductsComponent {
       'Manizales', 'Villavicencio', 'Pasto', 'Neiva', 'Armenia', 
       'San Andrés', 'Popayán', 'Montería', 'Sincelejo', 'Tunja'
     ];
-  constructor(private productService: ProductService, ){}
+  constructor(private productService: ProductService,private router: Router, ){}
 
 ngOnInit(): void {
 this.getAllProducts();
 
 }
 
+
+idProduct(productId: number): void {
+  this.router.navigate([`/user/detail/${productId}`]);
+  console.log(productId)
+}
 
 getAllProducts(): void {
   this.productService.getAllProducts().subscribe({
