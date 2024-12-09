@@ -84,13 +84,16 @@ public updateProductCharacteristics(valueId: number, product: string, productCha
 
 
   // Método para obtener todas las características
-public getAllProductCharacteristics( valueId: number,): Observable<ProductCharacteristics[]> {
-  const params = new HttpParams().set('productId', valueId.toString())
-  return this.http.get<ProductCharacteristics[]>(`${this.apiUrl}product-characteristics-value/public/productId`, {  params }).pipe(
-    catchError((error) => {
-      console.error('Error al obtener valor:', error);
-      return of([]);
-    })
-  );
-}
+  public getAllProductCharacteristics( valueId: number,): Observable<ProductCharacteristics[]> {
+    const params = new HttpParams().set('productId', valueId.toString())
+    return this.http.get<ProductCharacteristics[]>(`${this.apiUrl}product-characteristics-value/public/productId`, { params }).pipe(
+      tap((data) => { 
+        console.log('Datos recibidos:', data);
+      }),
+      catchError((error) => {
+        console.error('Error al obtener valor:', error);
+        return of([]);
+      })
+    );
+  }
 }

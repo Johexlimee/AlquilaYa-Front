@@ -231,7 +231,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let data of ProductCharacteristics">
-                  <td>{{ data.productCharacteristic }}</td>
+                  <td>{{ data.productCharacteristic.characteristicName }}</td>
                   <td>{{ data.value }}</td>
                   <td class="text-center">
                     <button
