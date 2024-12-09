@@ -25,11 +25,7 @@ export class ProductCharacteristicsValueService {
     private alertService: AlertService,
     private authService: AuthcontrollerService
   ) { }
-
-  public getAllcharacteristics(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}public/characteristics-all`);
-  }
-
+  
  // Método para registrar 
  public addCharacteristics(valueId: number, product: string, productCharacteristic: string, value: number): Observable<ProductCharacteristics | null> {
   const ProductDetailsData = { valueId, product, productCharacteristic, value };
