@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailsService } from '../../../service/order-details.service';
+import { ActivatedRoute } from '@angular/router';
+import { OrderService } from '../../../service/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,26 +12,48 @@ export class CartComponent implements OnInit {
 
   orderDetails: any;
   ngForCount: number = 0;
+  totalCost: number = 0;
+  orderId: number = 0;
+  userId: number = 0
 
   constructor (
-    private orderDetailsService: OrderDetailsService
+    private orderDetailsService: OrderDetailsService,
+    private orderService: OrderService,
+    private route: ActivatedRoute,
   ) {}
 
-  getAllOrderDetails(): void {
-    this.orderDetailsService.getAllOrderDetails().subscribe({
+  ngOnInit(): void {
+    this.getAllProductsInCart();
+  }
+
+  getAllProductsInCart(): void {
+    this.orderDetailsService.getAllProductsInCart().subscribe({
       next: (data) => {
+        console.log("holaa ingreso");
         console.log(data);
         this.orderDetails = data;
         this.ngForCount = data.length;
+        this.calculateTotalCost();
+        this.orderId = this.orderDetails.length > 0 ? this.orderDetails[0].orderId : 0;
       },
       error: (error) => console.log(error),
-      complete: ()=> {
-        console.log("se completo");
+      complete: () => {
+        console.log("Se completó");
       }
     });
   }
 
-  ngOnInit(): void {
-    this.getAllOrderDetails();
+  calculateTotalCost(): void { 
+    this.totalCost = this.orderDetails.reduce((acc: number, item: any) => acc + (item.product.price * item.quantity), 0); 
   }
+
+  completeOrder(completeOrder:any): void {
+    this.orderService.completeOrder(completeOrder.orderId, completeOrder.userId).subscribe({
+      next:(response)=>{
+        this.getAllProductsInCart();
+      },
+      error: (error) => console.error('Error al eliminar el status de la categoria:', error)
+    })
+  }
+  
 }

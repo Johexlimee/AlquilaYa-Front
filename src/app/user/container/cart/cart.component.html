@@ -1,5 +1,5 @@
 <section class="container pt-5">
-    <div>
+    <div class="mt-5">
         <h1>Carrito de Compras</h1>
         <h4 class="text-body-secondary">Tienes {{ngForCount}} articulos en tu carrito</h4>
     </div>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 pt-3 d-flex align-items-center justify-content-center">
-                        <h3>{{item.product.price}}</h3>
+                        <h3>$ {{item.product.price}}</h3>
                     </div>
                     <div class="col-md-3 pt-3 row d-flex align-items-center">
                         <div class="col-md-10">
@@ -28,9 +28,9 @@
                             <button class="btn btn-success form-control ">Ver Producto</button>
                         </div>
                         <div class="col-md-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#FF0000" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#FF0000" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                            </svg>
+                            </svg> -->
                         </div>
                     </div>
                 </div>
@@ -40,16 +40,10 @@
     </div>
     <hr>
     <div>
-        <div class="d-flex align-items-end justify-content-end mb-5 row">
-            <div class="col-2 mx-2">
-                <h5>Subtotal:</h5>
-                <h5>Envio:</h5>
-                <h2>Total:</h2>
-            </div>
-            <div class="col-3">
-                <h5>$400000</h5>
-                <h5>$5000</h5>
-                <h2>$1200000</h2>
+        <div class="d-flex align-items-end justify-content-end my-5">
+            <div>
+                <h2>Total: ${{ totalCost }}</h2>
+                <button class="btn btn-primary form-control" value="{{orderId}}">Comprar</button>
             </div>
         </div>  
     </div>
