@@ -23,8 +23,8 @@ export class ProductCharacteristicsValueService {
 
 
  // Método para registrar 
- public addProductDetails(valueId: number, product: string, city: string, department: string,  stock: number): Observable<ProductCharacteristics | null> {
-  const ProductDetailsData = { valueId, product, city, department,  stock };
+ public addCharacteristics(valueId: number, product: string, productCharacteristic: string, value: number): Observable<ProductCharacteristics | null> {
+  const ProductDetailsData = { valueId, product, productCharacteristic, value };
 
   return this.authService.getAccessToken().pipe(
     switchMap((token) => {
@@ -53,8 +53,8 @@ export class ProductCharacteristicsValueService {
 }
 
 // Método para actualizar un detalle de producto existente
-public updateProductDetails(valueId: number, product: string, city: string, department: string,  stock: number): Observable<ProductCharacteristics | null> {
-  const ProductDetailsData = { valueId, product, city, department,  stock };
+public updateProductCharacteristics(valueId: number, product: string, productCharacteristic: string, value: number): Observable<ProductCharacteristics | null> {
+  const ProductDetailsData = { valueId, product, productCharacteristic, value };
 
   return this.authService.getAccessToken().pipe(
     switchMap((token) => {

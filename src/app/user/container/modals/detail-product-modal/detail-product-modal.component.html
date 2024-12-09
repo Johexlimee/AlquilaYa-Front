@@ -1,0 +1,66 @@
+<div class="modal fade" id="{{ modalId }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ isEditing ? 'Editar ProductDetails' : 'Agregar ProductDetails' }}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="handleSubmit()">
+            <div class="mb-3">
+              <label for="characteristicName" 
+              class="form-label">direccion</label>
+              <input
+                type="text"
+                class="form-control"
+                id="characteristicName"
+                [(ngModel)]="formData.address"
+                name="characteristicName"
+                required
+              />
+              <label for="characteristicName" 
+              class="form-label">ciudad</label>
+              <input
+                type="text"
+                class="form-control"
+                id="characteristicName"
+                [(ngModel)]="formData.city"
+                name="characteristicName"
+                required
+              />
+              <label for="characteristicName" 
+              class="form-label">departamento</label>
+              <input
+                type="text"
+                class="form-control"
+                id="characteristicName"
+                [(ngModel)]="formData.department"
+                name="characteristicName"
+                required
+              />
+              <label for="characteristicName" 
+              class="form-label">cantidad</label>
+              <input
+                type="text"
+                class="form-control"
+                id="characteristicName"
+                [(ngModel)]="formData.stock"
+                name="characteristicName"
+                required
+              />
+
+            </div>
+  
+            <div *ngIf="formError" class="alert alert-danger">{{ formError }}</div>
+  
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+              {{ loading ? 'Procesando...' : 'Guardar' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

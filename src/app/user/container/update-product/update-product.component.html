@@ -292,3 +292,34 @@
     </div>
   </div>
 </section>
+
+
+<!-- Modal para agregar característica -->
+<app-detail-product-modal
+  modalId="createModal"
+  [isEditing]="false"
+  (submitForm)="addProductDetails($event)">
+</app-detail-product-modal>
+
+<!-- Modal para editar característica -->
+<app-detail-product-modal
+  modalId="editModal"
+  [isEditing]="true"
+  [initialData]=""
+  (submitForm)="updateProductDetails($event)">
+</app-detail-product-modal>
+
+<!-- Modal para agregar característica -->
+<app-product-characteristics-value-modal
+  modalId="createModal"
+  [isEditing]="false"
+  (submitForm)="addCharacteristics($event)">
+</app-product-characteristics-value-modal>
+
+<!-- Modal para editar característica -->
+<app-product-characteristics-value-modal
+  modalId="editModal"
+  [isEditing]="true"
+  [initialData]=""
+  (submitForm)="updateProductCharacteristics($event)">
+</app-product-characteristics-value-modal>

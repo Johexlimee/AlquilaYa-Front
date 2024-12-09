@@ -14,6 +14,8 @@ import { MyShopComponent } from './container/my-shop/my-shop.component';
 import { AddProductComponent } from './container/add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateProductComponent } from './container/update-product/update-product.component';
+import { DetailProductModalComponent } from './container/modals/detail-product-modal/detail-product-modal.component';
+import { ProductCharacteristicsValueModalComponent } from './container/modals/product-characteristics-value-modal/product-characteristics-value-modal.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { UpdateProductComponent } from './container/update-product/update-produc
     MyShopComponent,
     AddProductComponent,
     UpdateProductComponent,
+    DetailProductModalComponent,
+    ProductCharacteristicsValueModalComponent,
   ],
   imports: [
     CommonModule,
