@@ -51,7 +51,7 @@ export class PostPhotoModalComponent {
       }); 
     } else { 
       if (!this.formData) { 
-        this.alertService.showError('Error: No se ha seleccionado ninguna imagen.');
+        this.alertService.showError('No se ha seleccionado ninguna imagen.');
       } 
     } 
   }
