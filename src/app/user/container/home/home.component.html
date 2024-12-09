@@ -32,7 +32,7 @@
                       aria-label="Category select"
                       [(ngModel)]="city"
                     >
-                      <option selected>Ciudad</option>
+                    <option value="" disabled selected>Seleccione una ciudad</option>
                       <option *ngFor="let city of cities" [value]="city">
                         {{ city }}
                       </option>
@@ -148,7 +148,7 @@
   <div class="container mt-4">
     <h2>Productos más vendidos</h2>
     <!-- Mensaje cuando no hay productos -->
-<div *ngIf="products.length === 0" class="alert alert-info">
+<div *ngIf="products.length === 0" class="alert alert-success">
   No hay productos disponibles.
 </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-2" *ngIf="products.length > 0">
@@ -169,11 +169,11 @@
             <div class="d-flex justify-content-between align-items-center">
               <h4 class="card-title text-primary mb-0">{{ product.name }}</h4>
 
-              <i
-                class="fa-solid fa-heart fs-3 text-danger"
-                style="cursor: pointer"
-                (click)="addFavorite(product.productId)"
-              ></i>
+              <a type="button" (click)="toggleFavorite(product.productId)">
+                <span *ngIf="isFavorite(product.productId)" class="red"><i class="fa-solid fa-heart fs-3" style="color: #e60505;"></i></span>
+                <span *ngIf="!isFavorite(product.productId)" class="grey"><i class="fa-regular fa-heart fs-3" style="color: #000000;"></i></span>
+              </a>
+              
             </div>
             <span class="badge rounded-pill bg-secondary text-white">
               {{ product.productCondition }}
@@ -225,15 +225,21 @@
       <h1>¿Cómo funciona Alquilaya?</h1>
     </div>
 
-    <!-- Botones centrados -->
     <div class="text-center mb-5">
-      <button class="btn btn-lg mx-2" (click)="mostrarPedir()">
+      <button 
+        class="btn btn-lg mx-2" 
+        (click)="setTarjetas('pedir')"
+        aria-label="Pedir producto prestado">
         Pedir Prestado
       </button>
-      <button class="btn btn-lg mx-2" (click)="mostrarPrestar()">
+      <button 
+        class="btn btn-lg  mx-2" 
+        (click)="setTarjetas('prestar')"
+        aria-label="Prestar producto">
         Prestar
       </button>
     </div>
+    
 
     <!-- Contenido de tarjetas -->
     <div class="row row-cols-1 row-cols-md-4 g-4">

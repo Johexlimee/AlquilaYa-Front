@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../../service/product.service';
 import { Router } from '@angular/router';
 import { CategoriesService } from '../../../service/categories.service';
+import { FavoriteService } from '../../../service/favorite.service';
 
 @Component({
   selector: 'app-list-products',
@@ -14,15 +15,20 @@ export class ListProductsComponent {
   city:string ='';
   name:string ='';
   randomProducts: any[] = [];
+  favoriteProducts: any[] = [];
     cities: string[] = [
       'Bogota', 'Medellín', 'Cali', 'Barranquilla', 'Cartagena', 
       'Bucaramanga', 'Cúcuta', 'Pereira', 'Santa Marta', 'Ibagué', 
       'Manizales', 'Villavicencio', 'Pasto', 'Neiva', 'Armenia', 
       'San Andrés', 'Popayán', 'Montería', 'Sincelejo', 'Tunja'
     ];
-  constructor(private productService: ProductService,private router: Router,  private categoriesService: CategoriesService ){}
+  constructor(   private favoriteService: FavoriteService,private productService: ProductService,private router: Router,  private categoriesService: CategoriesService ){}
 
 ngOnInit(): void {
+  this.loadUserFavorites()
+  .then(() => {
+    this.getAllProducts();
+  })
 this.getAllProducts();
 this.getAllCategories()
 
@@ -61,7 +67,24 @@ getCategoryProduct(event: Event): void {
 }
 
 
-
+ // Cargar los favoritos del usuario
+ private loadUserFavorites(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    this.favoriteService.getUserFavorites().subscribe({
+      next: (data) => {
+        this.favoriteProducts = data.map((fav: any) => ({
+          favoriteId: fav.favoriteId,
+          productId: fav.productId
+        }));
+        resolve();
+      },
+      error: (error) => {
+        console.error('Error loading favorites:', error);
+        reject(error);
+      },
+    });
+  });
+}
 
 
 getAllCategories(): void {
@@ -114,7 +137,31 @@ getSearchProduct(name: string, city: string): void {
   });
 }
 
+ // Alternar entre favoritos
+ toggleFavorite(productId: number): void {
+  const favorite = this.favoriteProducts.find(fav => fav.productId === productId);
 
+  if (favorite) {
+    this.favoriteService.removeFavorite(favorite.favoriteId).subscribe({
+      next: () => {
+        this.favoriteProducts = this.favoriteProducts.filter(fav => fav.productId !== productId);
+      },
+      error: (error) => console.error('Error removing from favorites:', error),
+    });
+  } else {
+    this.favoriteService.addFavorite(productId).subscribe({
+      next: (response) => {
+        this.favoriteProducts.push({ favoriteId: response.favoriteId, productId });
+      },
+      error: (error) => console.error('Error adding to favorites:', error),
+    });
+  }
+}
+
+// Comprobar si un producto está en favoritos
+isFavorite(productId: number): boolean {
+  return this.favoriteProducts.some(fav => fav.productId === productId);
+}
 
 
 }

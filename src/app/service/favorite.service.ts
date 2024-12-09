@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { AuthcontrollerService } from './authcontroller.service';
@@ -31,6 +31,7 @@ export class FavoriteService {
     private router: Router,
     private authService: AuthcontrollerService,
     private alertService: AlertService, 
+    
   ) {}
 
   // Método para obtener todos los favoritos públicos
@@ -123,7 +124,8 @@ export class FavoriteService {
         }
 
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        return this.http.delete<any>(`${this.apiUrl}customer/remove-favorite/${favoriteId}`, { headers });
+        const params =new HttpParams().set('id', favoriteId.toString())
+        return this.http.delete<any>(`${this.apiUrl}customer/favorite-delete`, { headers,params });
       }),
       catchError((error) => {
         console.error('Error al eliminar favorito:', error);

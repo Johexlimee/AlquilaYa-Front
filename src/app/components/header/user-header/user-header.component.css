@@ -25,3 +25,34 @@
 .bg-user{
   background-color: var(--usuario-bg);
 }
+.span-text {
+  font-size: 2rem; /* Ajusta el tamaño según sea necesario */
+  font-weight: bold;
+  text-transform: uppercase;
+  color: green; /* Color interior del texto */
+  background-image: linear-gradient(to left, green, green);
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: inline-block;
+  position: relative;
+  padding: 0 5px; /* Espaciado adicional entre letras si lo deseas */
+}
+
+.span-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(to left, green, green);
+  text-shadow: 
+    0 0 1px white, 
+    0 0 10px white,
+    0 0 15px white,
+    0 0 20px white,
+    0 0 2px white; 
+  clip-path: inset(0);
+}
