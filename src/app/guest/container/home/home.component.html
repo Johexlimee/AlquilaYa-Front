@@ -1,67 +1,69 @@
 <!-- hero -->
-<div class=" position-relative z-index">
+<div class="container-fluid p-0 position-relative z-index">
   <div id="header-carousel " class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner" style="height: 600px">
       <div class="carousel-item active" style="height: 600px">
         <img class="w-100" src="/hero6.jpg" alt="Image" />
-        <div
-          class="carousel-caption d-flex justify-content-center align-items-center"
-          style="top: 50%; transform: translateY(-50%); z-index: 1"
-        >
-          <div class="container text-center pd-top ">
-            <div class="row justify-content-center">
-              <div class="col-lg-12 ">
-                <h1
-                  class="text-white text mb-4"
-                  style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)"
-                >
-                  Encuentra todo lo que buscas para
-                  <span class="span-text rounded-2 px-3 border border-2 border-white">
-                    alquilar 
-                  </span>
-                 en un solo lugar
-                </h1>
-              </div>
-              <!-- Buscador -->
-              <div class="col-12 pt-3 ">
-                <div class="pd-top-search">
-                  <div class="input-group mb-4">
-                    <!-- Selección de Categoría -->
-                    <select
-                      class="form-select fs-4 custom-input rounded-start-5"
-                      aria-label="Category select"
-                      [(ngModel)]="city"
-                    >
-                    <option value="" disabled selected>Seleccione una ciudad</option>
-                      <option *ngFor="let city of cities" [value]="city">
-                        {{ city }}
-                      </option>
-                    </select>
 
-                    <!-- Input de búsqueda -->
-                    <input
-                      type="text"
-                      [(ngModel)]="name"
-                      class="form-control fs-4 custom-input"
-                      placeholder="Nombre producto..."
-                    />
-
-                    <!-- Botón de búsqueda -->
-                    <button
-                      class="btn custom-btn"
-                      type="submit"
-                      (click)="getSearchProduct(name, city)"
-                    >
-                      Buscar <i class="fas fa-search"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- Fondo semi-transparente para mejorar la visibilidad del texto -->
         <div class="overlay"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="position-absolute top-50 d-flex justify-content-center align-items-center"
+  style="top: 50%; transform: translateY(-50%); z-index: 1"
+>
+  <div class="container text-center pd-top">
+    <div class="row justify-content-center mx-5 mt-5">
+      <div class="col-lg-12">
+        <h1
+          class="text-white text mb-4"
+          style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)"
+        >
+          Encuentra todo lo que buscas para
+          <span class="span-text rounded-2 px-3 border border-2 border-white">
+            alquilar
+          </span>
+          en un solo lugar
+        </h1>
+      </div>
+      <!-- Buscador -->
+      <div class="col-12 pt-3 z-n">
+        <div class="pd-top-search">
+          <div class="input-group mb-4">
+            <!-- Selección de Categoría -->
+            <select
+              class="form-select fs-4 custom-input rounded-start-5"
+              aria-label="Category select"
+              [(ngModel)]="city"
+            >
+              <option value="" disabled selected>Seleccione una ciudad</option>
+              <option *ngFor="let city of cities" [value]="city">
+                {{ city }}
+              </option>
+            </select>
+
+            <!-- Input de búsqueda -->
+            <input
+              type="text"
+              [(ngModel)]="name"
+              class="form-control fs-4 custom-input"
+              placeholder="Nombre producto..."
+            />
+
+            <!-- Botón de búsqueda -->
+            <button
+              class="btn custom-btn"
+              type="submit"
+              (click)="getSearchProduct(name, city)"
+            >
+              Buscar <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -148,10 +150,13 @@
   <div class="container mt-4">
     <h2>Productos más vendidos</h2>
     <!-- Mensaje cuando no hay productos -->
-<div *ngIf="products.length === 0" class="alert alert-success">
-  No hay productos disponibles.
-</div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-2" *ngIf="products.length > 0">
+    <div *ngIf="products.length === 0" class="alert alert-success">
+      No hay productos disponibles.
+    </div>
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-2"
+      *ngIf="products.length > 0"
+    >
       <div class="col" *ngFor="let product of randomProducts">
         <div class="card h-100 shadow-sm border-0 position-relative">
           <!-- Imagen del producto -->
@@ -168,7 +173,6 @@
             <!-- Corazón al lado derecho del título -->
             <div class="d-flex justify-content-between align-items-center">
               <h4 class="card-title text-primary mb-0">{{ product.name }}</h4>
-              
             </div>
             <span class="badge rounded-pill bg-secondary text-white">
               {{ product.productCondition }}
@@ -192,8 +196,12 @@
             <div class="row align-items-center g-2">
               <!-- Botón de detalles -->
               <div class="col">
-                <button class="btn btn-success w-100" type="button"   (click)="idProduct(product.productId)">
-                Ver detalles
+                <button
+                  class="btn btn-success w-100"
+                  type="button"
+                  (click)="idProduct(product.productId)"
+                >
+                  Ver detalles
                 </button>
               </div>
             </div>
@@ -205,7 +213,7 @@
 </section>
 
 <!-- iboton ver todos los productos -->
-<div class=" my-5">
+<div class="my-5">
   <div class="d-flex justify-content-center">
     <button routerLink="/user/listproducts" class="btn btn-lg btn-outline-dark">
       Ver más
@@ -221,20 +229,21 @@
     </div>
 
     <div class="text-center mb-5">
-      <button 
-        class="btn btn-lg mx-2" 
+      <button
+        class="btn btn-lg mx-2"
         (click)="setTarjetas('pedir')"
-        aria-label="Pedir producto prestado">
+        aria-label="Pedir producto prestado"
+      >
         Pedir Prestado
       </button>
-      <button 
-        class="btn btn-lg  mx-2" 
+      <button
+        class="btn btn-lg mx-2"
         (click)="setTarjetas('prestar')"
-        aria-label="Prestar producto">
+        aria-label="Prestar producto"
+      >
         Prestar
       </button>
     </div>
-    
 
     <!-- Contenido de tarjetas -->
     <div class="row row-cols-1 row-cols-md-4 g-4">

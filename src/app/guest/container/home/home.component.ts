@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
 
   // Navegar a la vista de detalle de producto
   idProduct(productId: number): void {
-    this.router.navigate([`/user/detail/${productId}`]);
+    this.router.navigate([`/detail/${productId}`]);
   }
 
   // Cargar categorías

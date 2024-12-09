@@ -178,22 +178,12 @@ export class ProductService {
 
 
   getProductById(productId: number): Observable<any> {
-    return this.authService.getAccessToken().pipe(
-      switchMap((token) => {
-        if (!token) {
-          throw new Error('Token de acceso no encontrado');
-        }
-  
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        console.log("idproduct", productId);
-  
         // Realizar la llamada HTTP correctamente dentro del switchMap
         return this.http.get(`${this.apiUrl}public/products-id`, {
-          headers,
           params: { id: productId.toString() }
         });
-      })
-    );
+    
+   
   }
   
 

@@ -1,106 +1,148 @@
-<div class="rental-container">
-    <!-- Sección izquierda: Imágenes del producto -->
-    <div class="image-section">
-      <h1>Sony FX6 Full-Frame Cinema Camera</h1>
-      
-      <div class="direccion-rating">
-        <p><i class="location-icon"></i> Bogotá, Colombia</p>
-        <p class="rating">9.9 - <span>Excelente</span></p>
-    </div>
-    
-      <div class="product-images">
-        <img src="camera.jpeg" alt="Camera" class="main-image">
-        <div class="thumbnail-images">
-          <img src="camara.jpg" alt="Camera Thumbnail">
-          <img src="camara.jpg" alt="Camera Thumbnail">
-          <img src="camara.jpg" alt="Camera Thumbnail">
+<section class="pd-top">
+  <div class="container py-5  p-5 rounded shadow">
+    <a routerLink="/user/listproducts" class="btn btn-outline-success mb-3"
+      ><i class="bi bi-arrow-left"></i> Volver a todos los productos</a
+    >
+    <div class="row">
+      <h1 class="text-success">{{ products.name }}</h1>
+      <!-- Imagen principal y miniaturas -->
+      <div class="col-md-8">
+        <div>
+          <img
+            [src]="
+              products.primaryPhotoUrl
+                ? products.primaryPhotoUrl
+                : '/default.png'
+            "
+            alt="Producto principal"
+            class="img-fluid rounded mb-3 border"
+            style="max-height: 400px; object-fit: cover; width: 100%"
+          />
+          <div class="d-flex justify-content-start gap-2 overflow-auto">
+            <img
+              *ngFor="let item of productPhotoData"
+              [src]="
+                item.photoUrl ? item.photoUrl : '/default.png'
+              "
+              alt="Miniatura"
+              class="img-thumbnail border"
+              style="
+                max-width: 80px;
+                max-height: 80px;
+                cursor: pointer;
+                object-fit: cover;
+              "
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Información del producto -->
+      <div class="col-md-4 p-4 border border-success shadow rounded bg-white">
+        <h1 class="mb-3 text-success">{{ products.name }}</h1>
+        <span class="badge bg-dark text-white small">{{
+          products.productCondition
+        }}</span>
+        <h4 class="mb-2 text-success">
+          Precio: {{ products.price | currency }}
+        </h4>
+
+        <p class="text-muted mb-3 text-truncate">{{ products.description }}</p>
+
+        <div class="mb-4">
+          <label for="startDate" class="form-label">Fecha de inicio</label>
+          <input type="date" id="startDate" class="form-control mb-2" />
+
+          <label for="days" class="form-label">Número de días</label>
+          <input type="number" id="days" class="form-control" />
+          <label for="location" class="form-label"
+            >Seleccione la ubicación</label
+          >
+          <select id="location" class="form-control">
+            <option
+              *ngFor="let data of ProductDetailsData"
+              [value]="data.address"
+            >
+              {{ data.address }}
+            </option>
+          </select>
+        </div>
+
+        <div class="d-flex justify-content-between border-top pt-3">
+          <div>
+            <h4>Total:</h4>
+          </div>
+          <div class="text-end">
+            <h4 class="text-success">9.999.999</h4>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-success w-100">Añadir al carrito</button>
         </div>
       </div>
     </div>
-  
-    <!-- Sección derecha: Detalles del alquiler -->
-    <div class="details-section">
-      <h2 class="price">Precio: <span>$20.000</span> por día</h2>
-      <p class="info">
-        Días de recogida y devolución gratuitos.<br />
-        Los fines de semana cuentan como un día.<br />
-        Mínimo de alquiler: 1 día.<br />
-        Descuento: Alquila 6 días y paga solo 4.
-      </p>
-      <div class="date-picker">
-        <label for="date-picker">
-          <i class="calendar-icon"></i> Elija fechas de recogida y devolución
-        </label>
-        <input type="date" id="date-picker">
+
+    <div class="row mt-5">
+      <!-- Detalles del producto -->
+      <div class="col-md-7">
+        <h2 class="text-success mb-3">Detalles del Producto</h2>
+        <div>
+          <p class="fw-bold">Proveedor: {{ products.supplierName }}</p>
+          <p>{{ products.description }}</p>
+        </div>
+
+        <h3 class="text-muted mt-4">Características</h3>
+        <ul class="list-group mb-4">
+          <li
+            class="list-group-item"
+            *ngIf="ProductCharacteristicsData.length === 0"
+          >
+            No hay características disponibles.
+          </li>
+          <li
+            class="list-group-item"
+            *ngFor="let item of ProductCharacteristicsData"
+          >
+            <strong>{{ item.productCharacteristic.characteristicName }}</strong>
+            : {{ item.value }}
+          </li>
+        </ul>
+
+        <h3 class="text-muted">Ubicaciones Disponibles</h3>
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th class="text-center">Dirección</th>
+              <th class="text-center">Ciudad</th>
+              <th class="text-center">Departamento</th>
+              <th class="text-center">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of ProductDetailsData">
+              <td>{{ ProductDetailsData[0].address }}</td>
+              <td>{{ ProductDetailsData[0].city }}</td>
+              <td>{{ ProductDetailsData[0].department }}</td>
+              <td>{{ ProductDetailsData[0].stock }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <button class="details-button">Ver detalles del alquiler</button>
-      <div class="price-details">
-        <p>Precio por día: <span>$9.999.999 Cop</span></p>
-        <p>Otros: <span>$1 Cop</span></p>
+
+      <!-- Mapa de ubicación -->
+      <div class="col-md-5">
+        <h2 class="text-success mb-3">Ubicación</h2>
+        <iframe
+          width="100%"
+          height="400px"
+          style="border: 0"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          [src]="mapUrl"
+        ></iframe>
       </div>
-      <h3 class="total-price">Precio Total: <span>$100.000 Cop</span></h3>
-      <button class="add-to-cart">Añadir al carrito de alquiler</button>
     </div>
   </div>
-  
-  <section class="container my-5">
-    <div>
-        <h1>Productos relacionados</h1>
-        <p>Promocionado</p>
-    </div>
-    <div>
-        <div class="row">
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
-                    </div>
-                </div>
-            </div>
-            
-           
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img-top" src="./taladro.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Titulo</h3>
-                        <p class="card-text">Categoria</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <input name="" id="" class="btn mx-5 alquilar" type="button" value="Alquilar"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
 </section>

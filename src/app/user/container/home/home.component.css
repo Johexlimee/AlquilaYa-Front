@@ -1,197 +1,198 @@
 
 
 .custom-input {
-    border-radius: 0 30px 30px 0; /* Bordes redondeados en el input */
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    transition: all 0.3s ease;
-  }
-  
-  .custom-input:focus {
-    outline: none;
-    border-color: #6CC51D; /* Color verde cuando el input está enfocado */
-    box-shadow: 0 0 5px rgba(108, 197, 29, 0.5); /* Sombra verde al enfocarse */
-  }
-  
-  .custom-btn {
-    background-color: #6CC51D; /* Verde atractivo */
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 16px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s;
-  }
-  
-  .custom-btn:hover {
-    background-color: #4ca017; /* Verde más oscuro al pasar el mouse */
-  }
-  
-  .custom-btn i {
-    margin-left: 8px;
-  }
-  
-  @media (max-width: 768px) {
-    .custom-select,
-    .custom-input {
-      width: 100%; /* Asegura que los inputs ocupen el 100% del espacio en pantallas pequeñas */
-      margin-bottom: 10px; /* Añade margen inferior */
-    }
-  
-    .custom-btn {
-      width: 100%; /* Hace que el botón ocupe todo el ancho */
-    }
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .fondo {
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-  }
-  .btn-success {
-    background-color: #6CC51D; /* Color de fondo verde */
-    color: black; /* Color del texto */
-    padding: 10px 20px; /* Espaciado dentro del botón */
-    border: none; /* Sin borde */
-    border-radius: 8px; /* Bordes redondeados */
-    font-size: 16px; /* Tamaño de fuente */
-    display: flex; /* Para alinear el texto e ícono */
-    align-items: center; /* Centrado vertical */
-    justify-content: center; /* Centrado horizontal */
-    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease; /* Efecto al pasar el mouse */
-  }
-  
-  /* Estilos para el buscador */
-  .buscador {
-    padding: 150px 150px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0px;  /* Eliminamos el espacio entre los elementos */
-    max-width: 800px; /* Aumentamos el tamaño máximo del buscador */
-    margin: 0 auto;
-  }
-  
-  .buscador input {
-    width: 500px; /* Aumentamos el tamaño de los inputs */
-    padding: 15px; /* Aumentamos el padding para un mayor tamaño */
-    font-size: 16px;
-    border-radius: 30px 0 0 30px; /* Redondeamos solo la parte izquierda */
-    border: 1px solid #ddd;
-    transition: all 0.3s ease;
-    box-shadow: none;
-  }
-  
-  .buscador input:focus {
-    outline: none;
-    border-color: #28a745;
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-  }
-  
-  .buscador .ubicacion input {
-    width: 250px; /* Aumentamos el tamaño del segundo input */
-    border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha */
-  }
-  
-  .buscador button {
-    padding: 15px 30px;
-    background-color: #6CC51D;
-    color: white;
-    border: none;
-    border-radius: 30px; /* Redondeamos el botón */
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
-  }
-  
-  
-  .buscador i {
-    margin-left: 8px;
-  }
-
-  .pd-top-search{
-    padding-top: 80px;
-  }
-.pd-top{
-  padding-bottom: 25px;
+  border-radius: 0 30px 30px 0; /* Bordes redondeados en el input */
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
 }
-  .span-text{
-   color: #ffffff; 
-   background: var(--logo-border);
-   
-  
-  }
-  .text{
-    font-size: 50px;
-  }
-  /* Fondo semi-transparente */
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 2, 20, 0.514);
-    z-index: 0;
-  }
 
-  /* Personalización de los inputs */
+.custom-input:focus {
+  outline: none;
+  border-color: #6CC51D; /* Color verde cuando el input está enfocado */
+  box-shadow: 0 0 5px rgba(108, 197, 29, 0.5); /* Sombra verde al enfocarse */
+}
+
+.custom-btn {
+  background-color: #6CC51D; /* Verde atractivo */
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.custom-btn:hover {
+  background-color: #4ca017; /* Verde más oscuro al pasar el mouse */
+}
+
+.custom-btn i {
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .custom-select,
   .custom-input {
-    padding: 15px;
-    border-radius: 25px;
+    width: 100%; /* Asegura que los inputs ocupen el 100% del espacio en pantallas pequeñas */
+    margin-bottom: 10px; /* Añade margen inferior */
   }
 
-  /* Botón personalizado */
   .custom-btn {
-    background-color: #6cc51d;
-    border-radius: 25px;
+    width: 100%; /* Hace que el botón ocupe todo el ancho */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-success {
+  background-color: #6CC51D; /* Color de fondo verde */
+  color: black; /* Color del texto */
+  padding: 10px 20px; /* Espaciado dentro del botón */
+  border: none; /* Sin borde */
+  border-radius: 8px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  display: flex; /* Para alinear el texto e ícono */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease; /* Efecto al pasar el mouse */
+}
+
+/* Estilos para el buscador */
+.buscador {
+  padding: 150px 150px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;  /* Eliminamos el espacio entre los elementos */
+  max-width: 800px; /* Aumentamos el tamaño máximo del buscador */
+  margin: 0 auto;
+}
+
+.buscador input {
+  width: 500px; /* Aumentamos el tamaño de los inputs */
+  padding: 15px; /* Aumentamos el padding para un mayor tamaño */
+  font-size: 16px;
+  border-radius: 30px 0 0 30px; /* Redondeamos solo la parte izquierda */
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.buscador input:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.buscador .ubicacion input {
+  width: 250px; /* Aumentamos el tamaño del segundo input */
+  border-radius: 0 30px 30px 0; /* Redondeamos solo la parte derecha */
+}
+
+.buscador button {
+  padding: 15px 30px;
+  background-color: #6CC51D;
+  color: white;
+  border: none;
+  border-radius: 30px; /* Redondeamos el botón */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: -1px; /* Eliminamos el pequeño espacio entre el input y el botón */
+}
+
+
+.buscador i {
+  margin-left: 8px;
+}
+
+.pd-top-search{
+  padding-top: 70px;
+}
+
+.span-text{
+ color: #ffffff; 
+ background: var(--logo-border);
+ 
+
+}
+.text{
+  font-size: 50px;
+}
+.container-fluid {
+  position: relative; /* Contenedor principal */
+}
+
+
+/* Fondo semi-transparente */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 2, 20, 0.514);
+  z-index: 0;
+}
+
+.z-index{
+  z-index: -1; 
+}
+
+
+/* Personalización de los inputs */
+.custom-input {
+  padding: 15px;
+  border-radius: 25px;
+}
+
+/* Botón personalizado */
+.custom-btn {
+  background-color: #6cc51d;
+  border-radius: 25px;
+  color: white;
+  padding: 12px 25px;
+}
+
+.custom-btn:hover {
+  background-color: #5db71e;
+}
+
+
+.card-img-top {
+  height: 200px;
+  object-fit: contain;
+}
+
+
+
+
+.purpose {
+  background-color: #AEDC81;
+  padding: 80px 10px;
+  h1, h2 {
+      color: #0D0839;
+      font-weight: 700;
+  }
+  button{
+    background: #0D0839;
     color: white;
-    padding: 12px 25px;
   }
-  
-  .custom-btn:hover {
-    background-color: #5db71e;
-  }
-
-
-  .card-img-top {
-    height: 200px;
-    object-fit: contain;
-  }
-  
-
-
-
-  .purpose {
-    background-color: #AEDC81;
-    padding: 80px 10px;
-    h1, h2 {
-        color: #0D0839;
-        font-weight: 700;
-    }
-    button{
-      background: #0D0839;
-      color: white;
-    }
 }
 
 

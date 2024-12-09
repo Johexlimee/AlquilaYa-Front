@@ -1,5 +1,5 @@
 .profile-sidebar {
-  background: var(--fondo-gradient);
+  background: var(--usuario-bg);
 }
 
 .nav-pills .nav-link {
@@ -21,7 +21,8 @@
 }
 
 .profile-header {
-  background: var(--fondo-gradient);
+  background-image: url(/hero.jpg);
+  object-fit: cover;
   height: 150px;
   border-radius: 15px;
 }

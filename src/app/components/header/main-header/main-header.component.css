@@ -41,4 +41,6 @@
 clip-path: inset(0);
 }
 
-
+.z-n{
+  z-index: 100;
+}

@@ -122,11 +122,9 @@
   }
 
   .pd-top-search{
-    padding-top: 80px;
+    padding-top: 70px;
   }
-.pd-top{
-  padding-bottom: 25px;
-}
+
   .span-text{
    color: #ffffff; 
    background: var(--logo-border);
@@ -136,6 +134,11 @@
   .text{
     font-size: 50px;
   }
+  .container-fluid {
+    position: relative; /* Contenedor principal */
+  }
+  
+  
   /* Fondo semi-transparente */
   .overlay {
     position: absolute;
@@ -146,9 +149,11 @@
     background: rgba(0, 2, 20, 0.514);
     z-index: 0;
   }
+
   .z-index{
-    z-index: -1;
+    z-index: -1; 
   }
+  
 
   /* Personalización de los inputs */
   .custom-input {
