@@ -7,9 +7,9 @@ import { ProductPhotoService } from '../../../../service/product-photo.service';
   styleUrl: './post-photo-modal.component.css'
 })
 export class PostPhotoModalComponent {
-  @Input() modalId: string = 'createModal';
+  @Input() modalId: string = 'createPhotoModal';
   @Input() isEditing: boolean = false;
-  
+
   url?: string;
   constructor (
     private mediaService: ProductPhotoService,

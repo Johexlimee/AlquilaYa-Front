@@ -174,13 +174,13 @@
     <!-- Productos y características -->
     <div class="col-lg-6 col-md-12 col-sm-12">
       <!-- Agregar producto -->
+
       <div class="d-flex   mt-3">
-        <button
-          class="btn bg-success text-white"
-          type="button"
+        <button type="button"
           data-bs-toggle="modal"
-          data-bs-target="#addProductModal"
-        >
+          data-bs-target="#createPhotoModal"
+          class="btn btn-primary"
+          (click)="openAddModal()">
           <i class="ri-add-circle-line"></i> Agregar Foto
         </button>
       </div>
@@ -339,3 +339,8 @@
   [initialData]="selectedProductChara"
   (submitForm)="updateProductCharacteristics($event)">
 </app-product-characteristics-value-modal>
+
+<app-post-photo-modal
+  modalId="createPhotoModal"
+  [isEditing]="false">
+</app-post-photo-modal>
