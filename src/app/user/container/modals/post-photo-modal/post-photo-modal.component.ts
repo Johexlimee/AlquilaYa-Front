@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProductPhotoService } from '../../../../service/product-photo.service';
+import { ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../../../service/alert.service';
 
 @Component({
   selector: 'app-post-photo-modal',
@@ -11,11 +13,22 @@ export class PostPhotoModalComponent {
   @Input() isEditing: boolean = false;
 
   url?: string;
-  id: number  = 0;
+  productId: number = 0;
   formData: FormData | null = null;
+
   constructor (
+    private route: ActivatedRoute,
+    private alertService: AlertService,
     private mediaService: ProductPhotoService,
   ) {}
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.productId = +id;
+      console.log('Aqui esta tu id pedazo de nega', this.productId);
+    }
+  }
 
   upload(event: any){
     const file = event.target.files[0];
@@ -30,18 +43,16 @@ export class PostPhotoModalComponent {
   }
 
   submit() { 
-    if (this.formData && this.id !== undefined) { 
-      this.mediaService.postPhoto(this.formData, this.id).subscribe(response => { 
+    if (this.formData && this.productId !== undefined) { 
+      this.mediaService.postPhoto(this.formData, this.productId).subscribe(response => { 
         console.log('response', response); 
-        this.url = response.url; 
+        this.url = response.url;
+        this.alertService.showSuccess('La imagen se ha agregado correctamente, por favor recargue la pagina');
       }); 
     } else { 
       if (!this.formData) { 
-        console.error('Error: No se ha seleccionado ninguna imagen.'); 
+        this.alertService.showError('Error: No se ha seleccionado ninguna imagen.');
       } 
-      if (this.id <= 0) { 
-        console.error('Error: El parámetro debe ser un valor positivo.'); 
-      }
     } 
   }
 }
