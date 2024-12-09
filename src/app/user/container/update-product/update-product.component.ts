@@ -14,6 +14,19 @@ import { ProductPhotoService } from '../../../service/product-photo.service';
   styleUrl: './update-product.component.css',
 })
 export class UpdateProductComponent {
+updateProductDetails($event: any) {
+throw new Error('Method not implemented.');
+}
+addProductDetails($event: any) {
+throw new Error('Method not implemented.');
+}
+addCharacteristics($event: any) {
+  throw new Error('Method not implemented.');
+  }
+  updateProductCharacteristics($event: any) {
+  throw new Error('Method not implemented.');
+  }
+
   productForm: FormGroup;
   categories: any[] = [];
   ProductDetailsData: any[] = [];
