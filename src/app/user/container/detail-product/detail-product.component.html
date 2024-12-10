@@ -60,13 +60,16 @@
             <div>
               <label for="endDate" class="form-label">Fecha de inicio</label>
               <input type="date" id="endDate" formControlName="endDate" class="form-control mb-2"/>
-              <div *ngIf="orderForm.controls['endDate']?.touched && orderForm.controls['endDate']?.hasError('required')" class="text-danger">
-                La fecha final es obligatoria.
+              <div *ngIf="orderForm.errors?.['dateRangeInvalid']" class="text-danger">
+                La fecha final no puede ser menor a la de comienzo.
               </div>
             </div>
             <div>
               <label for="days" class="form-label">Cantidad</label>
               <input type="number" id="quantity" formControlName="quantity" class="form-control" placeholder="Seleccione una cantidad"/>
+              <div *ngIf="orderForm.controls['quantity']?.touched && orderForm.controls['quantity']?.hasError('min')" class="text-danger"> 
+                La cantidad mínima es 1.
+              </div>
               <div *ngIf="orderForm.controls['price']?.touched && orderForm.controls['price']?.hasError('required')" class="text-danger">
                 La cantidad es obligatoria.
               </div>

@@ -7,7 +7,7 @@ import { AlertService } from '../../../service/alert.service';
 import { ProductService } from '../../../service/product.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OrderDetailsService } from '../../../service/order-details.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-product',
@@ -51,9 +51,17 @@ export class DetailProductComponent {
         Validators.required,
         Validators.min(1),
       ]),
-    })
+    }, { validators: this.dateRangeValidator() })
   }
 
+
+  dateRangeValidator(): ValidatorFn { 
+    return (control: AbstractControl): { [key: string]: any } | null => { 
+      const startDate = control.get('startDate')?.value; 
+      const endDate = control.get('endDate')?.value; 
+      return startDate && endDate && endDate < startDate ? { 'dateRangeInvalid': true } : null; 
+    }; 
+  }
   
 
   ngOnInit(): void {
