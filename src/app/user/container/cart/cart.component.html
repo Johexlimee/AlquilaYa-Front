@@ -4,6 +4,14 @@
         <h4 class="text-body-secondary">Tienes {{ngForCount}} articulos en tu carrito</h4>
     </div>
     <hr>
+
+    <div *ngIf="ngForCount === 0" class="alert alert-success text-center my-5">
+        ¡Vaya!, al parecer no tienes nada en el carrito, vamos a meter toda la tienda.
+        <div class="mt-3">
+          <button class="btn btn-dark" routerLink="/user/listproducts">Ir a la tienda</button>
+        </div>
+    </div>
+
     <div class="my-5 d-flex justify-content-around row" *ngFor="let item of orderDetails">
 
         <div class="col-10">
@@ -25,7 +33,7 @@
                     <div class="col-md-3 pt-3 row d-flex align-items-center">
                         <div class="col-md-10">
                             <h5>Cantidad: {{item.quantity}}</h5>
-                            <button class="btn btn-success form-control ">Ver Producto</button>
+                            <button class="btn btn-success form-control " (click)="idProduct(item.product.productId)">Ver Producto</button>
                         </div>
                         <div class="col-md-2">
                             <!-- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#FF0000" class="bi bi-trash-fill" viewBox="0 0 16 16">

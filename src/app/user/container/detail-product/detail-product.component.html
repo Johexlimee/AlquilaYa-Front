@@ -61,7 +61,7 @@
               <label for="endDate" class="form-label">Fecha de inicio</label>
               <input type="date" id="endDate" formControlName="endDate" class="form-control mb-2"/>
               <div *ngIf="orderForm.errors?.['dateRangeInvalid']" class="text-danger">
-                La fecha final no puede ser menor a la de comienzo.
+                La fecha final no puede ser menor a la inicial.
               </div>
             </div>
             <div>

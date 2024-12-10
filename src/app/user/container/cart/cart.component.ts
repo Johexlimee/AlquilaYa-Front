@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailsService } from '../../../service/order-details.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../../../service/order.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   constructor (
     private orderDetailsService: OrderDetailsService,
     private orderService: OrderService,
-    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +56,11 @@ export class CartComponent implements OnInit {
       },
       error: (error)=> console.error('Error al ordenar los productos', error)
     })
+  }
+
+  idProduct(productId: number): void {
+    this.router.navigate([`/user/detail/${productId}`]);
+    console.log(productId)
   }
   
 }
