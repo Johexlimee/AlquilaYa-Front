@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-product-modal',
@@ -6,34 +7,54 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angu
   styleUrl: './detail-product-modal.component.css'
 })
 export class DetailProductModalComponent {
-
   @Input() modalId: string = 'createModal';
   @Input() isEditing: boolean = false;
-  @Input() initialData: any = { address: '', city: '', department: '',  stock:  '' };
+  @Input() initialData: any = {
+    productDetailsId: '',
+    address: '',
+    city: '',
+    department: '',
+    stock: '',
+  };
   @Output() submitForm = new EventEmitter<any>();
 
-  formData = { address: '', city: '', department: '',  stock:  ''  };
+  formDetail: FormGroup | null = null;
   formError: string | null = null;
   loading: boolean = false;
 
-  constructor(private cdRef: ChangeDetectorRef) {}
-
-  ngOnChanges() {
-    this.formData = { ...this.initialData };
-    this.cdRef.detectChanges();
+  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) {
+    this.formDetail = this.fb.group({
+      productDetailsId: [''],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      department: ['', Validators.required],
+      stock: ['', [Validators.required, Validators.min(1)]],
+    });
   }
 
-  handleSubmit() {
-    if (!this.formData.address.trim() ||!this.formData.city.trim() ||!this.formData.department.trim() ||!this.formData.stock.trim()) {
-      this.formError = 'El nombre es obligatorio.';
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['initialData'] && changes['initialData'].currentValue) {
+      const data = changes['initialData'].currentValue;
+      this.formDetail?.patchValue({
+        productDetailsId: data.productDetailsId || '',
+        address: data.address || '',
+        city: data.city || '',
+        department: data.department || '',
+        stock: data.stock || '',
+      });
+      console.log('Formulario actualizado con initialData:', this.formDetail);
+      this.cdRef.detectChanges(); // Fuerza la detección de cambios si es necesario
+    }
+  }
+
+  handleSubmit(): void {
+    if (this.formDetail?.invalid) {
+      this.formError = 'Por favor, completa todos los campos obligatorios.';
       return;
     }
-
-    this.loading = true;
-    setTimeout(() => {
-      this.submitForm.emit(this.formData);
-      this.loading = false;
-      this.formError = null;  // Resetear error después del envío
-    }, 1000);
+    console.log('Formulario válido:', this.formDetail?.value);
+    this.submitForm.emit(this.formDetail?.value);
+   // this.formDetail.reset(this.initialData);
+    this.formError = null;
   }
 }

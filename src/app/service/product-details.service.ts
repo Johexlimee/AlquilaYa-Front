@@ -23,8 +23,8 @@ export class ProductDetailsService {
 
   
  // Método para registrar 
- public addProductDetails(productDetailsId: number, address: string, city: string, department: string,  stock: number): Observable<ProductDetail | null> {
-  const ProductDetailsData = { productDetailsId, address, city, department,  stock };
+ public addProductDetails( address: string, city: string, department: string,productId:number,  stock: number): Observable<ProductDetail | null> {
+  const ProductDetailsData = {  address, city, department, product: { productId: productId },  stock };
 
   return this.authService.getAccessToken().pipe(
     switchMap((token) => {
@@ -53,20 +53,20 @@ export class ProductDetailsService {
 }
 
 // Método para actualizar un detalle de producto existente
-public updateProductDetails(productDetailsId: number, address: string, city: string, department: string,  stock: number): Observable<ProductDetail | null> {
-  const ProductDetailsData = { productDetailsId, address, city, department,  stock };
-
+public updateProductDetails(productDetailsId: number, address: string, city: string, department: string,productId:number,  stock: number): Observable<ProductDetail | null> {
+  const ProductDetailsData = { productDetailsId, address, city, department, product: { productId: productId },  stock };
+console.log("datos productos",ProductDetailsData)
   return this.authService.getAccessToken().pipe(
     switchMap((token) => {
       if (!token) {
         throw new Error('Token de acceso no encontrado');
       }
-
+      const params = new HttpParams().set('id', productDetailsId.toString());
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.http.put<ProductDetail>(
-        `${this.apiUrl}user/update-details?id=${productDetailsId}`,
+        `${this.apiUrl}user/update-details`,
         ProductDetailsData,
-        { headers }
+        { headers,params }
       );
     }),
     tap((response) => {

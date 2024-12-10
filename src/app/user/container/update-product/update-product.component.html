@@ -273,11 +273,11 @@
     </div>
 
 
-    <!-- <div class="card-body">
-      <div *ngIf="ProductCharacteristics.length === 0">
+    <div class="card-body">
+      <div *ngIf="ProductDetailsData.length === 0">
         <p>No hay detalles disponibles aún.</p>
       </div>
-      <div *ngIf="ProductCharacteristics.length > 0">
+      <div *ngIf="ProductDetailsData.length > 0">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -289,7 +289,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of ProductCharacteristics">
+            <tr *ngFor="let data of ProductDetailsData">
               <td>{{ ProductDetailsData[0].address }}</td>
               <td>{{ ProductDetailsData[0].city }}</td>
               <td>{{ ProductDetailsData[0].department }}</td>
@@ -300,7 +300,8 @@
                   type="button"
                   data-bs-toggle="modal"
                   data-bs-target="#editModal"
-                  class="btn btn-outline-dark btn-warning">
+                  class="btn btn-outline-dark btn-warning"
+                  (click)="editProductDetails(ProductDetailsData[0])">
                   <i class="ri-edit-box-line"></i> Editar
                 </button>
               </td>
@@ -308,13 +309,13 @@
           </tbody>
         </table>
       </div>
-    </div> -->
+    </div>
 
   </div>
 </section>
 
 
-<!-- 
+
 <app-detail-product-modal
   modalId="createModal"
   [isEditing]="false"
@@ -325,9 +326,9 @@
 <app-detail-product-modal
   modalId="editModal"
   [isEditing]="true"
-  [initialData]=""
+  [initialData]="selectedProductDetailsData"
   (submitForm)="updateProductDetails($event)">
-</app-detail-product-modal> -->
+</app-detail-product-modal>
 
 <!-- Modal para agregar detalles -->
 <app-product-characteristics-value-modal

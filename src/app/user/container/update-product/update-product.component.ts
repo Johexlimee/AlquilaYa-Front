@@ -16,8 +16,11 @@ import { ProductPhotoService } from '../../../service/product-photo.service';
 export class UpdateProductComponent {
   productForm: FormGroup;
   categories: any[] = [];
+
   ProductDetailsData: any[] = [];
+  selectedProductDetailsData: any = null;
   productPhotoData: any[] = [];
+
   ProductCharacteristics: any[] = [];
   selectedCharacteristic: any = null;
   selectedProductChara: any = null;
@@ -52,9 +55,9 @@ export class UpdateProductComponent {
     if (id) {
       this.productId = +id;
        this.loadProductData(this.productId);
-      // this.loadProductDetailData(this.productId);
+      this.loadProductDetailData(this.productId);
       this.loadProductCharacteristics(this.productId);
-      // this.loadProductPhotoData(this.productId);
+       this.loadProductPhotoData(this.productId);
     }
   }
   // Cargar características del producto
@@ -136,6 +139,33 @@ export class UpdateProductComponent {
         });
     }
   }
+
+  editProductDetails(item: any): void {
+    this.selectedProductDetailsData = { ...item };  // Aquí se asegura que los datos sean copiados correctamente
+    console.log("Datos a editar", this.selectedProductDetailsData);
+  }
+  
+
+  addProductDetails(event: any): void {
+    const { address, city,department,stock } = event;
+    if (this.productId) {
+      console.log('Adding characteristic for product id:', this.productId);
+      this.productDetailsService.addProductDetails(address,city,department, this.productId,stock)
+        .subscribe({
+          next: () => {
+            this.alertService.showSuccess(
+              'Característica del producto agregada con éxito.'
+            );
+            this.loadProductCharacteristics(this.productId!);
+          },
+          error: () => {
+            this.alertService.showError(
+              'No se pudo agregar la característica del producto.'
+            );
+          },
+        });
+    }
+  }
   
 
   // Edit product
@@ -203,21 +233,83 @@ export class UpdateProductComponent {
     });
   }
 
+    // Cargar fotos del producto
+    loadProductPhotoData(productId: number): void {
+      this.productPhotoService.getAllProductPhoto(productId).subscribe({
+        next: (photos) => {
+          this.productPhotoData = photos;
+          
+        },
+        error: () => {
+          this.alertService.showError('No se pudieron cargar las fotos del producto.');
+        }
+      });
+    }
+
+
+
+ // Cargar detalles del producto
+ loadProductDetailData(productId: number): void {
+  this.productDetailsService.getAllProductDetails(productId).subscribe({
+    next: (details) => {
+      this.ProductDetailsData = details;
+    },
+    error: () => {
+      this.alertService.showError('No se pudieron cargar los detalles del producto.');
+    }
+  });
+}
+
+
+
+
+
+ // Actualizar detalles del producto
+async updateProductDetails(event: any): Promise<void> {
+  if (!event || !event.productDetailsId || !this.productId) {
+    this.alertService.showError('Datos inválidos para actualizar el detalle del producto.');
+    return;
+  }
+
+  const { productDetailsId, address, city, department, stock } = event;
+
+  // Validar que los campos obligatorios no estén vacíos
+  if (!address || !city || !department || stock === undefined) {
+    this.alertService.showError('Por favor, completa todos los campos correctamente.');
+    return;
+  }
+
+  this.isLoading = true;
+
+  try {
+    const result = await this.productDetailsService.updateProductDetails(
+      productDetailsId, 
+      address, 
+      city, 
+      department, 
+      this.productId, 
+      stock
+    ).toPromise();
+
+    if (result) {
+      this.alertService.showSuccess('Detalle del producto actualizado con éxito.');
+      this.loadProductDetailData(this.productId!); // Recargar datos del producto actualizado
+    } else {
+      this.alertService.showError('No se pudo actualizar el detalle del producto. Inténtalo de nuevo.');
+    }
+  } catch (error) {
+    console.error('Error actualizando el detalle del producto:', error);
+    this.alertService.showError('Ocurrió un error al actualizar el detalle del producto.');
+  } finally {
+    this.isLoading = false;
+  }
+}
+
   /*
 
 
   
-  // Cargar detalles del producto
-  loadProductDetailData(productId: number): void {
-    this.productDetailsService.getAllProductDetails(productId).subscribe({
-      next: (details) => {
-        this.ProductDetailsData = details;
-      },
-      error: () => {
-        this.alertService.showError('No se pudieron cargar los detalles del producto.');
-      }
-    });
-  }
+ 
 
   // Cargar características del producto
   loadProductCharacteristics(productId: number): void {
@@ -231,18 +323,7 @@ export class UpdateProductComponent {
     });
   }
 
-  // Cargar fotos del producto
-  loadProductPhotoData(productId: number): void {
-    this.productPhotoService.getAllProductPhoto(productId).subscribe({
-      next: (photos) => {
-        this.productPhotoData = photos;
-        
-      },
-      error: () => {
-        this.alertService.showError('No se pudieron cargar las fotos del producto.');
-      }
-    });
-  }
+
 
   // Agregar detalles del producto
   addProductDetails(event: any): void {
