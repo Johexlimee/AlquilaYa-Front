@@ -58,7 +58,7 @@
               </div>
             </div>
             <div>
-              <label for="endDate" class="form-label">Fecha de inicio</label>
+              <label for="endDate" class="form-label">Fecha de final</label>
               <input type="date" id="endDate" formControlName="endDate" class="form-control mb-2"/>
               <div *ngIf="orderForm.errors?.['dateRangeInvalid']" class="text-danger">
                 La fecha final no puede ser menor a la inicial.

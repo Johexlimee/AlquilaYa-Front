@@ -7,6 +7,7 @@ import { ProductDetailsService } from '../../../service/product-details.service'
 import { ProductCharacteristicsValueService } from '../../../service/product-characteristics-value.service';
 import { ProductPhotoService } from '../../../service/product-photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-product',
@@ -14,6 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrl: './detail-product.component.css'
 })
 export class DetailProductComponent {
+  orderForm: FormGroup;
   link:String;
   apiKey:String;
   lugar:String;
@@ -34,6 +36,28 @@ export class DetailProductComponent {
     this.apiKey = "AIzaSyBI5jgmZQB_p68Qge2QgLOaQ-m3mjXJOZk";
     this.lugar = "Uniempresarial"
     this.link = "https://www.google.com/maps/embed/v1/place?key=" + this.apiKey + "&q" + this.lugar ;
+
+    this.orderForm = new FormGroup({
+      productId: new FormControl('', []),
+      startDate: new FormControl('', [
+        Validators.required,
+      ]),
+      endDate: new FormControl('', [
+        Validators.required,
+      ]),
+      quantity: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+      ]),
+    }, { validators: this.dateRangeValidator() })
+  }
+
+  dateRangeValidator(): ValidatorFn { 
+    return (control: AbstractControl): { [key: string]: any } | null => { 
+      const startDate = control.get('startDate')?.value; 
+      const endDate = control.get('endDate')?.value; 
+      return startDate && endDate && endDate < startDate ? { 'dateRangeInvalid': true } : null; 
+    }; 
   }
 
   ngOnInit(): void {
