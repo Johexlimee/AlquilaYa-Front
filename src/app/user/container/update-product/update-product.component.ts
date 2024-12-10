@@ -156,6 +156,7 @@ export class UpdateProductComponent {
             this.alertService.showSuccess(
               'Característica del producto agregada con éxito.'
             );
+            this.loadProductDetailData(this.productId!);
             this.loadProductCharacteristics(this.productId!);
           },
           error: () => {
