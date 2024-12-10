@@ -48,38 +48,35 @@
         </h4>
 
         <p class="text-muted mb-3 text-truncate">{{ products.description }}</p>
-
-        <div class="mb-4">
-          <label for="startDate" class="form-label">Fecha de inicio</label>
-          <input type="date" id="startDate" class="form-control mb-2" />
-
-          <label for="days" class="form-label">Número de días</label>
-          <input type="number" id="days" class="form-control" />
-          <label for="location" class="form-label"
-            >Seleccione la ubicación</label
-          >
-          <select id="location" class="form-control">
-            <option
-              *ngFor="let data of ProductDetailsData"
-              [value]="data.address"
-            >
-              {{ data.address }}
-            </option>
-          </select>
-        </div>
-
-        <div class="d-flex justify-content-between border-top pt-3">
-          <div>
-            <h4>Total:</h4>
+        <form [formGroup]="orderForm" (ngSubmit)="addOrderDetail()">
+          <div class="mb-4">
+            <div>
+              <label for="startDate" class="form-label">Fecha de inicio</label>
+              <input type="date" id="startDate" formControlName="startDate" class="form-control mb-2"/>
+              <div *ngIf="orderForm.controls['startDate']?.touched && orderForm.controls['startDate']?.hasError('required')" class="text-danger">
+                La fecha inicial es obligatoria.
+              </div>
+            </div>
+            <div>
+              <label for="endDate" class="form-label">Fecha de inicio</label>
+              <input type="date" id="endDate" formControlName="endDate" class="form-control mb-2"/>
+              <div *ngIf="orderForm.controls['endDate']?.touched && orderForm.controls['endDate']?.hasError('required')" class="text-danger">
+                La fecha final es obligatoria.
+              </div>
+            </div>
+            <div>
+              <label for="days" class="form-label">Cantidad</label>
+              <input type="number" id="quantity" formControlName="quantity" class="form-control" placeholder="Seleccione una cantidad"/>
+              <div *ngIf="orderForm.controls['price']?.touched && orderForm.controls['price']?.hasError('required')" class="text-danger">
+                La cantidad es obligatoria.
+              </div>
+            </div>
+            
           </div>
-          <div class="text-end">
-            <h4 class="text-success">9.999.999</h4>
+          <div class="text-center mt-4">
+            <button class="btn btn-success w-100" id="addToCartBtn" [disabled]="orderForm.invalid || isLoading">Añadir al carrito </button>
           </div>
-        </div>
-
-        <div class="text-center mt-4">
-          <button class="btn btn-success w-100">Añadir al carrito</button>
-        </div>
+        </form>
       </div>
     </div>
 

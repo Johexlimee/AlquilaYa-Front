@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../service/alert.service';
 import { ProductService } from '../../../service/product.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OrderDetailsService } from '../../../service/order-details.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-product',
@@ -13,6 +15,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrl: './detail-product.component.css'
 })
 export class DetailProductComponent {
+  orderForm: FormGroup;
+  isLoading: boolean = false;
   link:String;
   apiKey:String;
   lugar:String;
@@ -20,7 +24,7 @@ export class DetailProductComponent {
   ProductDetailsData: any[] = [];
   productPhotoData: any[] = [];
   ProductCharacteristicsData: any[] = [];
-  productId: number | null = null;
+  productId: number = 0;
   mapUrl: any;
   constructor(
     private alertService: AlertService,
@@ -29,11 +33,28 @@ export class DetailProductComponent {
     private ProductDetails:ProductDetailsService,
     private ProductCharacteristics: ProductCharacteristicsValueService,
     private productPhoto:ProductPhotoService,
+    private orderDetailsService: OrderDetailsService,
     private sanitizer: DomSanitizer){
     this.apiKey = "AIzaSyBI5jgmZQB_p68Qge2QgLOaQ-m3mjXJOZk";
     this.lugar = "Uniempresarial"
     this.link = "https://www.google.com/maps/embed/v1/place?key=" + this.apiKey + "&q" + this.lugar ;
+
+    this.orderForm = new FormGroup({
+      productId: new FormControl('', []),
+      startDate: new FormControl('', [
+        Validators.required,
+      ]),
+      endDate: new FormControl('', [
+        Validators.required,
+      ]),
+      quantity: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+      ]),
+    })
   }
+
+  
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -44,12 +65,35 @@ export class DetailProductComponent {
       this.loadProductCharacteristicslData(this.productId)
       this.loadProductPhotoData(this.productId)
       console.log(id)
-      
     }
-   
   }
 
-  
+  async addOrderDetail(): Promise<void> {
+    if (this.orderForm.invalid) {
+      this.alertService.showError('Por favor, completa todos los campos correctamente.');
+      return;
+    }
+    const { startDate, endDate, quantity } = this.orderForm.value;
+    this.isLoading = true;
+
+    this.orderDetailsService.addOrderDetail(startDate, endDate, quantity, this.productId ).subscribe({
+      next: (result)=> {
+        console.log("resultado", result)
+        if (result) {
+          this.alertService.showSuccess('Producto agregado al carrito con éxito.');
+        } else {
+          this.alertService.showError('No se pudo agregar el producto. Inténtalo de nuevo.');
+        }
+      },
+      error: (error) => {
+        console.error('Error adding product:', error);
+        this.alertService.showError('Ocurrió un error al agregar el producto.');
+      },
+      complete: () => {
+        this.isLoading = false; // Ocultar el estado de carga después de completar
+      },
+    });
+  }
 
     // Load product data for editing
     loadProductData(productId: number): void {

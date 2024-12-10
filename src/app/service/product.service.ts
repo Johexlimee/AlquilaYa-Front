@@ -31,6 +31,7 @@ export class ProductService {
         }
   
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+        console.log( headers );
         return this.http.get<any>(`${this.apiUrl}customer/product-user`, { headers });
       }),
       catchError((error) => {
