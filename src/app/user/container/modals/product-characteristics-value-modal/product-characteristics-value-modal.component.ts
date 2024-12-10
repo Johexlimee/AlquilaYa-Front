@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ProductCharacteristicsService } from '../../../../service/product-characteristics.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-characteristics-value-modal',
@@ -7,32 +8,55 @@ import { ProductCharacteristicsService } from '../../../../service/product-chara
   styleUrls: ['./product-characteristics-value-modal.component.css']
 })
 export class ProductCharacteristicsValueModalComponent {
-  dataProductChara: any = [];
-  @Input() modalId: string = 'createModal';
+  productCharacteristics: any = []; 
+  @Input() modalId: string = 'createModal1';
   @Input() isEditing: boolean = false;
-  @Input() initialData: any = { product: '', productCharacteristic: '', value: '' };
+  @Input() initialData: any = { value: '', characteristicId: ''   };
+
   @Output() submitForm = new EventEmitter<any>();
 
-  formData = { product: '', productCharacteristic: '', value: '' };
+  form: FormGroup; 
+
   formError: string | null = null;
   loading: boolean = false;
 
   constructor(
+    private fb: FormBuilder,
     private productCharaService: ProductCharacteristicsService,
-    private cdRef: ChangeDetectorRef,
-  ) {}
-
-  ngOnChanges() {
-    this.formData = { ...this.initialData };
-    this.getAllCaracteristics();
-    this.cdRef.detectChanges();
+    private cdRef: ChangeDetectorRef
+  ) {
+    // Inicializamos el formulario
+    this.form = this.fb.group({
+      value: ['', Validators.required],
+      characteristicId: ['', Validators.required],
+      valueId: [''] // Si es necesario incluir este campo en el formulario
+    });
   }
 
-  getAllCaracteristics(): void {
+  ngOnInit() {
+    this.getAllCharacteristics();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['initialData'] && changes['initialData'].currentValue) {
+      const data = changes['initialData'].currentValue;
+      this.form.patchValue({
+        value: data.value,
+        characteristicId: data.productCharacteristic?.characteristicId,  
+        valueId: data.valueId 
+      });
+      console.log('Formulario actualizado con initialData:', this.form.value);
+      this.cdRef.detectChanges(); // Fuerza la detección de cambios si es necesario
+    }
+  }
+  
+  
+
+  getAllCharacteristics(): void {
     this.productCharaService.getAllCharacteristics().subscribe({
       next: (data) => {
         console.log('Datos recibidos:', data);
-        this.dataProductChara = data;
+        this.productCharacteristics = data;
       },
       error: (error) => console.error('Error al obtener características:', error),
       complete: () => {
@@ -41,22 +65,15 @@ export class ProductCharacteristicsValueModalComponent {
     });
   }
 
- handleSubmit() {
-    // Validar que todos los campos estén completos
-    if ( 
-        !this.formData.productCharacteristic?.trim() || 
-        !this.formData.value?.trim()) {
+  handleSubmit(): void {
+    if (this.form.invalid) {
+      this.formError = 'Por favor, completa todos los campos obligatorios.';
       return;
     }
-
-    // Limpiar error previo y activar el estado de carga
+    console.log("Formulario válido:", this.form.value);
+    this.submitForm.emit(this.form.value); // Aquí se emite 'valueId'
+    this.form.reset(this.initialData);
     this.formError = null;
-    this.loading = true;
-
-    setTimeout(() => {
-      // Emitir datos y resetear estado
-      this.submitForm.emit(this.formData);
-      this.loading = false;
-    }, 1000);
   }
+  
 }

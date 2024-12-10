@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from '../../../service/alert.service';
 import { ProductService } from '../../../service/product.service';
@@ -11,86 +11,51 @@ import { CategoriesService } from '../../../service/categories.service';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
-  productForm: FormGroup;
   categories: any[] = [];
-  isLoading: boolean = false;
+  isLoading: boolean = false; 
+  @Output() submitProduct = new EventEmitter<any>();
+
+  formData!: FormGroup; 
+  formError: string | null = null;
 
   constructor(
-    private router: Router,
-    private alertService: AlertService,
+    private fb: FormBuilder,
     private productService: ProductService,
-    private categoriesService: CategoriesService
-  ) {
-    // Define the form with required fields
-    this.productForm = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10),
-      ]),
-      price: new FormControl('', [
-        Validators.required,
-        Validators.min(0),
-      ]),
-     
-      productCondition: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^(bueno|usado)$/),
-      ]),
-      categoryId: new FormControl('', Validators.required),
-    });
-  }
+    private categoriesService: CategoriesService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
-    this.getAllCategories();
-  }
+    // Inicializar el formulario
+    this.formData = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: [null, [Validators.required, Validators.min(0)]],
+      productCondition: ['', Validators.required],
+      categoryId: [null, Validators.required],
+    });
 
-  // Get all product categories
-  getAllCategories(): void {
+    // Obtener las categorías
     this.categoriesService.getAllCategories().subscribe({
       next: (data) => {
         this.categories = data;
-        console.log(data)
       },
       error: (error) => {
-        console.error('Error fetching categories:', error);
-        this.alertService.showError('No se pudieron cargar las categorías.');
-      },
+        console.error('Error al cargar las categorías:', error);
+        this.alertService.showError('Error al cargar las categorías.');
+      }
     });
   }
 
-  // Add a new product
-  async addProduct(): Promise<void> {
-    if (this.productForm.invalid) {
-      this.alertService.showError('Por favor, completa todos los campos correctamente.');
+  handleSubmit(): void {
+    if (this.formData.invalid) {
+      this.formError = 'Por favor, completa todos los campos obligatorios.';
       return;
     }
-  
-    const { name, description, price, productCondition, categoryId } = this.productForm.value; // Desestructurar el objeto
-  
-    this.isLoading = true; // Mostrar estado de carga
-  
-    // Llamar al servicio pasando los valores directamente
-    this.productService.addProduct(name, description, price, productCondition, categoryId).subscribe({
-      next: (result) => {
-        console.log("resultadooo",result)
-        if (result) {
-          this.alertService.showSuccess('Producto agregado con éxito.');
-        } else {
-          this.alertService.showError('No se pudo agregar el producto. Inténtalo de nuevo.');
-        }
-      },
-      error: (error) => {
-        console.error('Error adding product:', error);
-        this.alertService.showError('Ocurrió un error al agregar el producto.');
-      },
-      complete: () => {
-        this.isLoading = false; // Ocultar el estado de carga después de completar
-      },
-    });
+    console.log("Formulario válido:", this.formData.value);
+    this.submitProduct.emit(this.formData.value);
+    this.formData.reset();
+    this.formError = null;
   }
   
   

@@ -51,7 +51,7 @@ export class ProductCharacteristicsModalComponent {
     setTimeout(() => {
       this.submitForm.emit(this.formData);
       this.loading = false;
-      this.formError = null;  // Resetear error después del envío
+      this.formError = null;  
     }, 1000);
   }
 }

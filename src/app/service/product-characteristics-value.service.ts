@@ -27,9 +27,15 @@ export class ProductCharacteristicsValueService {
   ) { }
   
  // Método para registrar 
- public addCharacteristics(valueId: number, product: string, productCharacteristic: string, value: number): Observable<ProductCharacteristics | null> {
-  const ProductDetailsData = { valueId, product, productCharacteristic, value };
+ public addCharacteristics( value: string,productId: number, characteristicId: number, ): Observable<ProductCharacteristics | null> {
 
+  const registerData = {
+    value,
+    productCharacteristic: {
+      characteristicId: characteristicId
+    },
+    product: { productId: productId },
+  };
   return this.authService.getAccessToken().pipe(
     switchMap((token) => {
       if (!token) {
@@ -38,8 +44,8 @@ export class ProductCharacteristicsValueService {
 
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.http.post<ProductCharacteristics>(
-        `${this.apiUrl}user/add-details`,
-        ProductDetailsData,
+        `${this.apiUrl}user/add-charact`,
+        registerData,
         { headers }
       );
     }),
@@ -57,20 +63,28 @@ export class ProductCharacteristicsValueService {
 }
 
 // Método para actualizar un detalle de producto existente
-public updateProductCharacteristics(valueId: number, product: string, productCharacteristic: string, value: number): Observable<ProductCharacteristics | null> {
-  const ProductDetailsData = { valueId, product, productCharacteristic, value };
-
+public updateProductCharacteristics(valueId: number, value: string,productId: number, characteristicId: number,): Observable<ProductCharacteristics | null> {
+  const registerData = {
+    valueId,
+    value,
+    productCharacteristic: {
+      characteristicId: characteristicId
+    },
+    product: { productId: productId },
+  };
+console.log("data",registerData)
   return this.authService.getAccessToken().pipe(
     switchMap((token) => {
       if (!token) {
         throw new Error('Token de acceso no encontrado');
       }
-
+console.log(valueId)
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      const params = new HttpParams().set('id', valueId.toString());
       return this.http.put<ProductCharacteristics>(
-        `${this.apiUrl}user/update-details?id=${valueId}`,
-        ProductDetailsData,
-        { headers }
+        `${this.apiUrl}user/update-charact`,
+        registerData,
+        { headers,params }
       );
     }),
     tap((response) => {
@@ -90,7 +104,7 @@ public updateProductCharacteristics(valueId: number, product: string, productCha
   // Método para obtener todas las características
   public getAllProductCharacteristics( valueId: number,): Observable<ProductCharacteristics[]> {
     const params = new HttpParams().set('productId', valueId.toString())
-    return this.http.get<ProductCharacteristics[]>(`${this.apiUrl}product-characteristics-value/public/productId`, { params }).pipe(
+    return this.http.get<ProductCharacteristics[]>(`${this.apiUrl}public/charact-productId`, { params }).pipe(
       tap((data) => { 
         console.log('Datos recibidos:', data);
       }),

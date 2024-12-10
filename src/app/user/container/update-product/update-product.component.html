@@ -111,8 +111,11 @@
               aria-label="Seleccionar Condición"
             >
               <option value="">Seleccionar Condición</option>
-              <option value="bueno">Bueno</option>
-              <option value="usado">Usado</option>
+              <option value="">Seleccionar Condición</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Usado">Usado</option>
+              <option value="Regular">Regular</option>
+              <option value="Nuevo">Nuevo</option> 
             </select>
             <!-- Mensajes de error -->
             <div
@@ -180,7 +183,7 @@
           data-bs-toggle="modal"
           data-bs-target="#createPhotoModal"
           class="btn btn-primary"
-          (click)="openAddModal()">
+         >
           <i class="ri-add-circle-line"></i> Agregar Foto
         </button>
       </div>
@@ -213,7 +216,7 @@
          data-bs-toggle="modal"
          data-bs-target="#createModal1"
          class="btn btn-primary"
-        (click)="openAddModal()">Agregar </button>
+      >Agregar </button>
 
         </div>
         <div class="card-body">
@@ -239,7 +242,7 @@
                       data-bs-toggle="modal"
                       data-bs-target="#editModal1"
                       class="btn btn-outline-dark btn-warning"
-                      (click)="editProductCharactetistics(data)">
+                      (click)="editCharacteristic(data)">
                       <i class="ri-edit-box-line"></i> Editar
                     </button>
                   </td>
@@ -266,11 +269,11 @@
       data-bs-toggle="modal"
       data-bs-target="#createModal"
       class="btn btn-primary"
-      (click)="openAddModal()">Agregar</button>
+      >Agregar</button>
     </div>
 
 
-    <div class="card-body">
+    <!-- <div class="card-body">
       <div *ngIf="ProductCharacteristics.length === 0">
         <p>No hay detalles disponibles aún.</p>
       </div>
@@ -305,25 +308,26 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
+
   </div>
 </section>
 
 
-<!-- Modal para agregar característica -->
+<!-- 
 <app-detail-product-modal
   modalId="createModal"
   [isEditing]="false"
   (submitForm)="addProductDetails($event)">
 </app-detail-product-modal>
 
-<!-- Modal para editar característica -->
+
 <app-detail-product-modal
   modalId="editModal"
   [isEditing]="true"
   [initialData]=""
   (submitForm)="updateProductDetails($event)">
-</app-detail-product-modal>
+</app-detail-product-modal> -->
 
 <!-- Modal para agregar detalles -->
 <app-product-characteristics-value-modal

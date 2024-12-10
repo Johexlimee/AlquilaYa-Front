@@ -1,43 +1,59 @@
-<div class="modal fade" id="{{ modalId }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            {{ isEditing ? 'Editar Característica' : 'Agregar Característica' }}
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form (ngSubmit)="handleSubmit()">
-            <div class="mb-3">
-            
-                
-              <label for="characteristicName" class="form-label">Característica</label>
-              <select name="characteristicName" id="characteristicName" class="form-control" required> 
-                <option value="" disabled selected hidden>Selecciona una opción</option> 
-                <option *ngFor="let data of dataProductChara"
-                 [value]="data.characteristicId">
-                 {{ data.characteristicName }}</option> 
-              </select>
-              <label for="characteristicName" class="form-label">Valor</label>
-              <input
-                type="text"
-                class="form-control"
-                id="characteristicName"
-                [(ngModel)]="formData.value"
-                name="characteristicName"
-                required
-              />
-            </div>
-  
-            <div *ngIf="formError" class="alert alert-danger">{{ formError }}</div>
-  
-            <button type="submit" class="btn btn-primary" [disabled]="loading">
-              {{ loading ? 'Procesando...' : 'Guardar' }}
-            </button>
-          </form>
-        </div>
+<div
+  class="modal fade"
+  id="{{ modalId }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ isEditing ? "Editar Característica" : "Agregar Característica" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+          <div class="mb-3">
+            <label for="characteristicName" class="form-label">Característica</label>
+            <select
+              formControlName="characteristicId" 
+              id="characteristicName"
+              class="form-control"
+              required
+            >
+              <option value="" disabled selected hidden>Selecciona una opción</option>
+              <option *ngFor="let data of productCharacteristics" [value]="data.characteristicId">
+                {{ data.characteristicName }}
+              </option>
+            </select>
+        
+            <label for="characteristicValue" class="form-label">Valor</label>
+            <input
+              type="text"
+              class="form-control"
+              id="characteristicValue"
+              formControlName="value" 
+              required
+            />
+          </div>
+        
+          <div *ngIf="formError" class="alert alert-danger">
+            {{ formError }}
+          </div>
+        
+          <button type="submit" class="btn btn-primary" [disabled]="loading">
+            guardar
+          </button>
+        </form>
+        
       </div>
     </div>
   </div>
-  
+</div>
