@@ -116,7 +116,6 @@ export class CategoriesService {
         return of(null);
       })
     );
+  }   
 }
-   
-  }
 
